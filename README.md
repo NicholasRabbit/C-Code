@@ -1,2 +1,2 @@
 # c-code
-These are the codes which I write when I am learning C.
+These are the codes which are written by me when I am learning C.
