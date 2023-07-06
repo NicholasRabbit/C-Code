@@ -13,5 +13,9 @@ int main(void){
 
 	printf("%d\n%d\n%c\n%X\n",i,j,c,m);
 
+	//%p : 这个输出控制符表示输出指针，即变量的地址，注意打印时在变量前加“&”表示取地址。
+	int k = 25;
+	printf("k's address==> %p\n",&k);
+
 	return 0;
 }

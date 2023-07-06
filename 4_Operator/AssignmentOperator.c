@@ -12,13 +12,14 @@ int main(void){
 	int n = 27;
 	int x = 7;
 
-	//注意：进行 +=这些运算时，原来的变量要初始话。
+	//注意：进行 +=这些运算时，原来的变量要初始化。
 	int j = i;
 	k += i;
 	l -= i;
 	m *= i;
 	n /= i;
 	x %= i;
+
 	printf("j=%d,k=%d,l=%d,m=%d,n=%d,x=%d\n",j,k,l,m,n,x);
 
 
