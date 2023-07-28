@@ -1,10 +1,15 @@
 # include<stdio.h>
+
 int main(){
 	
 	//本例演示为什么使用输出控制符
 	char ch = 'A';
 	printf("%c\n",ch);	//输出：A,因为“%c”就是设定输出为char类型
 	printf("%d\n",ch);	//输出: 65,即A的ASCII码，因为"%d"设定就是输出数字
+
+	char ch2 = 'a';
+	printf("%c\n",ch2);	//输出：a
+	printf("%c\n", ch2 + 1);	//输出：b,字符也可以参与运算。
 
 	/*总结：
 	 *以上说明在底层计算机都是用数字，即二进制来表示任何数据的包括以上的字符，还有字符串
