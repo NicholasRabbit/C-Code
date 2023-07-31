@@ -17,6 +17,7 @@
  * */
 
 //C语言中main函数只有两种标准写法：
+
 //main函数第一种写法
 /*
 int main(void){
@@ -30,6 +31,6 @@ int main(void){
 
 //main函数第二种写法
 int main(int argc,char *argv[]){
-	printf("second main function. argc==>%d\n",argc);
+	printf("second main function. argc==>%d\n",argc);	//输出：argc = 1,原理后期待研究
 	return 0;
 }
