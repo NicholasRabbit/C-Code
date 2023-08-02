@@ -1,4 +1,9 @@
 # include<stdio.h>
+
+
+/*
+ * 1,输出控制符范例。
+ * */
 int main(void){
 	int i = 10;
 	/*1,%d表示把i以10进制的形式输出;
@@ -19,3 +24,9 @@ int main(void){
 
 	return 0;
 }
+
+/*
+ * 2,printf(..)函数的形参是可变长度的。
+ * 可通过Linux命令行执行 man 3 printf 查看说明。
+ * 这里的 3代表Section 3，具体见个人Linux笔记。
+ * */
