@@ -13,9 +13,15 @@ int main(void){
 	int n = i - j;
 	int k = i * j;
 	int h = i / j;
+
+	//取余运算%只能用于整数类型，浮点类型使用会报错。
 	int z = j % i;
 
+	double d = 12.3 % 4.1; //报错
+
 	printf("m=%d,n=%d,k=%d,h=%d,z=%d\n",m,n,k,h,z);
+
+	printf("d=%d\n",d);
 
 
 
