@@ -9,11 +9,11 @@
  * */
 
 //错误写法1, 编译报警:implicit...
-//int x = asin(1.0);
+//int x = asin(1.0);  不可用方法或函数给全局变量赋值
 
 //错误写法2, 报错：error:initialize element is not constant
 //int a = 3;
-//int b = a + 2; //错误写法
+//int b = a + 2; //错误写法,不可用表达式。
 
 //正确写法
 int m = 10;
