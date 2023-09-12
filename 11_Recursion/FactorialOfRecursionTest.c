@@ -24,6 +24,20 @@ int factorial(int n){
 
 }
 
+//使用while循环实现阶乘
+int whileLoop(int n){
+
+	int result = 1;
+	int k = 1;
+	while(k <= n){
+		result = result * k;
+		k ++;
+	}
+
+	return result;
+
+}
+
 
 int main(void){
 
@@ -36,6 +50,9 @@ int main(void){
 	int result = factorial(num);
 	printf("factorial result:%d \n",result);
 
+	//while loop
+	int retValue = whileLoop(num);
+	printf("while loop %d \n", retValue);
 
 	return 0;
 
