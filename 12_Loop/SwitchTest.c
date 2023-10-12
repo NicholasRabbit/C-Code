@@ -4,6 +4,9 @@
  * switch demo
  * 跟if else 一样，不精确的浮点类型数据不适合用switch比较。
  * switch后的条件必须是整型常量表达式。
+ *
+ * switch一般都可以用if else代替，但是编译器编译的时候会对switch语句优化，因此其性能
+ * 要高些。
  * */
 
 int printWeekDay(int n){
