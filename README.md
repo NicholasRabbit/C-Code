@@ -1,2 +1,2 @@
 # c-code
-These codes were written by me when I was learning C.
+These codes will be updating when I am learning C.
