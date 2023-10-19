@@ -12,6 +12,7 @@
  * C语言中的结构体，使用struct关键字定义。
  * */
 
+
 int compoudTest(){
 
 	//1,结构体写法
@@ -42,22 +43,35 @@ int compoudTest(){
 	//下面写法错误，忘了写关键字"struct"，结构体声明变量时，"struct"和"结构体名"要同时用!!
 	//complex_struct02 m = {5.6,3.5}; 
 	
+	//正确写法。
 	struct complex_struct02  m = {3.6,7.2};  //注意分号";",不要忘
 	printf("struct02:m==>(%f,%f)\n",m.x,m.y);
 
 	//2.2,结构体初始化赋值的个数可以比它的成员少，就从前向后给成员赋值，未赋值的用0代替，注意：初始化赋值个数不能比成员多。
 	struct complex_struct02 n = {0.3};
-	struct complex_struct02 h = {1.5,2.6,7.7};  //此处未报错，原因待查
+	struct complex_struct02 h = {1.5,2.6,7.7};  //此处报警"excess element",但仍可编译通过
 	//以下初始化赋值的写法都是正确的
 	struct complex_struct02 j = {5.6,7.4,};  //最后可以有逗号","
 	struct complex_struct02 k = {2.7,};
 	double p = 9.8;
 	struct complex_struct02 l = {p,1.5};
-	
+	struct complex_struct02 b = {.y = 4.5};  //指定给结构体的y赋值，x取默认值。
+	struct complex_struct02 d = j;      //结构体变量时间可以相互赋值
+
 	printf("struct02:n==>(%f,%f)\n",n.x,n.y);
 	printf("struct02:h==>(%f,%f)\n",h.x,h.y);
-
+	printf("struct02:b==>(%f,%f)\n",b.x,b.y);
+	printf("struct02:d==>(%f,%f)\n",d.x,d.y);
 	
+	//2.3,{..}不能用于结构体变量的赋值，因为它不是表达式也不是常量等。
+	struct complex_struct02 c;
+	//c = {1.5,3.0};    //此处写法错误
+	
+	
+	//3, +-*/和&&,||,!等不能用于结构体
+	//d = j + k;  //报错
+	
+	//4，因为结构体之间可以相互赋值和初始化，所以结构体可当作函数的参数.(参照下一个代码文件)
 
 
 	return 0;
