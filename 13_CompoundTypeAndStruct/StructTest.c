@@ -31,6 +31,14 @@ int compoudTest(){
 		double x,y;
 	} z1,z2;
 
+	//第三种写法，这种写法没有定义结构体的名称，因此别的地方不能再引用此结构体声明变量了。
+	struct {
+		double x,y;
+	} m1,m2;
+	m1.x = 3.5;
+	m1.y = 0.9;
+	printf("anonymous struct:%f,%f\n",m1.x,m1.y);
+
 	//2,结构体赋值
 	double x = 2.5; //注意这里的x和复合类型中的x不是指向的同一内存地址
 	a1.x = x; 
