@@ -63,10 +63,11 @@ struct complex_number add(struct complex_number z1, struct complex_number z2){
 	return createFromRealImg(real,img);
 }
 
-
+//其它三个运算方法同理。
 
 int main(void){
 
+	//注意：结构体内部的变量名称发生了改变，这里引用时也要修改。
 	struct complex_number z1 = {3,4};
 	struct complex_number z2;
 	z2.r = 5;
@@ -77,8 +78,8 @@ int main(void){
 	printf("add:x=%f,y=%f\n",addResult.r,addResult.a);
 
 
-
 	return 0;
+
 }
 
 

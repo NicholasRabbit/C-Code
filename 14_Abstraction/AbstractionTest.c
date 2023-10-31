@@ -7,6 +7,11 @@
  * 通过练习复数用点坐标或者极坐标表示，以此实现加减乘除来理解各个抽象层。
  * 复数的加减用点坐标比较方便，乘除用极坐标方便。
  *
+ * 什么是“抽象”？
+ * 抽象实际类似于数学中的提取公因式，例如:ac + ab = a(c + b)，对于等号左边如果改变a的值
+ * 那么ac和ab都要改，但是对于右边，只需要改a就可以了。
+ * Java中的抽象类，抽象方法就是用到了这一特性，从而使得代码耦合性降低，减少了代码量，使其易于维护。
+ *
  * 复数乘法计算方法：模长相乘，角度相加。
  * */
 
@@ -56,6 +61,43 @@ struct complex_number createFromMagAng(double r,double a){
 	z.x = r * cos(a);
 	z.y = r * sin(a);
 	return z;
+}
+
+
+/*
+ * 三，加减乘除运算方法。
+ * */
+struct complex_number add(struct complex_number z1, struct complex_number z2){
+	//加法，实实相加，虚虚相加，减法同理。
+	/*
+	 * 重点：
+	 * 这里直接调用封装好的方法来进行相加，而不是直接访问结构体本身(z1.x + z2.x)，封装好的方法实际是对结构体的一层抽象。 
+	 * 将来即使结构体本身发生改动，这两个realPart(..),imaginaryPart(..)并不受影响，因此这里的加法也不用做改动。
+	 * 只需改动realPart(),imaginaryPart()以及createFromRealImg(),createFromMagAng()这两层的相关方法内部代码即可。
+	 * add()方法不用做任何改动。
+	 *
+	 * */
+	double real = realPart(z1) + realPart(z2);
+	double img  = imaginaryPart(z1) + imaginaryPart(z2);
+	return createFromRealImg(real,img);
+}
+
+
+
+int main(void){
+
+	struct complex_number z1 = {3,4};
+	struct complex_number z2;
+	z2.x = 5;
+	z2.y = 30;  
+	
+	//1,加法
+	struct complex_number addResult = add(z1,z2);
+	printf("add:x=%f,y=%f\n",addResult.x,addResult.y);
+
+
+
+	return 0;
 }
 
 
