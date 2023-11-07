@@ -12,7 +12,10 @@
  * 那么ac和ab都要改，但是对于右边，只需要改a就可以了。
  * Java中的抽象类，抽象方法就是用到了这一特性，从而使得代码耦合性降低，减少了代码量，使其易于维护。
  *
- * 复数乘法计算方法：模长相乘，角度相加。
+ * 复数 
+ * 乘法计算方法：模长相乘，角度相加。
+ * 除法：模长相除，角度相减。
+ *
  * */
 
 //首先声明一个全局范围的结构体类型,这里并没有声明变量，只是声明了一个结构体类型。
@@ -82,7 +85,27 @@ struct complex_number add(struct complex_number z1, struct complex_number z2){
 	return createFromRealImg(real,img);
 }
 
+//sub
+struct complex_number sub(struct complex_number z1, struct complex_number z2){
+	double real = realPart(z1) - realPart(z2);
+	double img = imaginaryPart(z1) - imaginaryPart(z2);
+	return createFromRealImg(real,img);
+}
 
+//multiple  乘法除法用极坐标运算比较方便。
+struct complex_number multiple(struct complex_number z1, struct complex_number z2){
+	double mag = magnitude(z1) * magnitude(z2);
+	double ang = angle(z1) * angle(z2);
+	return createFromMagAng(mag,ang);	
+	
+}
+
+//divide
+struct complex_number divide(struct complex_number z1, struct complex_number z2){
+	double mag = magnitude(z1) / magnitude(z2);
+	double ang = angle(z1) - angle(z2);
+	return createFromMagAng(mag,ang);	
+}
 
 int main(void){
 
@@ -93,11 +116,20 @@ int main(void){
 	
 	//1,加法
 	struct complex_number addResult = add(z1,z2);
-	printf("add:x=%f,y=%f\n",addResult.x,addResult.y);
-
+	printf("add:x=%f,y=%fi\n",addResult.x,addResult.y);
+	//2,减法
+	struct complex_number subRes = sub(z1,z2);
+	printf("sub:x=%f,y=%fi\n",subRes.x,subRes.y);
+	//3,乘法
+	struct complex_number mutRes = multiple(z1,z2);
+	printf("multiple:x=%f,y=%fi\n",mutRes.x,mutRes.y);
+	//4,除法
+	struct complex_number divRes = divide(z1,z2);
+	printf("divide:x=%f,y=%fi\n",divRes.x,divRes.y);
 
 
 	return 0;
+	
 }
 
 
