@@ -75,3 +75,11 @@ int  a = b + 1;
 参考：https://blog.csdn.net/o707191418/article/details/81221168
 
 for循环中的i++会执行，而while循环中的i++不会执行。参考个人代码ContinueInForAndWhile.c
+
+#### 10，%lf和%f在printf()和scanf()中的区别
+
+ %f: 表示单浮点精度float
+ %lf: 表示双浮点精度double
+
+1,printf()函数中这俩没有区别，因为printf()会自动把单浮点数float向上转型为double
+2,scanf()函数中有区别，%f表示收float, %lf表示接收double.
