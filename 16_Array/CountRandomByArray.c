@@ -36,6 +36,18 @@ void genRandom(int upperBound){
 	
 }
 
+//计算10以上的数
+void genRandomGreaterTen(int upperBound){
+	int i;
+	for(i = 0; i < N; i++){
+		int num = rand() % upperBound;
+		if(num < 10)
+			num += 10;
+		arr[i] = num;
+	}
+
+}
+
 //计算数的出现次数
 int howMany(int num){
 
@@ -59,6 +71,15 @@ int main(void){
 	//遍历计算每个数出现的次数
 	for(i = 0; i < 10; i++){
 		printf("count of %d ==> %d\n",i, howMany(i));
+	}
+
+
+	//生成10~20之间的随机数
+	genRandomGreaterTen(20);
+	//遍历计算每个数出现的次数
+	printf("value \t count\n");
+	for(i = 10; i < 20; i++){
+		printf("%d \t %d\n",i, howMany(i));
 	}
 
 	return 0;
