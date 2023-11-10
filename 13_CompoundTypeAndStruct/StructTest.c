@@ -19,7 +19,7 @@ int compoudTest(){
 	//第一种写法，先规定好符合类型的内部结构，然后再声明变量。
 	//注意：大括号后面的分号";"一定不要忘记，这不是函数。
 	struct complex_struct{
-		double x,y;
+		double x,y;  //在内存中，这两个变量的存储位置是相邻的。
 	}; 
 	
 	//声明变量，这里把"struct complex_struct"整体看作一个数据类型。
