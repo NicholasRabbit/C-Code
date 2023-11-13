@@ -12,7 +12,7 @@
 //}
 void arrFunction(int a[]){	
 	printf("arrFunction==> %d\n",a[0]);
-	return 0;
+	return ;
 }
 
 int main(void){
@@ -22,7 +22,7 @@ int main(void){
 	int arr[4];
 	
 	//C语言中这种写法错误，
-	//int[] arr2[5]; 
+	//int[] array; 
 	
 	//2,arr[i] 可以表示数组元素的值，也可以表示这位位置的存储单元本身，因此它可以做右值，也可以做左值。
 	arr[0] = 12;
@@ -40,6 +40,7 @@ int main(void){
 	
 
 	//3,数组初始化的方式：
+	//如果不初始化，里面都是旧数据。
 	
 	//3.1,数组也可以像结构体那样初始化，未赋值的元素默认0
 	int arr2[5] = {1,2,3,};
