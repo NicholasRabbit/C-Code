@@ -26,6 +26,8 @@ int arr[N];
  * rand()的返回值是 0~ RAND_MAX 之间的值。
  * 
  * 注意：rand()函数底层生成的数也不是完全随机的，而是按照一个公式计算的结果。
+ * 详细研究见 RandomRealBySrand.c
+ *
  *
  * 本例我们不需要那么大的值，因此用它跟 upperBound = 10或其它较小的数取余。
  * */
@@ -82,6 +84,8 @@ int main(void){
 		printf("%d \t %d\n",i, howMany(i));
 	}
 
+	
 	return 0;
+
 }
 
