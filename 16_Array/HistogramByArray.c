@@ -9,11 +9,11 @@
  *
  * */
 
-int arr[N];
+int arr[N] = {0,};
 
 
 
-//计算随机数
+//生成随机数,放进数组
 void genRandom(int upperBound){
 	int i;
 	for(i = 0; i < N; i++)
@@ -62,16 +62,17 @@ int histogram(int arr[]){
  * */
 int histogramImproved(int arr[]){
 
-	int histogramArr[10];
+	//注意这里要初始化，否则就在原来的脏数据上累加了！！
+	int histogramArr[10] = {0}; 
 	int i;
-	for(i == 0; i < N; i++){
+	for(i = 0; i < N; i++){
 		histogramArr[ arr[i] ]++;  //arr[i]是全局变量数组，元素都是0~9间的数，正好是histogramArr的下标
 	}
 
-
-	for(i = 0; i < 10; i++){
+	int j;
+	for(j = 0; j < 10; j++){
 		//查看结果
-		printf("hg[%d]: %d\n",i, histogramArr[i]);
+		printf("hg improved[%d]: %d\n",j, histogramArr[j]);
 	}
 
 
@@ -84,8 +85,9 @@ int main(void){
 
 	genRandom(10);
 	
+	//第一种方法
 	histogram(arr);
-
+	//第二种方法
 	histogramImproved(arr);
 
 	return 0;
