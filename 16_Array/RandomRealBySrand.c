@@ -16,11 +16,14 @@
 int arr[N];
 
 void genRandomReal(int upperBound){
+	
 	int i;
 	for(i = 0; i < N; i++){
-		//每次都改变初始值，使之生成真实的随机数
+
+		//每次调用rand()之前都改变初始值，使之生成真实的随机数
 		//使用time(..)函数要引入time.h
 		srand(time(NULL));
+
 		arr[i] = rand() % upperBound;   
 	
 	}
