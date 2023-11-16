@@ -12,7 +12,7 @@
 // Define the symbol for the histogram
 #define SYMBOL '*'
 
-//3.1.8 homework
+//8.3. homework
 
 
 // Declare an array of integers
