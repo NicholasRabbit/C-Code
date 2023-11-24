@@ -21,7 +21,10 @@ int getArr(double x,double y){
 	printf("%s\n",arrayStruct[0].name);
 
 	struct student stu = arrayStruct[1];
-	//stu.name[20]  = "Jerry";  //error: An variable of array could not be assigned with "abc" or {'a','b','c'}
+	//stu.name[20]  = "Jerry";  //error: An variable of array which have been intialised could not be assigned with "abc" or {'a','b','c'}
+								//Reason is: a string value will be transfered to a pointer automatically by compiler. Refer to "String.c".
+	stu.name[0] = 'x';  //Correct way of assignment.
+
 	stu.age = 20;
 	stu.score = 33.5;
 	stu.weight = 90.0;
