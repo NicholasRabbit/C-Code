@@ -39,7 +39,8 @@ int main(void){
 	printf("[0][1] = %d, [2][3] = %d\n", array[0][1],array[2][3]);
 
 	//4, char类型多维数组
-	// ".."相当于一个一维数组。
+	// "xx"相当于一个一维数组。
+	// 这里第一维容量设置为8是为了让0空出来，第二维最大容量是10是为了保证最大长度后还有一个位置给"\0",详见"Linux C一站式编程"对应章节
 	char days[8][10] = {"","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday" };
 	for(int i = 1; i < 8; i++){
 		printf("%s\n",days[i]);
