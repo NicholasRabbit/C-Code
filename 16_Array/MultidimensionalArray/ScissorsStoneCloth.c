@@ -37,7 +37,8 @@ int play(){
 
 		printf("Your gesture is:%s,and the computer's gesture is %s\n",gestures[man],gestures[com]);
 
-		//??
+		//Why did the teacher use this complicated formula instead of the simpler one ?
+		//result = man - com;
 		result = (man - com + 4) % 3 - 1;
 
 		//To compare the gestures.
