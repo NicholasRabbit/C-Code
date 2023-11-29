@@ -33,21 +33,25 @@ int do_some(int i, int j)
 	switch (i) {
 
 	case 1:		//case要求和switch同位置缩进，但是vi编辑器自动缩进，待确认。
+		k = i - j;
 		break;  //执行indent后就自动按照K&R风格对齐了。
 	case 2:
+		k = i % j;
 		break;
 	default:
+		k = 0;
 		break;
 
 	}
 
-	return 0;		//return 前面必须有一个空行。
+	return k;		//return 前面必须有一个空行。
 }
 
 
 int main(void){
 
-	do_some(10, 29);
+	int ret = do_some(1, 29);
+	printf("%d\n",ret);
 
 	return 0;
 
