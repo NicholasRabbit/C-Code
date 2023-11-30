@@ -9,6 +9,7 @@ int main(void){
 	printf("请输入...");
 	
 	//scanf("%d",&i);	//&i表示i的地址，“&”是取地址符
+	
 	//scanf("abc%d",&i);  //如果输入控制符“%d”前有非输入控制符，在终端要原样输入，否则报错
 	//如果“%d”后面有其它字符可以不用管，在终端输入“abc123”就可以。
 	
@@ -18,6 +19,11 @@ int main(void){
 	printf("ret = %d\n",ret);
 
 	printf("i = %d\n",i); //输出控制符不需要加取地址符"&"
+
+	//用数组接收字符串的时候不用加&,加了会报错。
+	char str[5];
+	scanf("%c",str);
+	printf("%s\n",str);
 
 	return 0;
 }
