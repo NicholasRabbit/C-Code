@@ -21,7 +21,9 @@ int do_some(){
 		sum = 0;
 
 		for(i = 0; input[i] != '\0'; i++){
+			printf("input[%d]=%d\n",i,input[i]);
 			sum = sum * 10 + input[i] - '0';  //A char will be transfered to an integer after it minus by '0'.
+			printf("sum = %d\n",sum);
 		}
 
 		printf("input = %d\n", sum);
