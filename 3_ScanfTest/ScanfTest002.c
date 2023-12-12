@@ -1,5 +1,6 @@
-//一次使用多个输入控制符，即用键盘输入多个值
 # include <stdio.h>
+
+//一次使用多个输入控制符，即用键盘输入多个值
 int main(void){
 	int i;
 	int j;
