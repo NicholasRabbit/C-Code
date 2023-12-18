@@ -7,16 +7,21 @@
 int main(void){
 	int i = 10;
 	//一，输出控制符
-	/* 1,%d表示把i以10进制的形式输出;
+	
+	/* 
+	 * 1,%d表示把i以10进制的形式输出;
+	 *   %u: 输出无符号的int类型数,对应的是有符号的%d
+	 *
 	 * 2,%x,%X表示以16进制输出，这俩意思一样,一般都用大写，好区分;
+	 *
 	 * 3,%f表示单浮点精度float;
 	 *   %lf表示双浮点精度double
 	 *   但是对于prinf()函数来说没有区别，printf()会自动把float向上转型为double输出。
 	 *   对于scanf()有区别，具体见本目录下: DoubleFloatAndPrintfScanf.c内解释。
+	 *
 	 * 4,%ld: signed long (long decimal缩写，默认是有符号的)
 	 *   %lu: unsigned lon 4,%ld: signed long (long unsigned缩写)
 	 *
-	 * 5,%u: 输出无符号数
 	 *
 	 * */
 	printf("%d\n",i);   //%d默认打印有符号的int类型(signed  integer)
