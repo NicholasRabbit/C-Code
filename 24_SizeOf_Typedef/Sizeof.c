@@ -9,7 +9,16 @@ int main(void){
 	
 	int arr[10];
 
-	//sizeof 返回值是unsigned long
+	/*
+	 * sizeof 计算结果是size_t类型的，这个类型定义在stddef.h文件中，个人推测使用的typedef关键字定义的。
+  	 * 但是只要代码中不出现size_t这个变量就不需要引入这个文件。
+     * C标准规定size_t是一种无符号整型。
+   	 *
+	 * 不同编译平台中，size_t的类型不同，因此在个人写代码时不要使用这个size_t作为变量名，
+	 * 这样会造成代码不可移植。
+	 *
+	 * sizeof的结果实际在编译时期就计算出来了。
+	 * */
 	
 	//返回数组内所占字节的总数，即 4(int所占空间) x 10 = 40
     unsigned long arrSize =  sizeof arr;  
