@@ -16,11 +16,14 @@ int main(void){
 	size_t num = 0xffbb;
 	printf("num = %lu\n", num);
 
+	//a is a type of arr_ten whose size is constant 10.
 	typedef int arr_t[10];
-	//a is a type of arr_ten whi
 	arr_t a;
-	a[1] = 23;
+	//a = {1,2,3,};   // a could not be intialised by using {..}
+	a[1] = 55;
 	printf("a[]=%d\n", a[1]);
+
+
 
 	return 0;
 }
