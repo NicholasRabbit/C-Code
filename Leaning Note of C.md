@@ -256,7 +256,7 @@ C标准规定的浮点型有float、double、long double，和整型一样，既
 
 - 注意：同时需要注意二进制数中有一个位是符号位的问题，位运算时编译器不管是不是符号位，都是直接移动。跟做算数运算的时候不一样。
 
-**位运算符号问题分析：**
+**位运算原数值正负符号问题分析：**
 
 结合个人代码BitwiseTest.c中注释 理解
 
@@ -274,3 +274,8 @@ int main () {
 
  https://stackoverflow.com/questions/43389598/how-to-explain-the-bit-right-shift-two-different-results
 
+#### 19, +=和+运算的区别
+
+a += 1(或a++ / ++a  )这个表达式a只求值一次，而  a = a + 1中a求值两次，对于简单的的算式来说没有区别，如果计算量比较大的话使用前者比较合适。
+
+参照: [Linux C编程一站式学习](./C语言资料/Linux C编程一站式学习.pdf) :  第 16 章 运算符详解 , 2. 其它运算符 

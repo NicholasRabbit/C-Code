@@ -1,17 +1,35 @@
 ### 1, gcc常用命令
 
+##### 1.1) 基础命令
+
+```shell
 gcc  Hello.c : 编译Hello.c，默认输出a.out
 gcc  Test.c  -o  Test : Linux环境下指定生成名称为Test的文件，无后缀。Windows下生成Test.exe(Linux下无后缀,无影响)
+```
 
 2, 执行编译的文件
+
+```shell
 ./Hello  : Linux
 Hello.exe : Windows2,执行编译的文件
+```
 
 3, 打印报警信息，报警信息不是报错，但建议每次都使用，可使程序更健壮。
-gcc -Wall Hello.c -o Hello
+```gcc -Wall Hello.c -o Hello```
 
 4, C99语法加编译选项
-  gcc -std=c99 ForTest.c -o ForTest.out
+  ```gcc -std=c99 ForTest.c -o ForTest.out```
+
+##### 1.2) 预处理
+
+查看预处理后的数据的命令
+
+```shell
+gcc -E Hello.c : 后面什么都不要加，因为还没开始编译
+cpp Hello.c : 作用相同
+```
+
+下面的代码就是表示指示编译器进行预处理。
 
 ### 2, gdb的debug步骤
 
