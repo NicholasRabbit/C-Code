@@ -7,7 +7,6 @@
  * */
 int main(void){
 	
-	int arr[10];
 
 	/*
 	 * sizeof 计算结果是size_t类型的，这个类型定义在stddef.h文件中，个人推测使用的typedef关键字定义的。
@@ -20,18 +19,23 @@ int main(void){
 	 * sizeof的结果实际在编译时期就计算出来了。
 	 * */
 	
+	int i = 10;
+	unsigned long s = sizeof i;
+	printf("sizeof integer i: %lu\n", s);
+	
 	//返回数组内所占字节的总数，即 4(int所占空间) x 10 = 40
+	int arr[10];
     unsigned long arrSize =  sizeof arr;  
 	printf("sizeof arr: %lu\n", arrSize);
 	
 	//返回数组的容量，第一个元素的容量，即4 bytes
     unsigned long arrSize0 =  sizeof arr[0];
-	printf("sizeof arr0: %lu\n", arrSize0);
+	printf("sizeof int arr[0]: %lu\n", arrSize0);
 
 	//long所占字节数实际是Implementation Defined，本系统编译器分配的是8字节
 	long l;
 	unsigned long sizeLong = sizeof l;
-	printf("sizeof long: %lu\n", sizeLong);
+	printf("sizeof unsigned long: %lu\n", sizeLong);
 
 	
 
