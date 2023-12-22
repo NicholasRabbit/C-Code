@@ -279,3 +279,13 @@ int main () {
 a += 1(或a++ / ++a  )这个表达式a只求值一次，而  a = a + 1中a求值两次，对于简单的的算式来说没有区别，如果计算量比较大的话使用前者比较合适。
 
 参照: [Linux C编程一站式学习](./C语言资料/Linux C编程一站式学习.pdf) :  第 16 章 运算符详解 , 2. 其它运算符 
+
+#### 20, ELF文件
+
+[Linux C编程一站式学习](./C语言资料/Linux C编程一站式学习.pdf) ：18.5
+
+ELF文件格式是一个开放标准，各种UNIX系统的可执行文件都采用ELF格式，它有三种不同的类型：
+
+- 可重定位的目标文件（Relocatable，或者Object File）
+- 可执行文件（Executable）
+- 共享库（Shared Object，或者Shared Library）

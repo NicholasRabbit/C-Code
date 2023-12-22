@@ -241,3 +241,34 @@ scanf(...)仍然可以接收参数
 123       #这里既可以输入参数
 ```
 
+
+
+#### 4, Assembly汇编常用命令
+
+基本：
+
+```shell
+as Test.c -o Test.o  # 生成目标文件
+ld Test.o -o Test #生成可执行文件
+```
+
+ELF相关
+
+```shell
+readelf -a Test.o  #读取目标文件，显示相关编译信息等
+readelf -a Test #粗去可执行文件
+```
+
+打印目标文件的全部字节
+
+```shell
+hexdump -C Test.o  # 显示的都是16进制
+```
+
+反编译：目标文件，可执行文件都可以反编译。
+
+```shell
+objdump -d Test.o
+objdump -d Test
+```
+
