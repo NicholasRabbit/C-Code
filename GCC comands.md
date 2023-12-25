@@ -117,7 +117,7 @@ gdb test.out # 退出后需要重新启动
 ###### 	 6.4.1 进入之后可查看栈帧：
 
 ```shell
-(gdb) backtrace / b   # 查看栈帧
+(gdb) backtrace / bt  # 查看栈帧
 ```
 
 ######       6.4.2 可看到如下信息：
@@ -232,7 +232,7 @@ $ 6 4  # 这里接受的是printf(..)函数的返回值。printf(..)函数返回
 
 注意：```x/10b```命令在使用```watchpoint```之后不起作用，使用```break```的时候管用。
 
-#### 3， gdb调试时scanf(...)入参
+#### 3, gdb调试时scanf(...)入参
 
 scanf(...)仍然可以接收参数
 
@@ -270,5 +270,33 @@ hexdump -C Test.o  # 显示的都是16进制
 ```shell
 objdump -d Test.o
 objdump -d Test
+```
+
+#### 5, C, 汇编相关命令
+
+1, 查看C编译后生成的汇编代码
+
+```shell
+# 第一种：
+gcc -g Test.c -o Test.out
+objdump -dS Test.out
+# 第二种
+gcc -S Test.c  #自动生成Test.s文件，然后vi编辑器打开即可查看
+```
+
+2, 汇编相关断点调试命令
+
+```shell
+disassemble  function_name(optional)  #反汇编当前的函数，或指定名称的函数,函数名非必填
+si  #执行单条指令调试，而step是单行代码调试，注意区别
+
+#查看寄存器(registers)信息， 个人输入此命令后，CentOS系统的寄存器名称都是%rbp,不是%ebp，原因待分析
+info registers  
+#得到结果：
+(gdb) info registers 
+...
+esp            0xbff1c3f4	0xbff1c3f4
+####
+x/20 %esp  #以上面结果为例，查看内存中从地址0xbff1c3f4开始的20个32位数的值
 ```
 
