@@ -286,9 +286,11 @@ gcc -S Test.c  #自动生成Test.s文件，然后vi编辑器打开即可查看
 
 2, 汇编相关断点调试命令
 
+gdb执行后使用以下命令
+
 ```shell
-disassemble  function_name(optional)  #反汇编当前的函数，或指定名称的函数,函数名非必填
-si  #执行单条指令调试，而step是单行代码调试，注意区别
+disassemble  function_name/address(optional)  #反汇编当前的函数，也可指定函数名或地址
+si  #执行单条CPU指令调试，而step是单行代码调试，注意区别
 
 #查看寄存器(registers)信息， 个人输入此命令后，CentOS系统的寄存器名称都是%rbp,不是%ebp，原因待分析
 info registers  
