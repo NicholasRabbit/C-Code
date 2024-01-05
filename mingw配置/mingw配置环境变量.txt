@@ -1,5 +1,0 @@
-windows免安装配置mingw
-1,解压文件x86_64-6.4.0-release-win32-seh-rt_v5-rev0.7z
-  不用安装
-2,安装程序完成后还要配置环境变量
-   PATH=D:/mingw/bin ：路径根据自己路径定义
