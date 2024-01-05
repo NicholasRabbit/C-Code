@@ -5,6 +5,8 @@
 ```shell
 gcc  Hello.c : 编译Hello.c，默认输出a.out
 gcc  Test.c  -o  Test : Linux环境下指定生成名称为Test的文件，无后缀。Windows下生成Test.exe(Linux下无后缀,无影响)
+
+-o 选项表示自定义生成的名称，不一定是生成xxx.o后缀的文件才用的，生成.s, .c, .out, .o都可以用
 ```
 
 2, 执行编译的文件
@@ -30,6 +32,20 @@ cpp Hello.c : 作用相同
 ```
 
 下面的代码就是表示指示编译器进行预处理。
+
+##### 1.3) 链接选项
+
+使用math.h库的时候需要在gcc命令后加`-lm`表示使用libm.so这个库，
+
+##### 1.4) 查看编译过程
+
+可查看引用了哪些外部文件，进行了哪些链接等。因为编译成可执行文件不止是程序员写的代码，还需要引入其它库文件等。
+
+```shell
+gcc -v Test.c -o Test.out  
+```
+
+
 
 ### 2, gdb的debug步骤
 
@@ -243,34 +259,36 @@ scanf(...)仍然可以接收参数
 
 ```shell
 (gdb) n   # 这里执行下一步的scanf()
-123       #这里既可以输入参数
+123       #在这里输入参数
 ```
 
 
 
 #### 4, Assembly汇编常用命令
 
-基本：
+1）基本：
 
 ```shell
 as Test.c -o Test.o  # 生成目标文件
-ld Test.o -o Test #生成可执行文件
+ld Test.o -o Test.out #生成可执行文件
+#执行
+./Test.out
+echo $? #shell命令获取上一条命令的退出状态
 ```
 
-ELF相关
+**命令解释：**参考18.1
 
-```shell
-readelf -a Test.o  #读取目标文件，显示相关编译信息等
-readelf -a Test #粗去可执行文件
-```
+as表示使用汇编器(Assembler)把汇编中的助记符编译成机器指令，并生成目标文件。
 
-打印目标文件的全部字节
+ld表示把目标文件xxx.o链接成可执行文件。为什么要链接文件？一，链接是为了修改目标文件中的信息，对地址做重定位(跟CPU虚拟内存相关)；二，是为了把多个目标文件合并成一个可执行文件。
+
+3）打印目标文件的全部字节
 
 ```shell
 hexdump -C Test.o  # 显示的都是16进制
 ```
 
-反编译：目标文件，可执行文件都可以反编译。
+4）反编译：目标文件，可执行文件都可以反编译。
 
 ```shell
 objdump -d Test.o
@@ -285,8 +303,12 @@ objdump -d Test
 # 第一种：
 gcc -g Test.c -o Test.out
 objdump -dS Test.out
+
 # 第二种
 gcc -S Test.c  #自动生成Test.s文件，然后vi编辑器打开即可查看
+#后续生成可执行文件步骤
+gcc -c Test.s -o Test.o  #生成目标文件
+gcc Test.o -o Test.out   #生成可执行文件
 ```
 
 2, 汇编相关断点调试命令
@@ -308,4 +330,12 @@ x/20 %esp  #以上面结果为例，查看内存中从地址0xbff1c3f4开始的2
 ```
 
 3，在`gdb`中表示寄存器时在名称前面要加个`$`，例如`p $esp`可以打印`esp`寄存器的值 
+
+#### 6, ELF相关
+
+```shell
+readelf -a -W Test.o  #读取目标文件，显示相关编译信息等
+readelf -a -W Test.out #读取可执行文件
+# -W表示不自动换行打印结果，因为默认显示80个字符宽，超过就自动换行。可能是早期屏幕不够宽，但是有的结果换行了就不易阅读。
+```
 
