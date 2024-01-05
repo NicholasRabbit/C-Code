@@ -1,7 +1,7 @@
 
 # Chapter 18.1
 
-# A simple assembly program which returns 4.
+# A simple assembly program which returns 4 in %ebx.
 # 
 # CLI commands:
 # as test.s -o test.o
@@ -9,7 +9,7 @@
 # 
 # run:
 # ./test
-# echo$?
+# echo $?  ： 获取上一条命令的退出状态,这里获取到了4,即最后存入%ebx中的值
 
 
 .section .data #.data段下面保存数据，类似于声明变量赋值。
