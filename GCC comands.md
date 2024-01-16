@@ -45,8 +45,6 @@ cpp Hello.c : 作用相同
 gcc -v Test.c -o Test.out  
 ```
 
-
-
 ### 2, gdb的debug步骤
 
 具体参照[LinuxC](./C语言资料/Linux C编程一站式学习.pdf) 章节10.1
