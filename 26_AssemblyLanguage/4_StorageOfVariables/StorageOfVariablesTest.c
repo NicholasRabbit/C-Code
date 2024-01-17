@@ -4,6 +4,7 @@
  * 研究各种类型的变量在内存中的存储形式
  * */
 
+// A variable which is defined with const could not be modified.
 const int A = 10;
 int a = 20;
 static int b = 30;
