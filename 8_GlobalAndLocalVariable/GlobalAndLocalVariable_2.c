@@ -20,6 +20,8 @@ int m = 10;
 int n = 20;
 int x = 35;
 
+int y;
+
 int doSome(){
 	
 	//函数内有跟全局变量同名的局部变量则采用局部变量的值，没有的话才去找全局变量。例如:x。
@@ -35,6 +37,9 @@ int main(void){
 
 	printf("main: m = %d,n = %d \n",m,n);
 	doSome();
+
+	//What is the default value of a global variable?
+	printf("y's default value=%d\n", y);
 
 	return 0;
 

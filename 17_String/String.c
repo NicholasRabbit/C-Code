@@ -21,8 +21,10 @@ int main(void){
 	for(i = 0; i < 5; i ++)
 		printf("str1[%d]: %c\n",i,str1[i]);  //测试最后一个"\0"打印什么。
 
-	// 4, 字符串字面值:"Hello"是只读的，不等同于 str这样的变量
+	// 4, "Hello"是字符串字面值,是只读的，不等同于 str这样的变量名。
+	//	  使用"Hello"[0]的形式可以读取该位置的元素值，但是不能改。
 	//    但是相同之处是：字符串字面值作为右值时自动转为指向首元素的指针，和数组变量一样。
+	char h = "Hello"[0];
 	"Hello"[0] = "J";  //warn: assignment of read-only location xxx[0]
 
 	/* 二，字符数组越界的情况
