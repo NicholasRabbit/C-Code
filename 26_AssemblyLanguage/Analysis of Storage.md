@@ -121,13 +121,15 @@ int main(void){
 	....
 	static int a = 40;   
 	char b[] = "Hello C";
-	#下面显示的就是以上C代码对应的汇编代码
-  400536:	48 b8 48 65 6c 6c 6f 	movabs $0x43206f6c6c6548,%rax  #把字符串存入%rax
+  #下面显示的就是以上C代码对应的汇编代码
   #注意"Hello C"是倒着入栈的，对应寄存器地址是由高到低减小，0x43 20 ...="C olleH"(ANSI)
   #hexdump打印的是硬盘上的布局是正序显示的，这里是register里的布局。
-  40053d:	20 43 00 
+  400536:	48 b8 48 65 6c 6c 6f 	movabs $0x43206f6c6c6548,%rax  #把字符串存入%rax
+  40053d:	20 43 00  #上一行从第二个48 65..43 00即"Hello C\0"，00就是截止符号\0
+  
   400540:	48 89 45 e0          	mov    %rax,-0x20(%rbp)  #%rax入栈
-	register int c = 50;
+
+  register int c = 50;
   # register关键词修饰的变量直接入寄存器，而源代码中static int a 就没有显示在反编译代码里，
   #说明没有直接入寄存器	
   400544:	bb 32 00 00 00       	mov    $0x32,%ebx  
