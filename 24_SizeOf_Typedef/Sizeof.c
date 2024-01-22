@@ -38,6 +38,14 @@ int main(void){
 	printf("sizeof unsigned long: %lu\n", sizeLong);
 
 	
+	//sizeof(...) is a function too.
+	char c;
+	unsigned long sizeChar = sizeof(c);
+	printf("sizeof(char): %lu\n", sizeChar);
+	
+	short sh;
+	unsigned long sizeShort = sizeof(sh);
+	printf("sizeof(short): %lu\n", sizeShort);
 
 	return 0;
 }
