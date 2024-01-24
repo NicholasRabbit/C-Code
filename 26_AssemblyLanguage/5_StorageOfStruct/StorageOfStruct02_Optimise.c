@@ -12,10 +12,11 @@ int main(int argc, char** argv){
 		int c;
 	} s;
 
+	//It is not important that the order of assignment, but the order of declaration of the variavles is.
 	s.a = 1;
+	s.d = 4;
 	s.b = 2;
 	s.c = 3;
-	s.d = 4;
 
 	printf("size of struct: %lu\n", sizeof(s)); //占用空间结果是8 bytes，比01中的12少。
 
