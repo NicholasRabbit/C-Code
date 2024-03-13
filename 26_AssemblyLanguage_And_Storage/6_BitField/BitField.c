@@ -6,7 +6,7 @@
  * */
 
 typedef struct {
-	unsigned int icon : 8;
+	unsigned int icon : 8;   //8 bits
 	unsigned int colour : 4;
     unsigned int underline : 1;
 	unsigned int blink : 1;	

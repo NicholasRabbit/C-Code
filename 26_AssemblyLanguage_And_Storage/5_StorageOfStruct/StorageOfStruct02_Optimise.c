@@ -2,6 +2,7 @@
 
 /*
  * 02这里变量声明顺序和01不同，这里的写法减少了不必要的填充，节省了存储空间。 
+ * The RAM space was saved due to the adjustment of the order of declared variables.
  * */
 int main(int argc, char** argv){
 	
