@@ -329,6 +329,21 @@ x/20 %esp  #以上面结果为例，查看内存中从地址0xbff1c3f4开始的2
 
 3，在`gdb`中表示寄存器时在名称前面要加个`$`，例如`p $esp`可以打印`esp`寄存器的值 
 
+```shell
+(gdb)p $esp
+```
+
+4,  gdb以二进制形式打印一个byte的值
+
+```shell
+(gdb)x/1tb &i  #
+```
+
+- `x`: This is the command to examine memory.
+- `/1`: This specifies the number of units to display. In this case, we're specifying 1 unit.
+- `tb`: These are format specifiers. `t` specifies that the memory should be interpreted as text, and `b` specifies that the output should be in byte format.
+- `&i`: This is the address of the variable `i`. The `&` operator gives the address of a variable.
+
 #### 6, ELF相关
 
 ```shell

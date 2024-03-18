@@ -33,9 +33,9 @@ static //1,在函数外，即在{}外使用，表示所修饰的变量是local�
 register  //修饰的变量直接入寄存器。    
 ```
 
+**也可以用以下方法查看系统是大端还是小端存储（endianness）。**
 
-
-1, 首先执行`readelf -W -a TestStorage.out`, 展示ELF文件信息，可以看到变量A如下所示。显示的都是16进制。地址是0x400600，int A 占4个byte，这个是它的起始地址，代表其内存地址。
+1, 首先执行`readelf -W -a TestStorage.out`, 展示ELF文件信息，可以看到变量A如下所示。显示的地址都是16进制。地址是0x400600，int A 占4个byte，这个是它的起始地址，代表其内存地址。
 
 ```shell
     63: 0000000000400570   101 FUNC    GLOBAL DEFAULT   13 __libc_csu_init

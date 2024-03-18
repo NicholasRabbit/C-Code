@@ -381,25 +381,39 @@ Chapter 19.2
 
 2. C语言代码，使用gcc -v可查看编译信息，其中包含链接了哪些文件。
 
+   ```shell
+   gcc -v Test.o
+   ```
+
 #### 24, 修饰变量关键字
 
 const, static, register
 
 #### 25, ELF文件
 
-参考：https://www.baeldung.com/linux/executable-and-linkable-format-file
+[Chapter 18.5 ELF](./Tutorials on C\Linux C编程一站式学习.pdf)
 
-相关概念：
-
-1. little endian: 小端计数 和 big endian: 大端计数。这两种指的是计算机底层读数的方式，以byte类型为例0000 0001按小端计数就是1，即右边的数最小，如果按大端就是128。
-   为什么这样规定？
-   因为本质上不同的数据实际就是二级制的1，0的顺序不同，数据传递也是按顺序一个1一个0的挨个传递。因此需要规定好读取规则，否则容易造成数据错误。
-
-![1704440116074](note-images/1704440116074.png)
+参考：[ELF difinition](https://www.baeldung.com/linux/executable-and-linkable-format-file)
 
 分析：
 
 初步理解：
 
 ELF是一种Unix中规定好的文件格式，存储在硬盘上，当系统读取它的时候按照规则逐步执行其中的编码。
+
+#### 26, 小端，大端(little endian/big endian)
+
+​	[Chapter 18.5 ELF](./Tutorials on C\Linux C编程一站式学习.pdf)
+
+1. What are big endian and little endian？ [Endianness](https://en.wikipedia.org/wiki/Endianness),  [Most or least significant](https://en.wikipedia.org/wiki/Bit_numbering#Most_significant_byte)
+
+   A big endian sysatem stores the most significant byte of a word at the smallest memory address and the least significant byte at the largest. A little endian system, in contrast, stores the least significant byte at the smallest memory address. Of the two, big endian is closer to the way that the digits of numbers are written from left to right in English, comparing digits to bytes. 	
+
+![1704440116074](note-images/1704440116074.png)
+
+ **Note :  a, a+1,... are memory  address.**
+
+2. Why do we use  little/big endian?
+
+   Basically, all the datas are stored as bits with orders in the lowest levels of computer system. It is crucial to read them in a specific order. 
 
