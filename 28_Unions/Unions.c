@@ -11,7 +11,10 @@ int main(void){
 		short s;
 		int i;
 
-	} demo_union;
+	};
+
+	//Declaration
+	union u_tag demo_union;
 	
 	demo_union.c = 'A';
 
