@@ -1,3 +1,3 @@
 # c-code
-These codes will be updated when I am learning C.
-As Java is language dedigned for mediocre programmer, it is necessary to learn C which is close to the fundamental of computer.
+This repository will be updated when I am learning C.
+Admittedly, Java is a language designed for mediocre programmers, it is necessary to learn C to have fundamental knowledge in computer science.
