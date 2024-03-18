@@ -112,7 +112,7 @@ This GDB was configured as "i486-linux-gnu"...
 ```shell
 gdb test.out # 退出后需要重新启动
 (gdb) start # 开始执行
-(gdb) next / n / Enter # 执行下一行，或直接按回车Enter也可以，每次执行一步
+(gdb) next / n / Enter # 执行下一行，或先按完n后，后面按回车Enter也可以，每次执行一步
 ```
 
 **5.1 重新执行程序**
