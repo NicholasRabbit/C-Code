@@ -417,3 +417,6 @@ ELF是一种Unix中规定好的文件格式，存储在硬盘上，当系统读�
 
    Basically, all the datas are stored as bits with orders in the lowest levels of computer system. It is crucial to read them in a specific order. 
 
+**Coursework: 19.4**
+To find out whether a operating system is little endian or big endian?
+Answer: "26_AssemblyLanguage_And_Storage\7_Endianness"
