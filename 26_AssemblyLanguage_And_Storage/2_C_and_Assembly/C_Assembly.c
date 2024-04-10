@@ -2,6 +2,10 @@
 
 /*
  * What is the realtionship between C and assembly language?
+ *
+ * Commands:
+ * gcc -S Test.c   //Compile C into assbmbly language.
+ * 
  * */
 
 int bar(int c, int d)
