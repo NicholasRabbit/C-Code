@@ -20,7 +20,7 @@ int main(void){
 	 * */
 	
 	int i = 10;
-	unsigned long s = sizeof i;
+	unsigned long s = sizeof i;  //The return value of sizeof is unsigned.
 	printf("sizeof integer i: %lu\n", s);
 	
 	//返回数组内所占字节的总数，即 4(int所占空间) x 10 = 40
@@ -48,4 +48,5 @@ int main(void){
 	printf("sizeof(short): %lu\n", sizeShort);
 
 	return 0;
+
 }
