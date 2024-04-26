@@ -3,7 +3,7 @@
 
 /* 
  * C语言编码风格总结：
- * 1，尽可能参照Linux的《Coding Style》
+ * 1，尽可能参照Linux的《Coding Style》- www.kernel.org/doc/html/v4.10/process/coding-style.html#indentation
  * 2, C中标识符不要用驼峰的形式，统一用下划线
  * 3, indent 命令统一整理编码风格,在CLI界面执行，此命令不建议过度使用，好的代码应在编写阶段就保持好的规范格式。
  *    indent -kr -i8 CodingStyle.c
