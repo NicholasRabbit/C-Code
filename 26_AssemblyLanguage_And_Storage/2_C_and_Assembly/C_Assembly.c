@@ -4,7 +4,10 @@
  * What is the realtionship between C and assembly language?
  *
  * Commands:
- * gcc -S Test.c   //Compile C into assbmbly language.
+ * gcc -E Test.c -o Test.i // a preprocessed file(text)
+ * gcc -S Test.c   // Compile C into assbmbly program named Test.s.
+ * gcc -c Test.s   // Test.o
+ * gcc Test.o -o Test // Test. It is an executable object programme.
  * 
  * */
 
