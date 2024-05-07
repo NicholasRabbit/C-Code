@@ -45,6 +45,16 @@ cpp Hello.c : 作用相同
 gcc -v Test.c -o Test.out  
 ```
 
+##### 1.5) Compile multiples files
+
+```shell
+gcc foo.c bar.c -o test.out
+#OR
+gcc -c foo.c # automatically generate foo.o
+gcc -c bar.c
+gcc foo.o bar.o -o test.out
+```
+
 ### 2, gdb的debug步骤
 
 具体参照[LinuxC](./C语言资料/Linux C编程一站式学习.pdf) 章节10.1
@@ -297,7 +307,7 @@ ld表示把目标文件xxx.o链接成可执行文件。为什么要链接文件�
 hexdump -C Test.o  # 显示的都是16进制
 ```
 
-4）反编译：目标文件，可执行文件都可以反编译。
+4）反汇编：目标文件，可执行文件都可以反编译。
 
 ```shell
 objdump -d Test.o
@@ -342,6 +352,35 @@ x/20 %esp  #以上面结果为例，查看内存中从地址0xbff1c3f4开始的2
 
 ```shell
 (gdb)p $esp
+```
+
+4,  list symbols from object files
+
+```shell
+nm test.out 
+# or 
+readelf -s test.out
+```
+
+elaboration of the output
+
+```shell
+# command
+nm /usr/lib64/crt1.o
+# man nm : to see the full specification.
+# U: undefined
+# T: text
+# D/d: The symbol is in the initialized data section.
+# R/r: The symbol is in the read only data section.
+# W/w : a weak object.
+0000000000000000 D __data_start
+0000000000000000 W data_start
+0000000000000000 R _IO_stdin_used
+                 U __libc_csu_fini
+                 U __libc_csu_init
+                 U __libc_start_main
+                 U main
+0000000000000000 T _start
 ```
 
 #### 6, ELF相关

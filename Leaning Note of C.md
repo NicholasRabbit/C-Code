@@ -420,3 +420,13 @@ ELF是一种Unix中规定好的文件格式，存储在硬盘上，当系统读�
 **Coursework: 19.4**
 To find out whether a operating system is little endian or big endian?
 Answer: "26_AssemblyLanguage_And_Storage\7_Endianness"
+
+#### 27, Analysis of result of objdump
+
+`objdump -dS xxx.out`
+
+The value of the middle row and the value of last row are oppiste.
+
+35 0b 20 00  ------> 0x200b35
+
+<img src="note-images/1714121363799.png" alt="1714121363799" style="zoom:80%;" />
