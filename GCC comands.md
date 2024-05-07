@@ -22,13 +22,21 @@ Hello.exe : Windows2,执行编译的文件
 4, C99语法加编译选项
   ```gcc -std=c99 ForTest.c -o ForTest.out```
 
-##### 1.2) 预处理
+##### 1.2) 预处理，及详细编译命令
 
 查看预处理后的数据的命令
 
 ```shell
-gcc -E Hello.c : 后面什么都不要加，因为还没开始编译
-cpp Hello.c : 作用相同
+# 1, preprocessing
+gcc -E hello.c / cpp hello.c  # List preprocessed code on CLI
+gcc -E hello.c -o hello.i / cpp hello.c -o hello.i
+# generate a preprocessed file with ".i" as its suffix.
+# 2, assembly
+gcc -S hello.c  # helo.s
+# 3, hello.o
+gcc -c hello.c -o hello.o  # relocatable object programs
+# 4, hello  
+gcc hello.o -o hello # executable object program
 ```
 
 下面的代码就是表示指示编译器进行预处理。
