@@ -1,6 +1,7 @@
 
 /*
- * How to a modifier named "volatile"?
+ * How to use a modifier named "volatile"?
+ * to be continued...
  * */
 # include<stdio.h>
 
