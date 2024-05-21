@@ -39,7 +39,7 @@ register  //修饰的变量直接入寄存器。
 
 ```shell
     63: 0000000000400570   101 FUNC    GLOBAL DEFAULT   13 __libc_csu_init
-    64: 0000000000400600     4 OBJECT  GLOBAL DEFAULT   15 A   #A的地址
+    64: 0000000000400600     4 OBJECT  GLOBAL DEFAULT   15 A #A的地址，用它的第一个数的地址表示
     65: 0000000000601048     0 NOTYPE  GLOBAL DEFAULT   25 _end
     66: 0000000000400440     0 FUNC    GLOBAL DEFAULT   13 _start
 ```
@@ -59,9 +59,10 @@ Section Headers:
 
 可以看到A位于`.rodata`行。因为0x5f0 + 20 = 0x610，所以0x600在这个范围内。
 
-3，执行`hexdump -C TestStorage.out`打印文件的全部字节，结果全部都是16进制的。
+3，执行`hexdump -C TestStorage.out`打印文件的全部字节，结果全部都是16进制的，每两个16进制数表示一个byte。
 
 ```shell
+# each byte has an address.
 000005e0  f3 c3 00 00 48 83 ec 08  48 83 c4 08 c3 00 00 00  |....H...H.......|
 000005f0  01 00 02 00 00 00 00 00  00 00 00 00 00 00 00 00  |................|
 00000600  0a 00 00 00 48 65 6c 6c  6f 20 43 20 25 64 0a 00  |....Hello C %d..| #A和Hello C
@@ -70,7 +71,7 @@ Section Headers:
 ```
 
 - 注意：这里的地址仅取上面地址的后三位(有时是4位)。
-- 可以看到0x0a = 10就是代表A的值，后面的三个`00`没有用上，一共占4个字节。然后`48 65 6c 6c  6f 20 43`代表的是`char b[] = "Hello C"`。这里的`b`的地址就是数组开头`H`的地址。(小位数上的值在低位地址上存着，说明这个系统是小端-little endian)
+- 可以看到0x0a = 10就是代表变量A的值`const int A = 10`，后面的三个`00`没有用上，一共占4个字节。然后`48 65 6c 6c  6f 20 43`代表的是`char b[] = "Hello C"`(H的ASCII码16进制就是48)。这里的`b`的地址就是数组开头`H`的地址。(小位数上的值在低位地址上存着，说明这个系统是小端-little endian)
 
 - 在ELF文件中`.rodata`和`.text`段是只读的，程序加载时通常会把它们放到一个Segment里，防止改写。`const int A=10`和字符串"Hello C"都是只读的，所以放到这个段里。
   rodata = read only data。汇编里使用到这两个段了，参照汇编代码理解。

@@ -430,3 +430,11 @@ The value of the middle row and the value of last row are oppiste.
 35 0b 20 00  ------> 0x200b35
 
 <img src="note-images/1714121363799.png" alt="1714121363799" style="zoom:80%;" />
+
+#### 28, Volatile
+
+#### 29,  error: multiple definition of `_start'
+
+The difference between `as` and `gcc`.
+
+See chapter 19.2  `main`函数和启动例程 

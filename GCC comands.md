@@ -22,19 +22,26 @@ Hello.exe : Windows2,执行编译的文件
 4, C99语法加编译选项
   ```gcc -std=c99 ForTest.c -o ForTest.out```
 
-##### 1.2) 预处理，及详细编译命令
+##### 1.2) 预处理，及整套详细编译命令
 
 查看预处理后的数据的命令
 
 ```shell
 # 1, preprocessing
 gcc -E hello.c / cpp hello.c  # List preprocessed code on CLI
-gcc -E hello.c -o hello.i / cpp hello.c -o hello.i
-# generate a preprocessed file with ".i" as its suffix.
-# 2, assembly
-gcc -S hello.c  # helo.s
+# Or generate a preprocessed file with ".i" as its suffix.
+gcc -E hello.c -o hello.i / cpp hello.c -o hello.i 
+
+# 2, hello.s (assembly)
+gcc -S hello.i  # automatically create an assembly file named helo.s
+# Or
+gcc -S hello.c # skip the preprocess
+
 # 3, hello.o
-gcc -c hello.c -o hello.o  # relocatable object programs
+gcc -c hello.s -o hello.o  # relocatable object programs
+# Or
+as hello.s -o hello.o
+
 # 4, hello  
 gcc hello.o -o hello # executable object program
 ```
@@ -249,7 +256,7 @@ $ 6 4  # 这里接受的是printf(..)函数的返回值。printf(..)函数返回
 (gdb) break 15 if sum != 0  # 当sum != 0时才打断，布尔表达式可以写==,<，>等。
 ```
 
-**10) 设置观察点**
+##### **10) 设置观察点**
 
 观察点是是指当程序访问某一个存储单元时中断。跟断点作用相同，只是触发机制不同。
 一般有观察点则不设置其它断点，防止干扰，也可以需要根据实际情况两者都设置。
@@ -260,7 +267,7 @@ $ 6 4  # 这里接受的是printf(..)函数的返回值。printf(..)函数返回
 (gdb) info watchpoints #查看观察点 
 ```
 
-**11) 指定打印存储单元的内容**
+##### **11) 指定打印存储单元的内容**
 
 ```shell
 (gdb) x/8b input # 打印出input变量内存储的内容，根据系统不同，有时展示16进制，例如x31,有时10进制。
@@ -279,6 +286,15 @@ gdb以二进制形式打印一个byte的值
 - `/1`: This specifies the number of units to display. In this case, we're specifying 1 unit.
 - `tb`: These are format specifiers. `t` specifies that the memory should be interpreted as text, and `b` specifies that the output should be in byte format.
 - `&i`: This is the address of the variable `i`. The `&` operator gives the address of a variable.
+
+#####   12) gdb独立调试
+
+```shell
+$root>gdb  # Only input "gdb" in CLI
+(gdb)print 200*300*400*500  # call print.
+```
+
+
 
 #### 3, gdb调试时scanf(...)入参
 
