@@ -22,13 +22,15 @@ int main(void){
 	 * 4,%ld: signed long (long decimal缩写，默认是有符号的)
 	 *   %lu: unsigned lon 4,%ld: signed long (long unsigned缩写)
 	 *
+	 * 5,%p : 这个输出控制符表示输出指针，即变量的地址，注意打印时在变量前加“&”表示取地址。
+	 *   See PrintfTes002.c
 	 *
 	 * */
 	printf("%d\n",i);   //%d默认打印有符号的int类型(signed  integer)
 	printf("%X\n",i);	//10用16进制表示就是a,即9后面就是a。
 
 	int j = 15;
-	printf("%X\n",j);
+	printf("j's hexadecimal is %X\n",j);
 
 	float age = 12.9;
 	printf("age = %f\n",age); //这行和下行都是输出6位精度，待研究。printf()函数把单浮点的自动向上转型了。
