@@ -22,6 +22,13 @@ Hello.exe : Windows2,执行编译的文件
 4, C99语法加编译选项
   ```gcc -std=c99 ForTest.c -o ForTest.out```
 
+5, 执行编译器优化
+
+```shell
+#The fisrt captital O stands for "optimize".
+gcc -O test.c -o test.out 
+```
+
 ##### 1.2) 预处理，及整套详细编译命令
 
 查看预处理后的数据的命令
@@ -74,7 +81,7 @@ gcc foo.o bar.o -o test.out
 
 具体参照[LinuxC](./C语言资料/Linux C编程一站式学习.pdf) 章节10.1
 
-#### 1, 生成可调试文件：
+#### 1, 首先生成可调试文件：
 
 ```shell
 gcc -g GDB_Test.c -o test.out
@@ -346,6 +353,7 @@ objdump -d Test
 # 第一种：
 gcc -g Test.c -o Test.out
 objdump -dS Test.out
+objdump -dS test.out | less # combined wite "less" to 
 
 # 第二种
 gcc -S Test.c  #自动生成Test.s文件，然后vi编辑器打开即可查看
@@ -353,6 +361,13 @@ gcc -S Test.c  #自动生成Test.s文件，然后vi编辑器打开即可查看
 gcc -c Test.s -o Test.o  #生成目标文件
 gcc Test.o -o Test.out   #生成可执行文件
 ```
+
+> -d [--disassemble]
+> Display the assembler mnemonics for the machine instructions from the input file.
+>
+> -S [--source]
+> Display source code intermixed with disassembly, if possible. Implies `-d`
+>
 
 2, 汇编相关断点调试命令
 
