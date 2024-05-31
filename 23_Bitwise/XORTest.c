@@ -43,7 +43,11 @@ int main(void){
 	b = 0x753;
 	a = a ^ b;  // Q
 	b = b ^ a;  // b = b ^ b ^ a = a;
-	a = a ^ b;  // b is a now. Then a = (a ^ b)(Q) ^ a;
+	/*
+	 * On the right side of "=" because b is a now, then a = a ^ (Q) = a ^ (a ^ b).
+	 * So "a" equals "a ^ a ^ b" which is "b".
+	 * */ 
+	a = a ^ b;  
 	printf("a = %x\n", a);
 	printf("b = %x\n", b);
 
