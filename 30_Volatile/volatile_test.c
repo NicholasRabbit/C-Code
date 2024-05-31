@@ -5,8 +5,11 @@
  * */
 # include<stdio.h>
 
-unsigned char recv;
-unsigned char send;
+//unsigned char recv;
+//unsigned char send;
+
+volatile unsigned char recv;
+volatile unsigned char send;
 
 unsigned char buffer[3];
 
