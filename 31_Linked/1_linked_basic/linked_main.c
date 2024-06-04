@@ -23,9 +23,7 @@ int main(void)
 	push('c');
 
 	while(!is_empty()){
-
 		putchar(pop());
-
 	}
 
 	putchar('\n');
