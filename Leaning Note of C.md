@@ -423,6 +423,8 @@ The value of the middle row and the value of last row are oppiste.
 
 #### 28, Volatile
 
+If a variable is modified by `volatile`,  the CPU should fetch data from memory instead of registers when the variable is used.
+
 #### 29,  error: multiple definition of `_start'
 
 The difference between `as` and `gcc`.

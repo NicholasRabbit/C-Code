@@ -48,6 +48,8 @@ gcc -S hello.c # skip the preprocess
 gcc -c hello.s -o hello.o  # relocatable object programs
 # Or
 as hello.s -o hello.o
+# Or
+gcc -c hello.c  # automatically generate a file named hello.o from hello.c 
 
 # 4, hello  
 gcc hello.o -o hello # executable object program
@@ -393,7 +395,7 @@ x/20 %esp  #以上面结果为例，查看内存中从地址0xbff1c3f4开始的2
 (gdb)p $esp
 ```
 
-4,  list symbols from object files
+4,  List symbols from object files
 
 ```shell
 nm test.out 
@@ -401,7 +403,7 @@ nm test.out
 readelf -s test.out
 ```
 
-elaboration of the output
+Elaboration of the output
 
 ```shell
 # command
