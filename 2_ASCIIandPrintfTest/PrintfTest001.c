@@ -13,6 +13,8 @@ int main(void){
 	 *   %u: 输出无符号的int类型数,对应的是有符号的%d
 	 *
 	 * 2,%x,%X表示以16进制输出，这俩意思一样,一般都用大写，好区分;
+	 *   %.2x : That indicates that an integer should be printed in hexadecimal 
+	 *          with at leat 2 digits. 
 	 *
 	 * 3,%f表示单浮点精度float;
 	 *   %lf表示双浮点精度double
