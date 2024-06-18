@@ -13,6 +13,8 @@ int main(void){
 	 *   %u: 输出无符号的int类型数,对应的是有符号的%d
 	 *
 	 * 2,%x,%X表示以16进制输出，这俩意思一样,一般都用大写，好区分;
+	 *   %.2x : That indicates that an integer should be printed in hexadecimal 
+	 *          with at leat 2 digits. 
 	 *
 	 * 3,%f表示单浮点精度float;
 	 *   %lf表示双浮点精度double
@@ -25,6 +27,7 @@ int main(void){
 	 * 5,%p : 这个输出控制符表示输出指针，即变量的地址，注意打印时在变量前加“&”表示取地址。
 	 *   See PrintfTes002.c
 	 *
+	 * 6,%c : to print a character on the ASCII talbe.
 	 * */
 	printf("%d\n",i);   //%d默认打印有符号的int类型(signed  integer)
 	printf("%X\n",i);	//10用16进制表示就是a,即9后面就是a。
@@ -52,6 +55,10 @@ int main(void){
 	//三，%u
 	int n = -1;
 	printf("-1 unsigned = %u\n", n);
+
+	// 6, %c 
+	char c = 98;
+	printf("char==>%c\n", c);
 
 	return 0;
 }
