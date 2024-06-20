@@ -14,6 +14,7 @@ int main(){
 	char ch2 = 'a';
 	printf("%c\n",ch2);	//输出：a
 	printf("%c\n", ch2 + 1);	//输出：b,字符也可以参与运算。
+	printf("%d\n", ch2);  // As a matter of fact, the value of char is also numbers.
 
 	/*总结：
 	 *以上说明在底层计算机都是用数字，即二进制来表示任何数据的包括以上的字符，还有字符串
