@@ -1,8 +1,8 @@
 #!/bin/bash
 
 # Set your GitHub repository URL and branch name
-REPO_URL="master"
-BRANCH="main"  # or "master" depending on your default branch
+# REPO_URL="master"
+BRANCH="master"  # or "master" depending on your default branch
 
 # Function to add, commit, and push changes
 
