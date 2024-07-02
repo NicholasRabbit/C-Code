@@ -14,7 +14,7 @@ l # long  1 long = 4 bytes
 movz # to convert an unsigned integer to a wider unsigned integer
 # The low 8 bits of the destination will be replaced by the sorurce operand, 
 # and the top bits are set to 0. The source operand is unaffectd.
-movzbw # 1010,0111 -> 1010,0111,0000,0000
+movzbw # 1010,0111 -> 0000,0000,1010,0111
 # The low 8 bits of the destination will be replaced by the source operand 
 # The top 24 bits are set to 0. 
 movzbl

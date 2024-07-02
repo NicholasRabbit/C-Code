@@ -242,6 +242,14 @@ C标准规定的浮点型有float、double、long double，和整型一样，既
 
 以char为例，无符号指char范围内的所有数都表示正数，有符号指按照一定规定用一部分数表示负数。
 
+##### 3) printf( -2147483647-1 )
+
+![1718867671225](note-images/1718867671225.png)
+
+  "CSAPP, 2rd"-Page 71.
+
+  My C Code "22_DataType"
+
 #### 18, 位运算 Bitwise
 
 **什么是位运算？**
