@@ -226,13 +226,18 @@ $ 6 4  # 这里接受的是printf(..)函数的返回值。printf(..)函数返回
 ```shell
 (gdb) info display # 查看已设置的显示点
 (gdb) display sum  # 每次程序走一步就显示当前sum的值。可展示多个，执行多次命令即可。
-(gdb) display sum2 # ...
+(gdb) display sum2 # ...display the decimal value by default.
 
 (gdb) display # 显示所有设置好的变量值
 
 (gdb) undisplay  1 # 指定序号取消展示（序号在最左边展示）。
 (gdb) disable diaplay 2 # 禁用显示点2
 (gdb) enable display 2  # 启用显示点2
+
+# display the hexadecimal value
+(gdb) display/x sum
+# display the binary value
+(gdb) display/t sum
 ```
 
 ##### 9) 断点调试相关
