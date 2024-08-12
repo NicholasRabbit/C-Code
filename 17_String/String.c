@@ -1,4 +1,5 @@
 # include<stdio.h>
+# include<string.h>
 
 
 /*
@@ -57,6 +58,11 @@ int main(void){
 	str5 = "World";  // error: incompatible types when assigning to type ‘char[10]’ from type ‘char *’,
 	
 
+
+
+	return 0;
+
+}
 
 
 

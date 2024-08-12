@@ -22,7 +22,7 @@ int main(void){
 	 *   对于scanf()有区别，具体见本目录下: DoubleFloatAndPrintfScanf.c内解释。
 	 *
 	 * 4,%ld: signed long (long decimal缩写，默认是有符号的)
-	 *   %lu: unsigned lon 4,%ld: signed long (long unsigned缩写)
+	 *   %lu: unsigned long (long unsigned缩写)
 	 *
 	 * 5,%p : 这个输出控制符表示输出指针，即变量的地址，注意打印时在变量前加“&”表示取地址。
 	 *   See PrintfTes002.c
