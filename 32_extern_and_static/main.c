@@ -24,7 +24,7 @@
  *
  * 2, static
  * If a variable or a function were modified by "static", it could not be used
- * or called outside of the source where it is.
+ * or called from outside. 
  * It just like "Internal Linkage".
  * See stack.c.
  *
