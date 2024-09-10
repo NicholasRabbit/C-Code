@@ -1,6 +1,19 @@
-#### 1，Widows下配置gcc环境
+#### 0，Widows下配置gcc环境
 
 配置mingw即可，详情参照mingw配置教程
+
+#### 1, Basic data types in C
+
+There are only few basic data types in C, they are `char,int,float,double`. In addition, there are a number of qualifiers can be applied to these basic types. `short` and `long` are among them.
+
+```c
+// Normally they can be used to delcare variables below.
+// The word "int" is always omitted in such declarations, and typically it is.
+short int sh;  
+long int counter; 
+```
+
+
 
 #### 2，include含义
 
@@ -433,8 +446,6 @@ The value of the middle row and the value of last row are oppiste.
 
 If a variable is modified by `volatile`,  the CPU should fetch data from memory instead of registers when the variable is used.
 
-#### 29,  error: multiple definition of `_start'
+#### 29, NULL 
 
-The difference between `as` and `gcc`.
-
-See chapter 19.2  `main`函数和启动例程 
+Note that all the letters in `NULL` are captalised in C.

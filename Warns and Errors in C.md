@@ -32,3 +32,9 @@ Solution:
 2. `debuginfo-install glibc`
 3. if the warning's still there, edit `/etc/yum.repos.d/CentOS-Debuginfo.repo`, set `enabled=1`
 
+#### 3,  error: multiple definition of `_start'
+
+The difference between `as` and `gcc`.
+
+See chapter 19.2  `main`函数和启动例程 
+
