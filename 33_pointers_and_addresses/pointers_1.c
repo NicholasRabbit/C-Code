@@ -11,7 +11,7 @@
  *    '&' operator can only apply to objects in memory: variables and array
  *    elements. It can not be applied to expressions, constants, or register
  *    variables.
- * *: It can only be applied to a pointer and accesses the object the pointer
+ * *: When '*' applied to a pointer, it accesses the object the pointer
  *    points to.
  * 
  * */
