@@ -449,3 +449,21 @@ If a variable is modified by `volatile`,  the CPU should fetch data from memory 
 #### 29, NULL 
 
 Note that all the letters in `NULL` are captalised in C.
+
+### 30, Pointers
+
+1) deferencing a pointer
+
+[What is deferencing a pointer?](https://stackoverflow.com/questions/4955198/what-does-dereferencing-a-pointer-mean-in-c-c)
+
+In memory, every value has its address which pointers point to. If want to access the value, what we do is deferencing the pointer. 
+
+```yaml
+Memory Address (hex)    Variable name    Contents
+1000                                     'a' == 97 (ASCII)
+1001                                     'b' == 98
+1002                                     'c' == 99
+1003                                     0
+...
+2000-2003               p                1000 hex # a pointer
+```

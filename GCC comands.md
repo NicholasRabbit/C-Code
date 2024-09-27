@@ -135,13 +135,7 @@ This GDB was configured as "i486-linux-gnu"...
 
 如果修改源码的名字或者位置，再执行list命令就会报：No such file or directory 错误。
 
-##### 4)  退出调试：
-
-```shell
-(gdb) quit
-```
-
-##### 5) 开始执行程序：
+##### 4) 开始执行程序：
 
 ```shell
 gdb test.out # 退出后需要重新启动
@@ -149,10 +143,16 @@ gdb test.out # 退出后需要重新启动
 (gdb) next / n / Enter # 执行下一行，或先按完n后，后面按回车Enter也可以，每次执行一步
 ```
 
-**5.1 重新执行程序**
+**4.1 重新执行程序**
 
 ```shell
 (gdb) run # 执行了部分程序后，从开头重新执行程序
+```
+
+##### 5) 退出调试
+
+```c
+(gdb) quit
 ```
 
 ##### 6) 进入某个函数
