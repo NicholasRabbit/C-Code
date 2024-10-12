@@ -1,0 +1,9 @@
+
+In "How to Become a Hacker," Eric Raymond describes Lisp as something like Latin or Greek — 
+a language you should learn as an intellectual exercise, even though you won't actually use it:
+
+    Lisp is worth learning for the profound enlightenment experience you will have when you finally get it; that 
+	experience will make you a better programmer for the rest of your days, 
+	even if you never actually use Lisp itself a lot. 
+
+-- Paul Graham

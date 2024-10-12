@@ -2,24 +2,10 @@
 
 
 /*
- * 1,输出控制符范例。
+ * Format of printing values.
  * */
 int main(void){
 	
-	//一，输出控制符
-	
-	/* 
-	 *
-	 *
-	 *
-	 * 4,%ld: signed long (long decimal缩写，默认是有符号的)
-	 *   %lu: unsigned long (long unsigned缩写)
-	 *
-	 * 5,%p : 这个输出控制符表示输出指针，即变量的地址，注意打印时在变量前加“&”表示取地址。
-	 *   See PrintfTes002.c
-	 *
-	 * 6,%c : to pirnt the representation of character of arguments.
-	 * */
 
 	/*
 	 * 0, How to print '%' itself?
@@ -44,7 +30,7 @@ int main(void){
 	/*
 	 * 2,%x or %X: To print the hexadecimal value of a argument.
 	 *   %.2x : That indicates that an integer should be printed in hexadecimal 
-	 *          with at leat 2 digits. 
+	 *          with at least 2 digits. 
 	 * */
 	int j = 15;
 	printf("j's hexadecimal value is %X\n", j);
@@ -74,31 +60,31 @@ int main(void){
 	double d1 = 82.35;
 	printf("d1 = %lf\n", d1);
 
+	/*
+	 * 4,%ld: print as signed long integer.
+	 *   %lu: to print unsigned long integer.
+	 * */
+	unsigned long m = 0xffffffffffffffff; // (2 to the power of 32) - 1
+	printf("ld = %ld\n", m);   
+	printf("lu = %lu\n", m);
 
-	//二，long输出控制符。
-	//这里写不写unsigned关键字都可以，输出的时候使用"%lu"就可以打印无符号的数。
-	//unsigned的作用仅表示声明了一个无符号的整数变量，打印可以打印成有符号或无符号的。
-	//本质上m的底层表示是一样的数，本例中都是64个1，范围不用表示的数字不一样。
-	unsigned long m = 0xffffffffffffffff;
-	printf("signed long(m) = %ld\n", m);   //signed有符号；表示-1
-	printf("unsigned long(m) = %lu\n", m); //unsigned无符号：表示：2^32次方
 
-	long k = 0xfffffff; //32个1,是int的最大数，在int范围里表示-1
-	printf("signed long = %ld\n",k);
+	/*
+	 * 5, %p: print as hexadecimal representation of a pointer.
+	 * */
+	int num = 10;
+	printf("p: %p\n", &num);
 
-	//三，%u
-	int n = -1;
-	printf("-1 unsigned = %u\n", n);
 
-	// 6, %c 
+	// 6, %c: print as characters. 
 	char c = 98;
-	printf("char==>%c\n", c);
+	printf("c: %c\n", c);
 
 	return 0;
 }
 
 /*
- * 2,printf(..)函数的形参是可变长度的。
- * 可通过Linux命令行执行 man 3 printf 查看说明。
- * 这里的 3代表Section 3，具体见个人Linux笔记。
+ * N.B. The function "printf(..)" has variable-length arguments.
+ * See: man 3 printf. The "3" represents "Section 3" here because
+ * there are other functions with the same name in Linux.
  * */

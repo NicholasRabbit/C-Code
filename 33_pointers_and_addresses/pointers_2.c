@@ -13,7 +13,7 @@ int main (void)
 	void *p;
 
 	/*
-	 * 2. Pointers can be pointers. For example, in the function "atof(char *)" the 
+	 * 2. Parameters can be pointers. For example, in the function "atof(char *)" the 
 	 * argument is a pointer to char.
 	 * */
 	double *dp, atof(char *);

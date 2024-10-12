@@ -20,7 +20,7 @@ int main (void)
 
 	int x = 1, y = 2, z[10];
 
-	// Declaring a pointer to integer data type.
+	// Declaring a pointer to point integer data type.
 	int *ip; 
 	// Now ip point to x.
 	ip = &x;
