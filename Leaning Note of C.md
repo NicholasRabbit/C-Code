@@ -15,7 +15,7 @@ long int counter;
 
 
 
-#### 2，include含义
+#### 2，\#include
 
 ```txt
 程序第一行的#号（Pound Sign，Number Sign或Hash Sign）和include表示包含一个头文件（Header File），后面尖括号（Angel Bracket）中就是文件名（这些头文件通常位于/usr/include目录下）。头文件中声明了我们程序中使用的库函数，根据先声明后使用的原则，要使用printf函数必须包含stdio.h，要使用数学函数必须包含math.h，如果什么库函数都不使用就不必包含任何头文件，例如写一个程序int main(void){int a;a=2;return 0;}，不需要包含头文件就可以编译通过，当然这个程序什么也做不了。
@@ -314,7 +314,15 @@ ELF文件格式是一个开放标准，各种UNIX系统的可执行文件都采�
 - 可执行文件（Executable）
 - 共享库（Shared Object，或者Shared Library）
 
+[Chapter 18.5 ELF](./Tutorials on C\Linux C编程一站式学习.pdf)
 
+参考：[ELF difinition](https://www.baeldung.com/linux/executable-and-linkable-format-file)
+
+分析：
+
+初步理解：
+
+ELF是一种Unix中规定好的文件格式，存储在硬盘上，当系统读取它的时候按照规则逐步执行其中的编码。
 
 #### 22, 函数调用分析
 
@@ -400,18 +408,6 @@ Chapter 19.2
 
 const, static, register
 
-#### 25, ELF文件
-
-[Chapter 18.5 ELF](./Tutorials on C\Linux C编程一站式学习.pdf)
-
-参考：[ELF difinition](https://www.baeldung.com/linux/executable-and-linkable-format-file)
-
-分析：
-
-初步理解：
-
-ELF是一种Unix中规定好的文件格式，存储在硬盘上，当系统读取它的时候按照规则逐步执行其中的编码。
-
 #### 26, 小端，大端(little endian/big endian)
 
 ​	[Chapter 18.5 ELF](./Tutorials on C\Linux C编程一站式学习.pdf)
@@ -450,7 +446,7 @@ If a variable is modified by `volatile`,  the CPU should fetch data from memory 
 
 Note that all the letters in `NULL` are captalised in C.
 
-### 30, Pointers
+#### 30, Pointers
 
 1) deferencing a pointer
 
@@ -467,3 +463,22 @@ Memory Address (hex)    Variable name    Contents
 ...
 2000-2003               p                1000 hex # a pointer
 ```
+
+#### 31, EOF
+
+EOF: end of file.
+
+How to input `EOF` in a CLI?
+
+```c
+main()
+{
+    long nc;
+    nc = 0;
+    while (getchar() != EOF)
+        ++nc;
+    printf("%ld\n", nc);
+}
+```
+
+The programme above counts the input characters until a `EOF` is input. Inputing the `EOF` needs to press `Ctrl + D`.
