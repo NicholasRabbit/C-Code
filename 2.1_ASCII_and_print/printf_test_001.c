@@ -34,6 +34,8 @@ int main(void){
 	 * */
 	int j = 15;
 	printf("j's hexadecimal value is %X\n", j);
+	j = 0xA;
+	printf("%%.2x = %.2x\n", j);
 
 	/*
 	 * 3,%f: print as floating point.
@@ -44,6 +46,7 @@ int main(void){
 	 *	        For example: 3.22 -> 3
 	 *	 %6.2f: It means that a floating number is to be printed as least
 	 *	        six characters wide with 1 digit after the decimal point.
+	 *	 %.0f: To supress prirnting of decimal point or fractional part. 
 	 *
 	 *   N.B. The function "printf(...)" casts 'float' to 'double' by default,
 	 *   but "scanf(...)" doesn't. See "DoubleFloatAndPrintfScanf.c".
@@ -56,6 +59,7 @@ int main(void){
 	f2 = 3.020304; 
 	printf("f1 = %3.0f\n", f1);
 	printf("f1 = %6.2f\n", f2);
+	printf("f2 = %.0f\n", f2);
 
 	double d1 = 82.35;
 	printf("d1 = %lf\n", d1);
