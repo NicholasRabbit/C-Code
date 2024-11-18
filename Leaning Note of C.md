@@ -482,3 +482,8 @@ main()
 ```
 
 The programme above counts the input characters until a `EOF` is input. Inputing the `EOF` needs to press `Ctrl + D`.
+
+#### 32, Input 'Backspace' in Command Line Interface
+
+Directly pressing 'Bachspace' in CLI could not input '\b' to the application.
+Instead, to press 'Ctrl + H' or "Shift + BackSpce" works.
