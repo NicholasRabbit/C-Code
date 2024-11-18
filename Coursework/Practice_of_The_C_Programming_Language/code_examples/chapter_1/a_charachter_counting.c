@@ -22,7 +22,9 @@ int for_loop()
 {
 	double nc;
 	nc = 0;
-	for (;getchar() != EOF; ++nc);
+	for (;getchar() != EOF; ++nc)
+		;  
+	// if there is no statement in a for loop a semicolon should be added at the end of the line.
 
 	printf("%.0f\n", nc);
 
