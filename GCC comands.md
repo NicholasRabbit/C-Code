@@ -348,7 +348,7 @@ hexdump -C Test.o  # 显示的都是16进制
 4）反汇编：目标文件，可执行文件都可以反编译。
 
 ```shell
-objdump -d Test.o
+objdump -d Test.o  # --disassemble is an alternative option. N.B. There are two hyphens.
 objdump -d Test
 ```
 
@@ -360,7 +360,7 @@ objdump -d Test
 # 第一种：
 gcc -g Test.c -o Test.out
 objdump -dS Test.out
-objdump -dS test.out | less # combined wite "less" to 
+objdump -dS test.out | less # combined with "less" to display the result.
 
 # 第二种
 gcc -S Test.c  #自动生成Test.s文件，然后vi编辑器打开即可查看
@@ -374,7 +374,6 @@ gcc Test.o -o Test.out   #生成可执行文件
 >
 > -S [--source]
 > Display source code intermixed with disassembly, if possible. Implies `-d`
->
 
 2, 汇编相关断点调试命令
 
@@ -384,7 +383,7 @@ gdb执行后使用以下命令
 disassemble  function_name/address(optional)  #反汇编当前的函数，也可指定函数名或地址
 si  #执行单条CPU指令调试，而step是单行代码调试，注意区别
 
-#查看寄存器(registers)信息， 个人输入此命令后，CentOS系统的寄存器名称都是%rbp,不是%ebp，原因待分析
+#查看寄存器(registers)信息， 个人输入此命令后，64位CentOS系统的寄存器名称都是%rbp,不是%ebp
 info registers  
 #得到结果：
 (gdb) info registers 
