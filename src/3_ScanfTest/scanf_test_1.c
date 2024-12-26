@@ -10,7 +10,8 @@
  *    %d: decimal
  *    %x: hexadecimal
  *    %c: charracter
- *  
+ * 4, There is no need to use '\n' in 'scanf(...)'. If you did, you should input '\n' on CLI, too.
+ *    
  * 
  * */
 

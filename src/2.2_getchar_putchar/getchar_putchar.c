@@ -34,7 +34,7 @@ int main(void)
 
 {
 
-	get();
+//	get();
 	get_put();
 
 
