@@ -78,9 +78,6 @@ int main(void)
 	
 
 
-	//此函数有返回值，1，代表有输入，0，无输入。
-	int ret = scanf("abc%dxy",&i); 
-	printf("return value of scanf = %d\n",ret);
 
 	//4,输出控制符里有"\n"的情况见:ScanfLineNext.c
 	return 0;
