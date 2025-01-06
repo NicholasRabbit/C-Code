@@ -4,6 +4,7 @@
  * getchar() and putchar(...) 
  *
  * N.B. The 'getchar()' only gets a single character each time.
+ * So does the 'putchar(...)'.
  * */
 
 int get()
@@ -34,9 +35,8 @@ int main(void)
 
 {
 
-//	get();
-	get_put();
-
+	get();
+//	get_put();
 
 	return 0;
 
