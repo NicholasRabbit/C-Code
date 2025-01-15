@@ -79,11 +79,11 @@ gcc -c bar.c
 gcc foo.o bar.o -o test.out
 ```
 
-### 2, gdb的debug步骤
+### 2, gdb debugging
 
-具体参照[LinuxC](./C语言资料/Linux C编程一站式学习.pdf) 章节10.1
+Refer to [LinuxC](./C语言资料/Linux C编程一站式学习.pdf) Chapter 10.1
 
-#### 1, 首先生成可调试文件：
+#### 1, First
 
 ```shell
 gcc -g GDB_Test.c -o test.out
@@ -91,7 +91,7 @@ gcc -g GDB_Test.c -o test.out
 
 注意：-g 选项的作用是在可执行文件中加入源码的信息，并非把源码文件全部嵌入到编译后的可执行文件里，所以生成之后，源码的名字和位置都不要动了，否则找不到。
 
-#### 2,  gdb命令
+#### 2,  gdb commands
 
 ##### 1) 使用gdb命令执行可调试文件
 
