@@ -24,7 +24,7 @@ int main(void)
 	 * Why do we use [c-'0'] in the statement?
 	 * In ASCII table numbers from '0' to '9' have consecutive numeric values in the 
 	 * range between 48 to 57. For instance, 48 represents character '0' and 49 for '1'.
-	 * Therefore, [c-'0'](like 49 - 48) is used to indicate the index of the array-'ndigit[10]'.
+	 * Therefore, [c-'0'](49 - 48) is used to indicate the index of the array-'ndigit[10]'.
 	 * */
 	while( (c = getchar()) != EOF) {
 		
