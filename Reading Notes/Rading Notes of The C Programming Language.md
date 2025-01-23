@@ -22,6 +22,8 @@
 
 2. The prototype of a function can be declared first, the definition of this function can be written later.
 
+   In addition, the return type is `int` if it is not explicitly declared. Accordingly, if the return type of a function were `int`, it could be omitted.
+   
    ```c
    int power(int m, int n);  // Prototype of 'power'
    
@@ -41,7 +43,7 @@
        for (i = 1; i <= n; ++i)
            p = p * base;
        return p;
-   }
+}
    ```
-
+   
    
