@@ -7,12 +7,14 @@
  * of a variable or an array.
  *
  * Symbols used in pointers:
- * &: It gives the address of an object(variables, arrays ans so forth).
+ * &: It gives the address of an object(variables, arrays and so forth).
  *    '&' operator can only apply to objects in memory: variables and array
  *    elements. It can not be applied to expressions, constants, or register
  *    variables.
  * *: When '*' applied to a pointer, it accesses the object the pointer
  *    points to.
+ *    N.B. "*ip" indicates the value where a pointer deferences. "ip" is the 
+ *    pointer.
  * 
  * */
 int main (void) 
