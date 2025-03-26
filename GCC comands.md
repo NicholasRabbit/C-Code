@@ -135,15 +135,15 @@ This GDB was configured as "i486-linux-gnu"...
 
 如果修改源码的名字或者位置，再执行list命令就会报：No such file or directory 错误。
 
-##### 4) 开始执行程序：
+##### 4) start debugging
 
 ```shell
-gdb test.out # 退出后需要重新启动
-(gdb) start # 开始执行
-(gdb) next / n / Enter # 执行下一行，或先按完n后，后面按回车Enter也可以，每次执行一步
+gdb test.out 
+(gdb) start 
+(gdb) next / n / Enter # execute next line
 ```
 
-**4.1 重新执行程序**
+**4.1 `run` restart debugging**
 
 ```shell
 (gdb) run # 执行了部分程序后，从开头重新执行程序
@@ -211,7 +211,6 @@ gdb test.out # 退出后需要重新启动
 也可以使用print / p 来修改变量的值，print还可以调用函数。
 
 ```shell
-(gdb) print / p sum  #显示变量的值
 (gdb) print / p result[2] = 25  # 随意修改当前栈帧的变量
 # 修改后会把值存储在一个编号序号的临时变量里如 $5 25
 # 也可以调用函数，实际这里可以随意写个已有的函数如printf(..)
@@ -240,7 +239,7 @@ $ 6 4  # 这里接受的是printf(..)函数的返回值。printf(..)函数返回
 (gdb) display/t sum
 ```
 
-##### 9) 断点调试相关
+##### 9) breakpoints
 
 - 设置断点 ，查看，删除，禁用断点
 
@@ -258,19 +257,20 @@ $ 6 4  # 这里接受的是printf(..)函数的返回值。printf(..)函数返回
 (gdb) delete breakpoints  # 不指定号码则删除所有断点
 ```
 
-- 连续运行，不是一步步走，而是走到断点才停
+- continue executing until to the first break point.
 
 ```shell
-(gdb) continue / c  # 连续运行
+(gdb) continue / c  # continue
 ```
 
-- 指定条件激活断点
+- invoked by a specific break point
 
 ```shell
-(gdb) break 15 if sum != 0  # 当sum != 0时才打断，布尔表达式可以写==,<，>等。
+# When sum != 0 it will break here. Other operators like ==,<，> are valid.
+(gdb) break 15 if sum != 0  
 ```
 
-##### **10) 设置观察点**
+##### **10) watch**
 
 观察点是是指当程序访问某一个存储单元时中断。跟断点作用相同，只是触发机制不同。
 一般有观察点则不设置其它断点，防止干扰，也可以需要根据实际情况两者都设置。
@@ -281,9 +281,15 @@ $ 6 4  # 这里接受的是printf(..)函数的返回值。printf(..)函数返回
 (gdb) info watchpoints #查看观察点 
 ```
 
-##### **11) 指定打印存储单元的内容**
+##### **11) `print` and `x`**
 
 ```shell
+ # print the decimal value of "sum" by default
+(gdb) print / p sum 
+# print the hexadecimal representation of a variable.
+(gdb) print/x var1  # p/x
+# print the binary numbers of a variable
+(gdb) print/t var1  # p/t
 (gdb) x/8b input # 打印出input变量内存储的内容，根据系统不同，有时展示16进制，例如x31,有时10进制。
  				 # 8：表示打印8组，b表示每个字节一组		 
 ```
@@ -301,7 +307,7 @@ gdb以二进制形式打印一个byte的值
 - `tb`: These are format specifiers. `t` specifies that the memory should be interpreted as text, and `b` specifies that the output should be in byte format.
 - `&i`: This is the address of the variable `i`. The `&` operator gives the address of a variable.
 
-#####   12) gdb独立调试
+#####   12) Run `gdb` only.
 
 ```shell
 $root>gdb  # Only input "gdb" in CLI
@@ -315,8 +321,8 @@ $root>gdb  # Only input "gdb" in CLI
 scanf(...)仍然可以接收参数
 
 ```shell
-(gdb) n   # 这里执行下一步的scanf()
-123       #在这里输入参数
+(gdb) n   # call scanf()
+123       # input variables
 ```
 
 
