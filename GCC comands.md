@@ -218,7 +218,7 @@ gdb test.out
 $ 6 4  # 这里接受的是printf(..)函数的返回值。printf(..)函数返回值就是其打印的字符数。
 ```
 
-##### 8)  始终展示局部变量的值
+##### 8)  display
 
 进入函数后才能使用此命令，否则找不到该局部变量。
 
@@ -241,20 +241,20 @@ $ 6 4  # 这里接受的是printf(..)函数的返回值。printf(..)函数返回
 
 ##### 9) breakpoints
 
-- 设置断点 ，查看，删除，禁用断点
+- break, info, disable, enable, delete
 
-  首先得使用 ```(gdb) list 1```命令查看代码，选好行号。
+  First of all, show the source code by `(gdb) list 10` and decide where to set a break point.
 
 ```shell
-(gdb) break / b 15  # 在15行设置断点,程序每次走到这里就会停
+(gdb) break / b 15  # Set a break point in the fifteenth line.
 
-(gdb) info / i breakpoints  # 查看断点，执行后会有一个列表展示出来，注意观察相关信息
+(gdb) info / i breakpoints  # Show the infomation of breakpoints
 
-(gdb) disable breakpoints 1 # 禁用1号断点
-(gdb) enable breakpoints 3 # 启用3号断点
+(gdb) disable breakpoints 1 # disable a break point
+(gdb) enable breakpoints 3 # enable one
 
-(gdb) delete breakpoints 5 # 删除指定号码的断点
-(gdb) delete breakpoints  # 不指定号码则删除所有断点
+(gdb) delete breakpoints 5 # delete a specific break point
+(gdb) delete breakpoints  # delete all breakpoints
 ```
 
 - continue executing until to the first break point.
