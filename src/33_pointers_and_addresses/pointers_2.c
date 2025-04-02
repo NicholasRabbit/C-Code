@@ -5,7 +5,7 @@ int main (void)
 {
 
 	/*
-	 * 1.Every pointer point to a specifice data type. 
+	 * 1.Every pointer point to a specific data type. 
 	 * Whereas, there is an exception: 
 	 * A pointer to 'void' is used to hold any type of pointer 
 	 * but can not be used to dereference itself.
