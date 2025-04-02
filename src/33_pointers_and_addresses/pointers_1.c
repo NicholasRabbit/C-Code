@@ -1,8 +1,9 @@
 # include<stdio.h>
 
 /*
- * Pointers could be pointed to different types such as 
- * int, char, short, float, double, long.
+ * Although pointers could be pointed to different types such as 
+ * int, char, short, float, double, and long, the length of any
+ * pointers is 32 bytes in x86 or IA32 all the time.
  * A pointer in C is used for storing the value of address 
  * of a variable or an array.
  *
