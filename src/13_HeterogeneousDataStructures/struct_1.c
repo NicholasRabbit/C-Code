@@ -33,7 +33,10 @@ int compoudTest(){
 		double x,y;
 	} z1,z2;
 
-	//第三种写法，这种写法没有定义结构体的名称，因此别的地方不能再引用此结构体声明变量了。
+	/*
+	 * 1.3 Declare an anonymnous structure. Note that there isn't 
+	 * any name for the structure.
+	 * */
 	struct {
 		double x,y;
 	} m1,m2;
