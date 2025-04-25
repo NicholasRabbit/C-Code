@@ -6,7 +6,7 @@ int fun(int x, int *p);
 int main(void) 
 {
 	// Declare a pointer of a function.
-	// Declare a function pointer and assign a addres of a function to it.
+	// Declare a function pointer and assign the address of a function to it.
 	// The last parentheses indicate the two arguments of this function/
 	// The first "int" is the return type while the parentheses of it is not necessary.
 	// But (*fp) must be bracketed, otherwise it will be 'int * fp(int, int *)' which is a
