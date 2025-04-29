@@ -4,7 +4,7 @@
  * getchar() and putchar(...) 
  *
  * N.B. The 'getchar()' only gets a single character each time.
- * So does the 'putchar(...)'.
+ * So the 'putchar(...)' print a character each time it is called.
  * */
 
 int get()
