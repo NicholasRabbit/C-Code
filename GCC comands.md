@@ -1,6 +1,6 @@
-### 1, gcc常用命令
+### 1, gcc commands
 
-##### 1.1) 基础命令
+##### 1.1) Basic Commands
 
 ```shell
 gcc  Hello.c : 编译Hello.c，默认输出a.out
@@ -29,9 +29,26 @@ Hello.exe : Windows2,执行编译的文件
 gcc -O test.c -o test.out 
 ```
 
-##### 1.2) 预处理，及整套详细编译命令
+6, Generate Assembly Code in a x86-64 machine that is compatible with any IA32 machine
 
-查看预处理后的数据的命令
+```shell
+# O1: capital "o" which indicates that the gcc compiler generates 
+# the code at O1(optimise 1) level. 
+# The option "-o" is optional.
+gcc -O1 -S -m32 code.c  -o code_32.s 
+```
+
+Generate assembly code in a x86-64 machine that is compatible with any IA64 machine. As a matter of fact,  it is the default operation. 
+
+```shell
+gcc -O1 -S -m32 code.c -o code_64.s
+```
+
+
+
+##### 1.2) Preprocessing and so forth
+
+The following commands illustrate the whole process from a source to an executable object. 
 
 ```shell
 # 1, preprocessing
@@ -55,7 +72,7 @@ gcc -c hello.c  # automatically generate a file named hello.o from hello.c
 gcc hello.o -o hello # executable object program
 ```
 
-下面的代码就是表示指示编译器进行预处理。
+
 
 ##### 1.3) 链接选项
 
@@ -327,19 +344,19 @@ scanf(...)仍然可以接收参数
 
 
 
-#### 4, Assembly汇编常用命令
+#### 4, Assembly Commands
 
-1）基本：
+1）Basic
 
 ```shell
-as Test.c -o Test.o  # 生成目标文件
-ld Test.o -o Test.out #生成可执行文件
-#执行
-./Test.out
+as test.s -o test.o  # 生成目标文件
+ld test.o -o test.out #生成可执行文件
+# execute
+./test.out
 echo $? #shell命令获取上一条命令的退出状态
 ```
 
-**命令解释：**参考18.1
+**命令解释：**参考18.1 (One-stop Programming in Linux)
 
 as表示使用汇编器(Assembler)把汇编中的助记符编译成机器指令，并生成目标文件。
 
