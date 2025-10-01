@@ -3,7 +3,7 @@
 #define MAXLINE 1000
 
 int get_line(char line[], int max_line);
-void copyt(char to[], char from[]);
+void copy(char to[], char from[]);
 
 int main(void) 
 {
@@ -19,7 +19,25 @@ int main(void)
 			copy(longest, line);
 		}
 	
-	
+	if (max > 0)
+		printf("%s\n", longest);
 
 	return 0;
+
 }
+
+
+int get_line(char s[], int lim)
+{	
+	int i, c;
+	for (i = 0; i < lim - 1 && (c = getchar()) != EOF && c != '\n'; i++)
+		s[i] = c;
+	if (c == '\n') {
+		s[i] = c;
+		++i;
+	}
+	return i;
+
+}
+
+

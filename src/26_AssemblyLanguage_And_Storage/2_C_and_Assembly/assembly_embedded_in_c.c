@@ -14,7 +14,7 @@ int main(void){
 	 * */
 	__asm__("movl $1, %eax\n\t"
 		  "movl $5, %ebx\n\t"
-		  "int $0x80");   // int is short for interrupt
+		  "int $0x80");   // "int" is short for interrupt not for integer. 
 
 
 	/*
@@ -24,10 +24,10 @@ int main(void){
 	int a = 10, b;
 	__asm__(//Write assembly language here.
 			"movl %1, %%eax\n\t"
-			"movl %%eax, %0"
+			"movl %%eax, %0" 
 
 			//The following codes are optional.
-			//Restriction should be write below and seperated from assembly by colon.
+			//Restriction should be written below and seperated from assembly by colon.
 			:"=r"(b)   //output. b is in %0.  %0 and %1 are also registers whose name are decided by compiler and 0,1 are indices(indexes).
 			:"r"(a)	   //intput. a is in %1.
 			:"%eax"    // clobbered registers. 
