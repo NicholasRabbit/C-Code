@@ -12,13 +12,13 @@
 # echo $? // to get the return value of the last programmme.
 
 
-.section .data #.data段下面保存数据，类似于声明变量赋值。
+.section .data #.data is followed by data in the code
 
 .section .text #.text段保存代码，是只读且能执行的。下面的指令都属于.text段的
 
 .globl _start
 
-# eax,ebx都是CPU中的寄存器(register)，详见17.2
+# eax,ebx are all registers.
 
 _start:
 

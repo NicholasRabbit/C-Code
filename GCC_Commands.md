@@ -22,26 +22,25 @@ Hello.exe : Windows2,执行编译的文件
 4, C99语法加编译选项
   ```gcc -std=c99 ForTest.c -o ForTest.out```
 
-5, 执行编译器优化
+5, Optimising
 
 ```shell
-#The fisrt captital O stands for "optimize".
+#The first captitalised O stands for "optimise".
 gcc -O test.c -o test.out 
 ```
 
-6, Generate Assembly Code in a x86-64 machine that is compatible with any IA32 machine
+6, Generate Assembly Code in a x86-64 machine that is compatible with any IA32 machine. Sometimes it is NOT necessary to add `-O1` to the command so that generated assembly code is easy to understand. 
 
 ```shell
-# O1: capital "o" which indicates that the gcc compiler generates 
-# the code at O1(optimise 1) level. 
-# The option "-o" is optional.
+# O1: capital "O" which indicates that the gcc compiler generates the code 
+# at O1(optimise 1) level. The option "-o" and "O1" are optional.
 gcc -O1 -S -m32 code.c  -o code_32.s 
 ```
 
 Generate assembly code in a x86-64 machine that is compatible with any IA64 machine. As a matter of fact,  it is the default operation. 
 
 ```shell
-gcc -O1 -S -m32 code.c -o code_64.s
+gcc -O1 -S -m64 code.c -o code_64.s
 ```
 
 
@@ -375,7 +374,7 @@ objdump -d Test.o  # --disassemble is an alternative option. N.B. There are two 
 objdump -d Test
 ```
 
-#### 5, C, 汇编相关命令
+#### 5, C & Assembly
 
 1, 查看C编译后生成的汇编代码
 
@@ -450,6 +449,15 @@ nm /usr/lib64/crt1.o
                  U main
 0000000000000000 T _start
 ```
+
+- Combine C code and assembly code by a linker
+
+  ```bash
+  # 
+  gcc -o p p1.c p2.c 
+  ```
+
+  
 
 #### 6, ELF相关
 
