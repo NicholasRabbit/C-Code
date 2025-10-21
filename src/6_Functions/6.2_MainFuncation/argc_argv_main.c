@@ -8,7 +8,7 @@
  * Run:
  * ./argc_argv_main.out a b c
  * The output is
- * 0 ./argc_argv_main
+ * 0 ./argc_argv_main  : the name of this function
  * 1 a
  * 2 b
  * 3 c
