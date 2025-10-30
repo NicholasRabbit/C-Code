@@ -49,6 +49,8 @@ GNU gdb 6.8-debian
 
 ##### 3) list specified function or line
 
+3.1) List lines
+
 ```shell
 # List 10 lines of source code. If the second option is ommitted, it is 10 by default.
 (gdb) list 10 / list 
@@ -56,9 +58,24 @@ GNU gdb 6.8-debian
 (gdb) list  
 # Or type "Enter"
 (gdb) <Enter> 
+# We can show 10 lines of code around a specific line after the above comands.
+(gdb)list 15 # To show code from line 10 to 19.
 ```
 
 如果修改源码的名字或者位置，再执行list命令就会报：No such file or directory 错误。
+
+3.2) List functions
+
+```shell
+(gdb)list do_some  # list 10 lines around a function named "do_some"
+(gdb)list showbytes:add # 
+```
+
+3.3) To know more about `list` 
+
+```shell
+(gdb)help list
+```
 
 ##### 4) start debugging
 
