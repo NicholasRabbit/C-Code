@@ -267,3 +267,36 @@ scanf(...)仍然可以接收参数
 123       # input variables
 ```
 
+#### 4, segment fault and `gdb`
+
+segmentation_fault.c (see this code in `c-code/src/19_GDB`)  
+
+```c
+# include<stdio.h>
+int main(void){	
+	int i = 0;
+    //segmentatioin falut, The '&' should be added before tha variable. Error occurs here.
+	scanf("%d",i);  
+	return 0;
+}
+```
+
+`gdb` can help us to locate where an error, such as 'segment fault', happens when it is impossible to pinpoint it if an executable object is run. To illustrate, when the above is executed, there is only one message: Segmentation fault(cor dumped). It is implausible to where the error is from because in this case the error occurs in a system call. Whereas, we can run it in `gdb` without any breakpoints and use `bt(backtrace)` to find it. 
+
+```shell
+(gdb)run
+# The "segmentation fault" occurs.
+Program received signal SIGSEGV, Segmentation fault.
+0x00007ffff7a69341 in __GI__IO_vfscanf () from /lib64/libc.so.6
+# Then we input 'bt(backtrace)' and find where it occurs in our source code.
+(gdb)bt
+#0  0x00007ffff7a69341 in __GI__IO_vfscanf () from /lib64/libc.so.6
+#1  0x00007ffff7a790b9 in __isoc99_scanf () from /lib64/libc.so.6  
+#2  0x00000000004005cf in main () at segmentation_fault.c:11
+#######
+# We can find that a system call named "vfscanf()" is called by "scanf()" in our code. 
+# Subsequently, the error is located. 
+```
+
+
+
