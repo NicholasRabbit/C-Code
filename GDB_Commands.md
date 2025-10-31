@@ -298,5 +298,15 @@ Program received signal SIGSEGV, Segmentation fault.
 # Subsequently, the error is located. 
 ```
 
+#### 5, command-line arguments
 
+If there are command-line arguments to input when we run an executable object. For instance, `test.out abc`. We can input these arguments in `gdb` as follows.
+
+```shell
+(gdb)r/run abc
+```
+
+N.B. If we apply `r`  more than once in the same debugging session, there is no need to input these arguments once more; they are the default arguments next time. 
+
+See the chapter 4.3.2 in [Guide to Faster, Less Frustrating Debugging.](https://heather.cs.ucdavis.edu/matloff/public_html/UnixAndC/CLanguage/Debug.html) 
 
