@@ -68,7 +68,11 @@ GNU gdb 6.8-debian
 
 ```shell
 (gdb)list do_some  # list 10 lines around a function named "do_some"
-(gdb)list showbytes:add # 
+
+# list the add method in stack.c when mulitple sources are compiled simultaneously.
+# Or list 10 lines of code around the twelfth line in stack.c
+# See c-code/src/31_Linked/1_linked_basic
+(gdb)list stack.c:add or stack.c:12
 ```
 
 3.3) To know more about `list` 
@@ -183,12 +187,13 @@ $ 6 4  # 这里接受的是printf(..)函数的返回值。printf(..)函数返回
 
 ##### 9) breakpoints
 
-- break, info, disable, enable, delete
+- `break, info, disable, enable, delete`
 
   First of all, show the source code by `(gdb) list 10` and decide where to set a break point.
 
 ```shell
 (gdb) break / b 15  # Set a break point in the fifteenth line.
+(gdb) bread do_some # Pause at the first line of a function named "do_some"
 
 (gdb) info / i breakpoints  # Show the infomation of breakpoints
 
@@ -199,7 +204,7 @@ $ 6 4  # 这里接受的是printf(..)函数的返回值。printf(..)函数返回
 (gdb) delete breakpoints  # delete all breakpoints
 ```
 
-- continue executing until to the first break point.
+- `continue` executing until to the first break point.
 
 ```shell
 (gdb) continue / c  # continue
@@ -254,6 +259,31 @@ gdb以二进制形式打印一个byte的值
 ```shell
 $root>gdb  # Only input "gdb" in CLI
 (gdb)print 200*300*400*500  # call print.
+```
+
+##### 13) `disassemble` , `stepi` and `nexti`
+
+ Disassemble a specified section of memory.
+
+```shell
+# By default, it disassemble the function which surrounds the PC(program counter) of 
+# the selected frame.
+(gdb)disassemble  
+```
+
+To disassemble a specified function in a source code. Note that the address is interpreted as an expression, but not as a location as that in the `break` command. So if you want to disassemble a function name `pop` in `stack.c` , you should write as follows
+
+```shell
+(gdb)disassemble 'stack.c'::pop # Note there quotation marks around 'stack.c'.
+```
+
+After disassembling, we can move a single instruction, namely to process one line of assembly code.
+
+```shell
+(gdb)stepi  # Execute one instruction
+(gdb)stepi 3 # Execute 4 instructions
+# It is like 'stepi', but proceeds through different function calls without stopping.
+(gdb)nexti 
 ```
 
 
