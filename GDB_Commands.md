@@ -86,7 +86,6 @@ GNU gdb 6.8-debian
 ```shell
 > gdb test.out 
 (gdb) start 
-(gdb) next / n / Enter # execute next line
 ```
 
 **4.1 `run` restart debugging**
@@ -101,29 +100,24 @@ GNU gdb 6.8-debian
 (gdb) quit
 ```
 
-##### 6) Enter into a function
+##### 6) `next` and `step` 
 
 ```shell
+(gdb) next / n / Enter # execute next line
 # When a function is going to be executed, we can step into it. 
 (gdb) step / s # 进入函数
 ```
 
-###### 	 6.4.1 进入之后可查看栈帧：
+###### 	 6.4.1 check the back trace：
 
 ```shell
-(gdb) backtrace / bt  # 查看栈帧
-```
-
-######       6.4.2 可看到如下信息：
-
-```shell
-(gdb) backtrace
+(gdb) backtrace / bt  
 #0  add_range (begin=1, end=10) at GDB_Test.c:12
 #1  0x000000000040056d in main () at GDB_Test.c:23
 - 说明：add_range(..)是被main()函数调用的，传进的参数是：begin=1, end=10
 ```
 
-######       6.4.3可以使用命令查看当前栈帧局部变量的值：
+######       6.4.2 show information of local variables
 
 ```shell
 (gdb) info / i  locals  # 查看局部变量的值
@@ -210,12 +204,21 @@ $ 6 4  # 这里接受的是printf(..)函数的返回值。printf(..)函数返回
 (gdb) continue / c  # continue
 ```
 
-- invoked by a specific break point
+- invoked by a specific break point/conditional break
 
 ```shell
 # When sum != 0 it will break here. Other operators like ==,<，> are valid.
-(gdb) break 15 if sum != 0  
+(gdb) break 15 if sum != 0  # Don't forget "if" before the boolean expression.
 ```
+
+Note that a break point in `for` statement is invalid. As an illustration, if we set `b 13 if i > 4`, the break point will never be invoked.  A break point should be set in line 14. I have verified that. 
+
+```c
+13  for (i = begin; i <= end; i++)  // A breakpoint set `b 13 if i > 4` here is invalid.
+14      sum = sum + i;   // A breakpoint with condition should be here. 
+```
+
+
 
 ##### **10) watch**
 
@@ -228,31 +231,24 @@ $ 6 4  # 这里接受的是printf(..)函数的返回值。printf(..)函数返回
 (gdb) info watchpoints #查看观察点 
 ```
 
-##### **11) `print` and `x`**
+##### 11) `print` 
 
 ```shell
  # print the decimal value of "sum" by default
-(gdb) print / p sum 
+(gdb) print sum 
 # print the hexadecimal representation of a variable.
 (gdb) print/x var1  # p/x
 # print the binary numbers of a variable
 (gdb) print/t var1  # p/t
-(gdb) x/8b input # 打印出input变量内存储的内容，根据系统不同，有时展示16进制，例如x31,有时10进制。
- 				 # 8：表示打印8组，b表示每个字节一组		 
 ```
 
-注意：```x/10b```命令在使用```watchpoint```之后不起作用，使用```break```的时候管用。
-
-gdb以二进制形式打印一个byte的值
+We can also use a function like `printf` in C. 
 
 ```shell
-(gdb)x/1tb &i  #i is a variable
+(gdb)printf "i=%d, sum=%x\d", i, sum
 ```
 
-- `x`: This is the command to examine memory.
-- `/1`: This specifies the number of units to display. In this case, we're specifying 1 unit.
-- `tb`: These are format specifiers. `t` specifies that the memory should be interpreted as text, and `b` specifies that the output should be in byte format.
-- `&i`: This is the address of the variable `i`. The `&` operator gives the address of a variable.
+
 
 #####   12) Run `gdb` only.
 
@@ -286,7 +282,22 @@ After disassembling, we can move a single instruction, namely to process one lin
 (gdb)nexti 
 ```
 
+##### 14) `x`: examine memory
 
+```shell
+(gdb) x/8b input # 打印出input变量内存储的内容，根据系统不同，有时展示16进制，例如x31,有时10进制。
+ 				 # 8：表示打印8组，b表示每个字节一组		
+(gdb)x/1tb &i  #i is a variable                 
+```
+
+注意：```x/10b```命令在使用```watchpoint```之后不起作用，使用```break```的时候管用。
+
+gdb以二进制形式打印一个byte的值
+
+- `x`: This is the command to examine memory.
+- `/1`: This specifies the number of units to display. In this case, we're specifying 1 unit.
+- `tb`: These are format specifiers. `t` specifies that the memory should be interpreted as text, and `b` specifies that the output should be in byte format.
+- `&i`: This is the address of the variable `i`. The `&` operator gives the address of a variable.
 
 #### 3, gdb调试时scanf(...)入参
 
@@ -296,6 +307,8 @@ scanf(...)仍然可以接收参数
 (gdb) n   # call scanf()
 123       # input variables
 ```
+
+
 
 #### 4, segment fault and `gdb`
 
