@@ -10,7 +10,7 @@ int add_range(int begin, int end){
 	int i,sum;
 	//sum = 0;  //I didn't intialise the local variable deliberately in order to debug.
 	for (i = begin; i <= end; i++)
-		sum = sum + i;
+		sum = sum * i;
 
 	return sum;
 

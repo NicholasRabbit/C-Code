@@ -5,7 +5,7 @@
  * 1. struct
  * 2. union
  *
- * 结构体就是一种符合类型。
+ * Structure in C is heterogeneous data.
  * 
  * 数据类型分为基本数据类型,primitive type,例如int,double等。
  * 而复合数据类型就是有多个基本数据类型组成的，例如String类型由多个字符char组成。
