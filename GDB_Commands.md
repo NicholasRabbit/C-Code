@@ -105,10 +105,24 @@ GNU gdb 6.8-debian
 ```shell
 (gdb) next / n / Enter # execute next line
 # When a function is going to be executed, we can step into it. 
-(gdb) step / s # 进入函数
+(gdb) step / s # step into a function
 ```
 
-###### 	 6.4.1 check the back trace：
+The difference  between `next` and `step` is:
+
+If the next line is a function, pressing `next` will pause at the line following the function, while entering `stop` will jump into this function. 
+
+When you use `s/step` at a function, the `gdb` will tell you the arguments of it, which is quiet convenient 
+
+######     6.1 return from current function
+
+本例中是返回了调用函数main，在 main里接着向下执行了。
+
+```shell
+(gdb) finish  # 从当前函数返回	
+```
+
+##### 6.1 check the back trace
 
 ```shell
 (gdb) backtrace / bt  
@@ -117,35 +131,16 @@ GNU gdb 6.8-debian
 - 说明：add_range(..)是被main()函数调用的，传进的参数是：begin=1, end=10
 ```
 
-######       6.4.2 show information of local variables
 
-```shell
-(gdb) info / i  locals  # 查看局部变量的值
-```
 
-######      6.4.4 也可以调出 #1号栈帧，进行查看
-
-```shell
-(gdb) frame /f 1  # 调出一号栈帧，查看局部变量
-(gdb) info / i locals  # 进行查看
-```
-
-######     6.4.5 从当前函数返回，
-
-本例中是返回了调用函数main，在 main里接着向下执行了。
-
-```shell
-(gdb) finish  # 从当前函数返回	
-```
-
-##### 7)  显示，改变某局部变量
+##### 7) Modifying variables `set` and `print`
 
 例如上面可以看到由于sum没有初始化导致的错误，可以在step进入add_range()函数后，设置sum=0，来继续往下走验证结果是否正确。
 
 ```shell
-(gdb) step # 首先进入add_range(..)函数
-(gdb) set var sum=0  # 改变变量的值，继续往下走
-(gdb) next / n # 继续往下走
+# Alternate the value of `sum` to move on. 
+# Don't forget "var" which is a key word, but not a name of a variable.
+(gdb) set var sum=0  
 ```
 
 也可以使用print / p 来修改变量的值，print还可以调用函数。
@@ -211,11 +206,22 @@ $ 6 4  # 这里接受的是printf(..)函数的返回值。printf(..)函数返回
 (gdb) break 15 if sum != 0  # Don't forget "if" before the boolean expression.
 ```
 
-Note that a break point in `for` statement is invalid. As an illustration, if we set `b 13 if i > 4`, the break point will never be invoked.  A break point should be set in line 14. I have verified that. 
+(1) Note that a break point in `for` statement is invalid. As an illustration, if we set `b 13 if i > 4`, the break point will never be invoked.  A break point should be set in line 14. I have verified that. 
 
 ```c
 13  for (i = begin; i <= end; i++)  // A breakpoint set `b 13 if i > 4` here is invalid.
 14      sum = sum + i;   // A breakpoint with condition should be here. 
+```
+
+(2) When the source has been modified and recompiled, the breakpoints will be updated automatically when we execute the file again. Attention should be paid is that the table of break points invoked by `info breakpoints` has not been updated, but the program will pause in a different line according with the original code at which a break point was set. 
+
+```shell
+Breakpoint 1, sum_of_numbers () at break_points_and_others.c:21  # the lastest line.
+21                      sum = 0;
+(gdb) info b
+Num     Type           Disp Enb Address            What
+1       breakpoint     keep y   0x00000000004005d8 in sum_of_numbers at break_points_and_others.c:19   # the original number of line
+        breakpoint already hit 2 times
 ```
 
 
@@ -245,10 +251,22 @@ Note that a break point in `for` statement is invalid. As an illustration, if we
 We can also use a function like `printf` in C. 
 
 ```shell
-(gdb)printf "i=%d, sum=%x\d", i, sum
+(gdb)printf "i=%d, sum=%d\n", i, sum
 ```
 
+######       11.1  `info locals`
 
+show information of all local variables
+
+```shell
+(gdb) info / i  locals  # 查看局部变量的值
+```
+
+######      11.2 `frame`
+
+```shell
+(gdb) frame / f 1  # 调出一号栈帧，查看局部变量
+```
 
 #####   12) Run `gdb` only.
 
@@ -299,12 +317,37 @@ gdb以二进制形式打印一个byte的值
 - `tb`: These are format specifiers. `t` specifies that the memory should be interpreted as text, and `b` specifies that the output should be in byte format.
 - `&i`: This is the address of the variable `i`. The `&` operator gives the address of a variable.
 
-#### 3, gdb调试时scanf(...)入参
+##### 15) `call` a function
 
-scanf(...)仍然可以接收参数
+We can call a function, which has been already in the running program, to test different arguments or so.
 
 ```shell
-(gdb) n   # call scanf()
+# Note to start execution before call a function.
+(gdb)call add_range(1, 10)
+```
+
+##### 16) `define` a macro 
+
+If we wanted to use a command frequently, we could use `define...end` to create a macro.
+
+```shell
+(gdb)define psum
+Type commands for definition of "pisum".
+End with a line saying just "end".
+>printf "i = %d, sum = %d\n", i, sum   # Type the command you are using.
+>end  # Type "end" to end this macro.
+# Call this macro
+(gdb)psum
+```
+
+
+
+#### 3, gdb调试时scanf(...)入参
+
+`scanf(...)` 仍然可以接收参数
+
+```shell
+(gdb) n   # scanf() has been called. 
 123       # input variables
 ```
 
@@ -352,4 +395,16 @@ If there are command-line arguments to input when we run an executable object. F
 N.B. If we apply `r`  more than once in the same debugging session, there is no need to input these arguments once more; they are the default arguments next time. 
 
 See the chapter 4.3.2 in [Guide to Faster, Less Frustrating Debugging.](https://heather.cs.ucdavis.edu/matloff/public_html/UnixAndC/CLanguage/Debug.html) 
+
+#### 6, Recompiling the Source without Exit gdb
+
+We don't have to exit a `gdb` session when we want to recompile the source. What we need to do is to open a new CLI  window and recompile the source; input `run/r` to restart the program.
+
+Note we should tell gdb to relinquish our file being executed. Otherwise, the linker will tell us that the executable file is not accessible. (That has not been verified yet.)
+
+```shell
+(gdb)kill
+```
+
+
 
