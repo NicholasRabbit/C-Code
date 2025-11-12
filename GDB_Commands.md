@@ -153,6 +153,8 @@ When you use `s/step` at a function, the `gdb` will tell you the arguments of it
 $ 6 4  # 这里接受的是printf(..)函数的返回值。printf(..)函数返回值就是其打印的字符数。
 ```
 
+print
+
 ##### 8)  display
 
 进入函数后才能使用此命令，否则找不到该局部变量。
@@ -239,6 +241,8 @@ Num     Type           Disp Enb Address            What
 
 ##### 11) `print` 
 
+**(1) printing a value in various format.**
+
 ```shell
  # print the decimal value of "sum" by default
 (gdb) print sum 
@@ -246,13 +250,67 @@ Num     Type           Disp Enb Address            What
 (gdb) print/x var1  # p/x
 # print the binary numbers of a variable
 (gdb) print/t var1  # p/t
+# print the decimal representation of 0xabc
+(gdb)print 0xabc
+# print the hexadecimal representation of 255
+(gdb)print /x 255
 ```
 
-We can also use a function like `printf` in C. 
+**(2) Printing the value of registers.** Note that the symbol proceeding a register's name is $ not % when printing the value of it in `gdb`. 
+
+For IA 32, the program counter is `%eip` while for x86-64, program counter is `%rip`.
 
 ```shell
-(gdb)printf "i=%d, sum=%d\n", i, sum
+(gdb)print /x $eip  # print program counter in hexadecimal format
+(gdb)print /d $eip  # print program counter in decimal format
+(gdb)print /t $eip  # print program counter in binary format
+# print other registers
+(gdb)print /x $ebx  # print contents of %ebx in hexadecimal
+(gdb)print /x ($esp + 8) # print contents of `8(%esp)`.
 ```
+
+**(3) Printing in other formats**
+
+```shell
+# 1. print the value in integer at address 0xffffcca8.
+(gdb)print *(int *) 0xffffcca8  # in decimal format
+(gdb)print /x *(int *) 0xffffcca8  # in hexadecimal format
+# 2. print the value in integer at 8(%esp).
+(gdb)print *(int *) ($esp + 8)  
+# 3. Examine a string stored at 0xbfff890(address).
+(gdb)print (char *) 0xbfff890   
+```
+
+How can we print the value of  string in memory if we know its pointer(address) in a stack? As an illustration, in `0x8(%ebp)`  is stored the value of a char pointer. How can we know what the string constant?  
+
+See `c_code/src/33_pointers_and_addresses/char_pointers.c` (Compile it to IA32, `gcc -m32 -g ...`)
+
+```assembly
+# get_cp
+push   %ebp
+mov    %esp,%ebp
+mov    0x8(%ebp),%eax
+pop    %ebp
+```
+
+First of all, print the content in `0x8(5ebp)`, which is the value of a char pointer.
+
+```shell
+(gdb)print /x ($ebp + 8)
+$1 = 0xffffd2c4  # It the address of memory where the pointer is stored.
+(gdb)print /x *(int *) 0xffffd2c4 # Print the value of a char pointer in hex format.
+$3 = 0x80484a4
+(gdb)print (char *)  # Examine a string stored at 0x80484a4.
+# There is an implicit "\0"(null character) after "abc" so a compiler know where the 
+# the string is terminated. We can examine it by using `x/w`
+$5 = 0x80484a4 "abc"  
+(gdb)x/w  0x80484a4  # Examine a word(4 bytes) starting from 0x80484a4
+# Since it is in a little endian machine, "61" is at 0x80484a4.
+# We can see that the 4th byte is "00" which represents "null" or "\0". 
+0x80484a4:      0x00636261 
+```
+
+
 
 ######       11.1  `info locals`
 
@@ -268,6 +326,14 @@ show information of all local variables
 (gdb) frame / f 1  # 调出一号栈帧，查看局部变量
 ```
 
+###### 11.3 `printf` . 
+
+```shell
+(gdb)printf "i=%d, sum=%d\n", i, sum
+```
+
+
+
 #####   12) Run `gdb` only.
 
 ```shell
@@ -280,8 +346,8 @@ $root>gdb  # Only input "gdb" in CLI
  Disassemble a specified section of memory.
 
 ```shell
-# By default, it disassemble the function which surrounds the PC(program counter) of 
-# the selected frame.
+# By default, it disassemble the current function which surrounds the PC(program counter)
+# of the selected frame.
 (gdb)disassemble  
 ```
 
@@ -396,7 +462,7 @@ N.B. If we apply `r`  more than once in the same debugging session, there is no 
 
 See the chapter 4.3.2 in [Guide to Faster, Less Frustrating Debugging.](https://heather.cs.ucdavis.edu/matloff/public_html/UnixAndC/CLanguage/Debug.html) 
 
-#### 6, Recompiling the Source without Exit gdb
+#### 6, Recompiling the Source without Exiting gdb
 
 We don't have to exit a `gdb` session when we want to recompile the source. What we need to do is to open a new CLI  window and recompile the source; input `run/r` to restart the program.
 
