@@ -81,6 +81,23 @@ GNU gdb 6.8-debian
 (gdb)help list
 ```
 
+##### 3a) `info`
+
+```shell
+(gdb)info / i  locals  # Examine all the local variables.
+# Print current status of a program
+(gdb)info progam
+(gdb)info functions  # Print all the functions in a programme.
+(gdb)info stack		 # Print backtrace of the stack.
+(gdb)info frame		 # Print informaion of the current stack frame.
+(gdb)info registers  # Print registers and their contents.
+(gdb)info breakpoints # Print status of breakpoints which are set by users. 
+```
+
+
+
+
+
 ##### 4) start debugging
 
 ```shell
@@ -122,13 +139,16 @@ When you use `s/step` at a function, the `gdb` will tell you the arguments of it
 (gdb) finish  # 从当前函数返回	
 ```
 
-##### 6.1 check the back trace
+##### 6) `backtrace` /`bt`  and `where`
 
 ```shell
+# Print the current address and stack backtrace.
 (gdb) backtrace / bt  
 #0  add_range (begin=1, end=10) at GDB_Test.c:12
 #1  0x000000000040056d in main () at GDB_Test.c:23
-- 说明：add_range(..)是被main()函数调用的，传进的参数是：begin=1, end=10
+-- add_range(..) is called by main(). The arguments are "begin=1, end=10"
+# Print the current address and stack backtrace, too.
+(gdb)where
 ```
 
 
@@ -184,7 +204,8 @@ print
 
 ```shell
 (gdb) break / b 15  # Set a break point in the fifteenth line.
-(gdb) bread do_some # Pause at the first line of a function named "do_some"
+(gdb) break do_some # Pause at the first line of a function named "do_some"
+(gdb) clear do_some # Clear any breakpoints at the entry of a function named "do_some". 
 
 (gdb) info / i breakpoints  # Show the infomation of breakpoints
 
@@ -198,15 +219,32 @@ print
 - `continue` executing until to the first break point.
 
 ```shell
-(gdb) continue / c  # continue
+(gdb) continue / c  # continue		
 ```
+
+- `until`
+
+  ```shell
+  (gdb)until 3 # Continue running until break point with number 3. 
+  ```
+
+  
 
 - invoked by a specific break point/conditional break
 
 ```shell
 # When sum != 0 it will break here. Other operators like ==,<，> are valid.
 (gdb) break 15 if sum != 0  # Don't forget "if" before the boolean expression.
+
 ```
+
+- Set a break point at an address in memory
+
+```shell
+(gdb)break *0xffff007  
+```
+
+
 
 (1) Note that a break point in `for` statement is invalid. As an illustration, if we set `b 13 if i > 4`, the break point will never be invoked.  A break point should be set in line 14. I have verified that. 
 
@@ -312,14 +350,6 @@ $5 = 0x80484a4 "abc"
 
 
 
-######       11.1  `info locals`
-
-show information of all local variables
-
-```shell
-(gdb) info / i  locals  # 查看局部变量的值
-```
-
 ######      11.2 `frame`
 
 ```shell
@@ -341,14 +371,17 @@ $root>gdb  # Only input "gdb" in CLI
 (gdb)print 200*300*400*500  # call print.
 ```
 
-##### 13) `disassemble` , `stepi` and `nexti`
+##### 13) `disassemble/disas` , `stepi` and `nexti`
 
  Disassemble a specified section of memory.
 
 ```shell
 # By default, it disassemble the current function which surrounds the PC(program counter)
 # of the selected frame.
-(gdb)disassemble  
+(gdb)disassemble / disas
+(gdb)disas sum	# Disassemble a function named "sum".
+(gdb)disas 0x4004ed # Disassemble the function around the address of 0x4004ed.
+(gdb)disas 0x400504, 0x40051e  # Disassemble code within specified range. 
 ```
 
 To disassemble a specified function in a source code. Note that the address is interpreted as an expression, but not as a location as that in the `break` command. So if you want to disassemble a function name `pop` in `stack.c` , you should write as follows
@@ -361,7 +394,7 @@ After disassembling, we can move a single instruction, namely to process one lin
 
 ```shell
 (gdb)stepi  # Execute one instruction
-(gdb)stepi 3 # Execute 4 instructions
+(gdb)stepi 4 # Execute 4 instructions
 # It is like 'stepi', but proceeds through different function calls without stopping.
 (gdb)nexti 
 ```
@@ -371,7 +404,26 @@ After disassembling, we can move a single instruction, namely to process one lin
 ```shell
 (gdb) x/8b input # 打印出input变量内存储的内容，根据系统不同，有时展示16进制，例如x31,有时10进制。
  				 # 8：表示打印8组，b表示每个字节一组		
-(gdb)x/1tb &i  #i is a variable                 
+(gdb)x/1tb &i  #i is a variable    
+(gdb)x/w  0xbfff780 # Examine 4 bytes of word starting from the address of 0xbfff780
+(gdb)x/w  $esp #Examine 4-byte words starting at the address in %esp.
+(gdb)x/w  ($esp - 0xc) # Examine 4-byte word starting at 0xc(%esp).
+(gdb)x/wd $esp  # Examine 4-byte word starting at the address in %esp in decimal format.
+(gdb)x/2w $esp  # Examine 2 4-yte words starting at the address in %esp.
+(gdb)x/2wd $esp #Examine 2 4-yte words starting at the address in %esp in decimal format.
+#Examine 8-yte words starting at the address in %esp.
+(gdb)x/g $esp 
+#Examine 8-yte words starting at the address in %esp in decimal format.
+(gdb)x/gd $esp  
+# Examine the address in %esp and print as offset from prvious.
+(gdb)x/a $esp 
+0xffffd2ac:     0x8048462 <__libc_csu_init+82>  # 0xffffd2ac is the content in %esp
+# Examine a string stored at 0xffffcca8.
+(gdb)x/s 0xffffcca8
+# Examine first 20 opcode bytes of a function named "sum" ??
+(gdb)x/20b sum
+# Examine first 10 instructions of a function named "sum"
+(gdb)x/10i sum
 ```
 
 注意：```x/10b```命令在使用```watchpoint```之后不起作用，使用```break```的时候管用。
