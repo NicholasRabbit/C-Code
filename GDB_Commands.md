@@ -10,8 +10,6 @@
 
 ### 2, gdb debugging
 
-Refer to [LinuxC](./C语言资料/Linux C编程一站式学习.pdf) Chapter 10.1
-
 #### 1, Add `-g` to `gcc` 
 
 ```shell
@@ -216,6 +214,12 @@ print
 (gdb) delete breakpoints  # delete all breakpoints
 ```
 
+- Set a break point at an address in memory
+
+```shell
+(gdb)break *0xffff007  
+```
+
 - `continue` executing until to the first break point.
 
 ```shell
@@ -236,12 +240,6 @@ print
 # When sum != 0 it will break here. Other operators like ==,<，> are valid.
 (gdb) break 15 if sum != 0  # Don't forget "if" before the boolean expression.
 
-```
-
-- Set a break point at an address in memory
-
-```shell
-(gdb)break *0xffff007  
 ```
 
 
@@ -284,6 +282,9 @@ Num     Type           Disp Enb Address            What
 ```shell
  # print the decimal value of "sum" by default
 (gdb) print sum 
+(gdb) print input  # input is a string of "abc"
+$1 = 0x603780 <input_strings> "abc" # 0x0x603780 is its address in memory.
+
 # print the hexadecimal representation of a variable.
 (gdb) print/x var1  # p/x
 # print the binary numbers of a variable
@@ -387,7 +388,7 @@ $root>gdb  # Only input "gdb" in CLI
 To disassemble a specified function in a source code. Note that the address is interpreted as an expression, but not as a location as that in the `break` command. So if you want to disassemble a function name `pop` in `stack.c` , you should write as follows
 
 ```shell
-(gdb)disassemble 'stack.c'::pop # Note there quotation marks around 'stack.c'.
+(gdb)disassemble 'stack.c'::pop # Note there are quotation marks around 'stack.c'.
 ```
 
 After disassembling, we can move a single instruction, namely to process one line of assembly code.
