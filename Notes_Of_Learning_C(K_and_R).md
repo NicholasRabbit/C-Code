@@ -71,12 +71,32 @@ int foo(i, j); // i, j are integer type by default.
    
    void get_char(char *cp)
    {
-       // It doesn't alter the value to which "cp" dereferences in the calling function.
+       // Neither does it alter the value to which "cp" dereferences in the calling 
+       // function, nor does it modify the value of "cp" in the calling function. 
        // Thus, in main(calling function) the "*cp" is still "a". 
        // To modify the string to "A", we need a pointer of a pointer. To be continued...
        cp = "A";  
    }
-   
    ```
 
+   Below is the disassemble code of `get_char(...)`. When we examine the string stored at `-0x8(%rbp)` in `0x4005e7` by `(gdb) x/s ($rbp - 0x8)` in GDB, we find that it is 'A'. 
+   
+   ```assembly
+   void get_char(char *cp)
+   {
+     4005d3:   55                      push   %rbp
+     4005d4:   48 89 e5                mov    %rsp,%rbp
+     4005d7:   48 83 ec 20             sub    $0x20,%rsp
+     4005db:   48 89 7d e8             mov    %rdi,-0x18(%rbp)
+     4005df:   48 c7 45 f8 bd 06 40    movq   $0x4006bd,-0x8(%rbp)
+     4005e6:   00
+       cp = "A";
+     4005e7:   48 8b 45 f8             mov    -0x8(%rbp),%rax
+     4005eb:   48 89 c6                mov    %rax,%rsi
+     4005ee:   bf bf 06 40 00          mov    $0x4006bf,%edi
+     4005f3:   b8 00 00 00 00          mov    $0x0,%eax
+     4005f8:   e8 13 fe ff ff          callq  400410 <printf@plt>
+    }
+   ```
+   
    
