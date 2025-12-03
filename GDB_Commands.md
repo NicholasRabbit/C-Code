@@ -129,12 +129,10 @@ If the next line is a function, pressing `next` will pause at the line following
 
 When you use `s/step` at a function, the `gdb` will tell you the arguments of it, which is quiet convenient 
 
-######     6.1 return from current function
-
-本例中是返回了调用函数main，在 main里接着向下执行了。
+######     6.1 return from the current function
 
 ```shell
-(gdb) finish  # 从当前函数返回	
+(gdb) finish  # Return 
 ```
 
 ##### 6) `backtrace` /`bt`  and `where`
@@ -153,8 +151,6 @@ When you use `s/step` at a function, the `gdb` will tell you the arguments of it
 
 ##### 7) Modifying variables `set` and `print`
 
-例如上面可以看到由于sum没有初始化导致的错误，可以在step进入add_range()函数后，设置sum=0，来继续往下走验证结果是否正确。
-
 ```shell
 # Alternate the value of `sum` to move on. 
 # Don't forget "var" which is a key word, but not a name of a variable.
@@ -170,8 +166,6 @@ When you use `s/step` at a function, the `gdb` will tell you the arguments of it
 (gdb) print / p printf("%d\n",result[2])
 $ 6 4  # 这里接受的是printf(..)函数的返回值。printf(..)函数返回值就是其打印的字符数。
 ```
-
-print
 
 ##### 8)  display
 
@@ -217,7 +211,7 @@ print
 - Set a break point at an address in memory
 
 ```shell
-(gdb)break *0xffff007  
+(gdb)break *0xffff007  # Note that there is a asterrisk before the address. 
 ```
 
 - `continue` executing until to the first break point.
@@ -239,7 +233,6 @@ print
 ```shell
 # When sum != 0 it will break here. Other operators like ==,<，> are valid.
 (gdb) break 15 if sum != 0  # Don't forget "if" before the boolean expression.
-
 ```
 
 
@@ -264,15 +257,14 @@ Num     Type           Disp Enb Address            What
 
 
 
-##### **10) watch**
+##### **10) `watch`**
 
-观察点是是指当程序访问某一个存储单元时中断。跟断点作用相同，只是触发机制不同。
-一般有观察点则不设置其它断点，防止干扰，也可以需要根据实际情况两者都设置。
+Set memory watch points to pause when specific memory is changed.
 
 ```shell
-(gdb) watch input[8]  # 设置当input[8]对应的存储空间变化时则暂停
-					  # 设置好后，输入：(gdb)continute 执行
-(gdb) info watchpoints #查看观察点 
+(gdb) watch input[8]  # gdb pauses when "input[8]" is altenated. 
+# Examine the infomation of watchpoints.					
+(gdb) info watchpoints 
 ```
 
 ##### 11) `print` 
@@ -508,21 +500,30 @@ Program received signal SIGSEGV, Segmentation fault.
 If there are command-line arguments to input when we run an executable object. For instance, `test.out abc`. We can input these arguments in `gdb` as follows.
 
 ```shell
+# 1. Input arguments manually.
 (gdb)r/run abc
+# 2. I/O redirection example. We could also redirect input to a file as we do in CLI, 
+# In CLI we can do this. 
+./bomb < psol.txt  
+# In gdb we can also do the same.
+gdb bomb  # First of all, run 'gdb bomb'
+(gdb)r/run < psol.txt  # Then redirect to the input file. 
+# Or we can redirect an input file when start debugging.
+(gdb)start < psol.txt
 ```
 
 N.B. If we apply `r`  more than once in the same debugging session, there is no need to input these arguments once more; they are the default arguments next time. 
 
 See the chapter 4.3.2 in [Guide to Faster, Less Frustrating Debugging.](https://heather.cs.ucdavis.edu/matloff/public_html/UnixAndC/CLanguage/Debug.html) 
 
-#### 6, Recompiling the Source without Exiting gdb
+#### 6, Recompiling the Source without Exiting `gdb`.
 
 We don't have to exit a `gdb` session when we want to recompile the source. What we need to do is to open a new CLI  window and recompile the source; input `run/r` to restart the program.
 
-Note we should tell gdb to relinquish our file being executed. Otherwise, the linker will tell us that the executable file is not accessible. (That has not been verified yet.)
+Note we should tell `gdb` to relinquish our file being executed. Otherwise, the linker will tell us that the executable file is not accessible. (That has not been verified yet.)
 
 ```shell
-(gdb)kill
+(gdb)kill  # Terminate the current debugging session in gdb.
 ```
 
 

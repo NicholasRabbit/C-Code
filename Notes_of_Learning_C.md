@@ -432,7 +432,7 @@ Answer: "26_AssemblyLanguage_And_Storage\7_Endianness"
 
 `objdump -dS xxx.out`
 
-The value of the middle row and the value of last row are oppiste.
+The value of the middle row and the value of last row are opposite.
 
 35 0b 20 00  ------> 0x200b35
 
@@ -444,7 +444,7 @@ If a variable is modified by `volatile`,  the CPU should fetch data from memory 
 
 #### 29, NULL 
 
-Note that all the letters in `NULL` are captalised in C.
+Note that all the letters in `NULL` are capitalised in C.
 
 #### 30, Pointers
 
