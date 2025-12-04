@@ -392,6 +392,17 @@ After disassembling, we can move a single instruction, namely to process one lin
 (gdb)nexti 
 ```
 
+An Example of `nexti`
+
+```assembly
+  400efe:	48 83 ec 28          	sub    $0x28,%rsp
+  400f02:	48 89 e6             	mov    %rsp,%rsi
+=>400f05:	e8 52 05 00 00       	callq  40145c <read_six_numbers>
+  400f0a:	83 3c 24 01          	cmpl   $0x1,(%rsp)
+```
+
+When an instruction in`0x400f05` is being executed to call a function named `read_six_numbers(...)`, if we move with `nexti`, the processor will move to `0x400f0a`, which means it only move within the current function. Whereas, if we move with `stepi`, it will step into `read_six_numbers(...)`
+
 ##### 14) `x`: examine memory
 
 ```shell
