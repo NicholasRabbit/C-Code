@@ -287,7 +287,7 @@ $1 = 0x603780 <input_strings> "abc" # 0x0x603780 is its address in memory.
 (gdb)print /x 255
 ```
 
-**(2) Printing the value of registers.** Note that the symbol proceeding a register's name is $ not % when printing the value of it in `gdb`. 
+**(2) Printing the value of registers.** Note that the symbol preceding a register's name is $ not % when printing the value of it in `gdb`. 
 
 For IA 32, the program counter is `%eip` while for x86-64, program counter is `%rip`.
 
@@ -353,6 +353,12 @@ $5 = 0x80484a4 "abc"
 
 ```shell
 (gdb)printf "i=%d, sum=%d\n", i, sum
+```
+
+Print two's complement value of  a number.
+
+```shell
+(gdb)printf "%d\n", 0xfffffff8  # It is -8. 
 ```
 
 
