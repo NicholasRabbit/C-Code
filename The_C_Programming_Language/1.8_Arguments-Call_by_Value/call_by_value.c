@@ -42,9 +42,9 @@ void get_char(char *cp)
 	 * value of the local variable "cp" so it doesn't alter the
 	 * value in the calling fuction, therefore, "*cp" is still "a"
 	 * in the calling function. 
+	 * Here is the local variable "cp" which is distinct from that one in the calling function.
 	 * */
-	cp = "A";
-
-	int i = 0;
+	cp = "A";  
+	printf("In get_char, cp = %x\n", cp);
 
 }
