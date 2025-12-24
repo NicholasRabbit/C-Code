@@ -209,7 +209,7 @@ $ 6 4  # 这里接受的是printf(..)函数的返回值。printf(..)函数返回
 - Set a break point at an address in memory
 
 ```shell
-(gdb)break *0xffff007  # Note that there is a asterrisk before the address. 
+(gdb)break *0xffff007  # Note that there is a asterisk before the address. 
 ```
 
 - `continue` executing until to the first break point.
@@ -412,10 +412,12 @@ When an instruction in`0x400f05` is being executed to call a function named `rea
 ```shell
 (gdb)x/8b input # 	
 (gdb)x/1tb &i  #i is a variable    
-(gdb)x/w  0xbfff780 # Examine 4 bytes of word starting from the address of 0xbfff780
+(gdb)x/w  0xbfff780 # Examine 4 bytes of word starting from the address of 0xbfff780.
+(gdb)x/wx 0x402470 # Examine 4 bytes of word starting 0x402470 in hexadecimal format. 
 (gdb)x/w  $esp #Examine 4-byte words starting at the address in %esp.
 (gdb)x/w  ($esp - 0xc) # Examine 4-byte word starting at 0xc(%esp).
 (gdb)x/wd $esp  # Examine 4-byte word starting at the address in %esp in decimal format.
+(gdb)x/wx $esp  # In hexdecimal format. 
 (gdb)x/2w $esp  # Examine 2 4-yte words starting at the address in %esp.
 (gdb)x/2wd $esp #Examine 2 4-yte words starting at the address in %esp in decimal format.
 #Examine 8-byte words starting at the address in %esp.
