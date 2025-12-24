@@ -30,14 +30,24 @@ int main(void)
 int get_line(char s[], int lim)
 {	
 	int i, c;
+	// The reason that "i < lim - 1" not "i < lim" is that '\n' should be
+	// at s[lim - 1].
 	for (i = 0; i < lim - 1 && (c = getchar()) != EOF && c != '\n'; i++)
 		s[i] = c;
 	if (c == '\n') {
 		s[i] = c;
 		++i;
 	}
+	s[i] = '\0';
 	return i;
 
 }
 
+void copy(char to[], char from[])
+{
+	int i;
+	i = 0;
+	while((to[i] = from[i]) != '\0')
+		++i;
 
+}
