@@ -121,24 +121,16 @@ ld表示把目标文件xxx.o链接成可执行文件。为什么要链接文件�
 hexdump -C Test.o  # 显示的都是16进制
 ```
 
-4）反汇编：目标文件，可执行文件都可以反编译。
-
-```shell
-objdump -d Test.o  # --disassemble is an alternative option. N.B. There are two hyphens.
-objdump -d Test
-```
-
 #### 5, C & Assembly
 
-1, Print disassemble code
-
-`objdump  ...`
+1, `objdump`: Display information from object files
 
 ```shell
 # The fisrt option：
 gcc -g Test.c -o Test.out
 objdump -dS Test.out
-objdump -dS test.out | less # combined with "less" to display the result.
+# combined with "less" to display the result with number of lines.
+objdump -dS test.out | less -N 
 # -d [--disassemble]
 # Display the assembler mnemonics for the machine instructions from the input file.
 # -S [--source]
@@ -154,37 +146,16 @@ gcc Test.o -o Test.out   # an executable object.
 Note that `objdump -d`  does not necessarily to show the name of all functions. As an illustration, a call to `sscanf`  might appear as follows:
 
 ```shell
-> objdump -d test.out
+# Disassemble all the code in test.out.
+objdump -d test.out
 8048c36: e8 99 fc ff ff call 80488d4 <_init+0x1a0>
+# Display the symbol of an object file.
+objdump -t test.out
 ```
 
-We have to make use of  `disassemble` in `gdb` to delve into each function. 
 
-2, 汇编相关断点调试命令
 
-gdb执行后使用以下命令
-
-```shell
-(gdb)disassemble  function_name/address(optional)  #反汇编当前的函数，也可指定函数名或地址
-si  #执行单条CPU指令调试，而step是单行代码调试，注意区别
-
-#查看寄存器(registers)信息， 个人输入此命令后，64位CentOS系统的寄存器名称都是%rbp,不是%ebp
-(gdb)info registers  
-#得到结果：
-(gdb) info registers 
-...
-(gdb)esp            0xbff1c3f4	0xbff1c3f4
-####
-(gdb)x/20 %esp  #以上面结果为例，查看内存中从地址0xbff1c3f4开始的20个32位数的值
-```
-
-3，在`gdb`中表示寄存器时在名称前面要加个`$`，例如`p $esp`可以打印`esp`寄存器的值 
-
-```shell
-(gdb)p $esp
-```
-
-4,  List symbols from object files
+2,  List symbols from object files
 
 ```shell
 nm test.out 

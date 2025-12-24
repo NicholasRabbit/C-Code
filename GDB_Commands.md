@@ -94,8 +94,6 @@ GNU gdb 6.8-debian
 
 
 
-
-
 ##### 4) start debugging
 
 ```shell
@@ -125,14 +123,14 @@ GNU gdb 6.8-debian
 
 The difference  between `next` and `step` is:
 
-If the next line is a function, pressing `next` will pause at the line following the function, while entering `stop` will jump into this function. 
+If the next line is a function, entering `next` will pause at the line following this function, while entering `step` will jump into this function. 
 
-When you use `s/step` at a function, the `gdb` will tell you the arguments of it, which is quiet convenient 
+When you use `s/step` at a function, the `gdb` will tell you the arguments of it, which is quite convenient 
 
 ######     6.1 return from the current function
 
 ```shell
-(gdb) finish  # Return 
+(gdb) finish  # Return from the current function. 
 ```
 
 ##### 6) `backtrace` /`bt`  and `where`
@@ -412,8 +410,7 @@ When an instruction in`0x400f05` is being executed to call a function named `rea
 ##### 14) `x`: examine memory
 
 ```shell
-(gdb) x/8b input # 打印出input变量内存储的内容，根据系统不同，有时展示16进制，例如x31,有时10进制。
- 				 # 8：表示打印8组，b表示每个字节一组		
+(gdb)x/8b input # 	
 (gdb)x/1tb &i  #i is a variable    
 (gdb)x/w  0xbfff780 # Examine 4 bytes of word starting from the address of 0xbfff780
 (gdb)x/w  $esp #Examine 4-byte words starting at the address in %esp.
@@ -421,7 +418,7 @@ When an instruction in`0x400f05` is being executed to call a function named `rea
 (gdb)x/wd $esp  # Examine 4-byte word starting at the address in %esp in decimal format.
 (gdb)x/2w $esp  # Examine 2 4-yte words starting at the address in %esp.
 (gdb)x/2wd $esp #Examine 2 4-yte words starting at the address in %esp in decimal format.
-#Examine 8-yte words starting at the address in %esp.
+#Examine 8-byte words starting at the address in %esp.
 (gdb)x/g $esp 
 #Examine 8-yte words starting at the address in %esp in decimal format.
 (gdb)x/gd $esp  
