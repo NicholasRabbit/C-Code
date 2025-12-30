@@ -176,7 +176,6 @@ $ 6 4  # 这里接受的是printf(..)函数的返回值。printf(..)函数返回
 
 (gdb) display # 显示所有设置好的变量值
 
-(gdb) undisplay  1 # 指定序号取消展示（序号在最左边展示）。
 (gdb) disable diaplay 2 # 禁用显示点2
 (gdb) enable display 2  # 启用显示点2
 
@@ -184,6 +183,10 @@ $ 6 4  # 这里接受的是printf(..)函数的返回值。printf(..)函数返回
 (gdb) display/x sum
 # display the binary value
 (gdb) display/t sum
+
+# undispaly
+(gdb) undisplay  1 # Delete a specific auto-display variable. 
+(gdb)undisplay  # Delete all auto-display expression.
 ```
 
 ##### 9) breakpoints
@@ -283,6 +286,8 @@ $1 = 0x603780 <input_strings> "abc" # 0x0x603780 is its address in memory.
 (gdb)print 0xabc
 # print the hexadecimal representation of 255
 (gdb)print /x 255
+# print characters
+(gdb)print /c foo
 ```
 
 **(2) Printing the value of registers.** Note that the symbol preceding a register's name is $ not % when printing the value of it in `gdb`. 
