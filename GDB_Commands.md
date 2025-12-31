@@ -438,6 +438,8 @@ When an instruction in`0x400f05` is being executed to call a function named `rea
 (gdb)x/20b sum
 # Examine first 10 instructions of a function named "sum"
 (gdb)x/10i sum
+# Examine characters starting from an address
+(gdb)x/c  ($rbx, $rax*1)   # An example from the bomb lab of CSAPP3e.
 ```
 
 注意：```x/10b```命令在使用```watchpoint```之后不起作用，使用```break```的时候管用。
