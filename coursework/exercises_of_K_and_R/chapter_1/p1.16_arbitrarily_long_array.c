@@ -21,8 +21,12 @@ int main(void)
 			copy(longest, line);
 		}
 	
-	if (max > 0)
+	
+	if (max > 0) {
+		// Print the length. 
+		printf("length is %d\n", len);
 		printf("%s\n", longest);
+	}
 
 	return 0;
 
@@ -33,19 +37,14 @@ int get_line(char s[], int lim)
 {	
 	int i, c;
 	
-	/*
-	 * "i < lim - 1" is deleted so that it can print a line
-	 * as long as possible. Since C allows programmers to write
-	 * exceeding the length of an array, we can get an arbitrarily long
-	 * array.
-	 * */
-	for (i = 0;  (c = getchar()) != EOF && c != '\n'; i++)
+	for (i = 0; (c = getchar()) != EOF && c != '\n'; i++)
 		s[i] = c;
 	if (c == '\n') {
-		s[i] = c;  // Here is "i" equal to "lim - 1".
+		s[i] = c;  
 		++i;
 	}
 	s[i] = '\0';
+	//printf("s[%d] \n", i);
 	return i;
 
 }
