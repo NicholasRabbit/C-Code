@@ -483,6 +483,8 @@ main()
 
 The programme above counts the input characters until a `EOF` is input. Inputting the `EOF` needs to press `Ctrl + D`.
 
+The two's complement of EOF is `-1`; if it is represented by 4-byte integer, it is `0xff ff ff ff`.
+
 #### 32, segment fault and `gdb`
 
 segmentation_fault.c (see this code in `c-code/src/19_GDB`)  

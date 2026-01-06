@@ -67,7 +67,7 @@ GNU gdb 6.8-debian
 ```shell
 (gdb)list do_some  # list 10 lines around a function named "do_some"
 
-# list the add method in stack.c when mulitple sources are compiled simultaneously.
+# List the add method in stack.c when mulitple sources are compiled simultaneously.
 # Or list 10 lines of code around the twelfth line in stack.c
 # See c-code/src/31_Linked/1_linked_basic
 (gdb)list stack.c:add or stack.c:12
@@ -99,12 +99,15 @@ GNU gdb 6.8-debian
 ```shell
 > gdb test.out 
 (gdb) start 
+# or
+(gdb)start < psol.txt  # If we want to redirect input to another file. 
 ```
 
 **4.1 `run` restart debugging**
 
 ```shell
-(gdb) run # Start it from the beginning when you miss something during debugging. 
+(gdb)run # Start it from the beginning when you miss something during debugging. 
+(gdb)run < psol.txt  # Redirect input to psol.txt.
 ```
 
 ##### 5) quit debugging
