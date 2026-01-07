@@ -15,16 +15,23 @@ int main(void)
 	char longest[MAXLINE];
 
 	max = 0;
-	while ((len = get_line(line, MAXLINE)) > 0) 
+	while ((len = get_line(line, MAXLINE)) > 0) {
+		// Bug:
+		// The value of "max" will be modified to a large number 
+		// when I input characters longer than 10.
+		// I haven't figure it out yet after analysing the assembly code. (7 January 2026)
+		// Presumably, I will try it later. 
+		// printf("max is %d\n", max);
 		if (len > max) {
 			max = len;
 			copy(longest, line);
 		}
+	}
 	
 	
 	if (max > 0) {
 		// Print the length. 
-		printf("length is %d\n", len);
+		// printf("length is %d\n", len);
 		printf("%s\n", longest);
 	}
 
