@@ -266,9 +266,19 @@ Num     Type           Disp Enb Address            What
 Set memory watch points to pause when specific memory is changed.
 
 ```shell
-(gdb) watch input[8]  # gdb pauses when "input[8]" is altenated. 
+# gdb pauses when "input[8]" is altenated. 
+(gdb)watch input[8]  
 # Examine the infomation of watchpoints.					
-(gdb) info watchpoints 
+(gdb)info watchpoints 
+# We can monitor registers with "watch"
+(gdb)watch $edx
+
+# Delete watchpoints
+# Watchpoints and breakpoints are in the same table, therefore, 
+# they have distinct numbers. 
+(gdb)delete 7 
+# or 
+(gdb)delete watchpoints 7
 ```
 
 ##### 11) `print` 
@@ -477,11 +487,32 @@ End with a line saying just "end".
 (gdb)psum
 ```
 
+##### 17) delete and clear
+
+delete
+
+```shell
+(gdb)delete  # Delete all breakpoints, watchpoints, tracepoints or catchpoints. 
+(gdb)delete breakpoints 1 # Delete one specific breakpoint.
+(gdb)delete breakpoints 1 2 3 # Delete multiple specific breakpoint.
+```
+
+clear: clear break points at specified line or function. 
+
+```shell
+(gdb)clear 108  # clear a break point at line of 108.
+# clear a break point at the addres of 0x400ec3. Don't forget asterisk
+(gdb)clear *0x400ec3  
+# If there are NOT any arguments, clear all the break points at the next instruction 
+# to be executed in the seleted stack frame. 
+(gdb)clear 
+```
 
 
-#### 3, gdb调试时scanf(...)入参
 
-`scanf(...)` 仍然可以接收参数
+#### 3, scanf(...) in gdb
+
+ Input arguments of `scanf(...)`
 
 ```shell
 (gdb) n   # scanf() has been called. 
