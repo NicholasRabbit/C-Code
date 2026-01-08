@@ -17,11 +17,13 @@ int main(void)
 	max = 0;
 	while ((len = get_line(line, MAXLINE)) > 0) {
 		// Bug:
-		// The value of "max" will be modified to a large number 
-		// when I input characters longer than 10.
+		// After compiling with "gcc -m32 xxx.c", the value of "max" will
+		// be modified to a large number when I input characters longer than 10.
 		// I haven't figure it out yet after analysing the assembly code. (7 January 2026)
 		// Presumably, I will try it later. 
 		// printf("max is %d\n", max);
+
+		printf("len is %d\n", len);
 		if (len > max) {
 			max = len;
 			copy(longest, line);
