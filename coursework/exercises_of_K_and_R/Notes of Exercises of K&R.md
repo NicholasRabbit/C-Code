@@ -2,6 +2,8 @@
 
 #### Exercise 1.16 
 
+The following assembly is generated with `gcc -m32 -g xxx.c` at a `x86-64` machine because I am familiar with AT&T-syntax assembly in a `IA32` machine. 
+
 ```assembly
 # get_line(line, MAXLINE)
 080484af <get_line>:
@@ -40,6 +42,44 @@
  8048505:	8b 45 f4             	mov    -0xc(%ebp),%eax
  8048508:	c9                   	leave  
  8048509:	c3                   	ret    
+```
 
+main
+
+```assembly
+0804843d <main>:
+ 804843d:	55                   	push   %ebp
+ 804843e:	89 e5                	mov    %esp,%ebp
+ 8048440:	83 e4 f0             	and    $0xfffffff0,%esp
+ 8048443:	83 ec 30             	sub    $0x30,%esp
+ 8048446:	c7 44 24 2c 00 00 00 	movl   $0x0,0x2c(%esp)
+ 804844d:	00 
+ 804844e:	eb 26                	jmp    8048476 <main+0x39>
+ 8048450:	8b 44 24 28          	mov    0x28(%esp),%eax
+ 8048454:	3b 44 24 2c          	cmp    0x2c(%esp),%eax
+ 8048458:	7e 1c                	jle    8048476 <main+0x39>
+ 804845a:	8b 44 24 28          	mov    0x28(%esp),%eax
+ 804845e:	89 44 24 2c          	mov    %eax,0x2c(%esp)
+ 8048462:	8d 44 24 1e          	lea    0x1e(%esp),%eax
+ 8048466:	89 44 24 04          	mov    %eax,0x4(%esp)
+ 804846a:	8d 44 24 14          	lea    0x14(%esp),%eax
+ 804846e:	89 04 24             	mov    %eax,(%esp)
+ 8048471:	e8 94 00 00 00       	call   804850a <copy>
+ 8048476:	c7 44 24 04 0a 00 00 	movl   $0xa,0x4(%esp)
+ 804847d:	00 
+ 804847e:	8d 44 24 1e          	lea    0x1e(%esp),%eax
+ 8048482:	89 04 24             	mov    %eax,(%esp)
+ 8048485:	e8 25 00 00 00       	call   80484af <get_line>
+ 804848a:	89 44 24 28          	mov    %eax,0x28(%esp)
+ 804848e:	83 7c 24 28 00       	cmpl   $0x0,0x28(%esp)
+ 8048493:	7f bb                	jg     8048450 <main+0x13>
+ 8048495:	83 7c 24 2c 00       	cmpl   $0x0,0x2c(%esp)
+ 804849a:	7e 0c                	jle    80484a8 <main+0x6b>
+ 804849c:	8d 44 24 14          	lea    0x14(%esp),%eax
+ 80484a0:	89 04 24             	mov    %eax,(%esp)
+ 80484a3:	e8 68 fe ff ff       	call   8048310 <puts@plt>
+ 80484a8:	b8 00 00 00 00       	mov    $0x0,%eax
+ 80484ad:	c9                   	leave  
+ 80484ae:	c3                   	ret    
 ```
 
