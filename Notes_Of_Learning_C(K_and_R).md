@@ -12,6 +12,21 @@
 
    It means that the examples provided in the book are intended to correct.
 
+#### 1.4 Symbolic Constants
+
+Why do we use symbolic constants or symbolic parameters?
+
+The reason is that when there are numbers, such as 12, 300 and so on, in code, it is hard to understand. Hence, replacing them with meaningful or symbolic constants can make the program more readable. 
+
+In order to distinguish with variables, symbolic constants are written in upper case. 
+
+```c
+#define LOWER 0
+#define HIGHER 300  
+```
+
+
+
 #### 1.7 Functions 
 
 ```c
