@@ -101,5 +101,11 @@ abcd	| // 4 spaces
 abcde	| // 3 spaces.
 ```
 
+Consequently, although `tabstop` is set to 4 columns by default, it is not always 4. To realise that is the key to tackle this problem. 
 
+If there is only 1 character, the columns of a `tabstop` is 3.  (4 - 2).
+
+If there are 2 characters, the columns of a `tabstop` is 2.  (4 - 2).
+
+Thus, we conclude that the columns = 4 - (n % 4), n is the number of non-blank characters. 
 
