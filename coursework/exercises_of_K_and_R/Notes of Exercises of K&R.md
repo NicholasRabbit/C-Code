@@ -95,15 +95,15 @@ main
 
 ```c
 // Tabstops are 4 columns by default. 
-ab	|  // 'tab' moves 2 columns.
-a	|  //  'tab' moves 2 columns.
-abcd	| // 4 spaces
-abcde	| // 3 spaces.
+ab	|  // 'tab' moves 2 columns to the next tabstop.
+a	|  //  'tab' moves 3 columns.
+abcd	| // 4 spaces to the third tabstop. 
+abcde	| // 3 spaces to the third tabstop.
 ```
 
 Consequently, although `tabstop` is set to 4 columns by default, it is not always 4. To realise that is the key to tackle this problem. 
 
-If there is only 1 character, the columns of a `tabstop` is 3.  (4 - 2).
+If there is only 1 character, the columns of a `tabstop` is 3.  (4 - 3).
 
 If there are 2 characters, the columns of a `tabstop` is 2.  (4 - 2).
 
