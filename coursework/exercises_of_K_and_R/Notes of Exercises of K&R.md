@@ -83,3 +83,23 @@ main
  80484ae:	c3                   	ret    
 ```
 
+#### Exercise 1.20
+
+(1) What is a symbolic parameter?
+
+```c
+#define COLUMN 8  // COLUMN is a symbolic parameter or symbolic constant. 
+```
+
+(2) `tab` doesn't necessarily move 4 columns or 8 columns(if it is set to 8 by default). It doesn't move specific columns; if a program encounters a `\t`, it doesn't print fixed number of spaces but prints enough spaces to reach the next `tab`.  As an illustration: 
+
+```c
+// Tabstops are 4 columns by default. 
+ab	|  // 'tab' moves 2 columns.
+a	|  //  'tab' moves 2 columns.
+abcd	| // 4 spaces
+abcde	| // 3 spaces.
+```
+
+
+
