@@ -6,10 +6,6 @@ int max;
 char line[MAXLINE];
 char longest[MAXLINE];
 
-<<<<<<< HEAD
-int getline(void);
-void copy(void);
-=======
 int get_line();
 void copy(void);
 
@@ -61,4 +57,3 @@ void copy()
 	while((longest[i] = line[i]) != '\0')
 		++i;
 }
->>>>>>> c9e61d24e0e85fd3c9b2ce31421a880f5908bb05
