@@ -99,5 +99,17 @@ int foo(i, j); // i, j are integer type by default.
     }
    ```
    
-   
 
+
+
+#### 1.9 Character Arrays
+
+(1) Note that in `h, e, l, l, o, \n, \0` the mark of end `\0` is not the last character of the array, therefore, the length of the array is 6 with `\n` as the last object.  
+
+#### 1.10 External Variables and Scope
+
+(1)  `extern` and header files: 
+
+When a program is compiled with multiple source files, as an illustration, file1, file2, and file3, and a variable defined in file1 is used in file2 or file3, `extern` are needed in the latter. Whereas, it is cluttered to declare many variables preceded by `extern`, so we can `#include` header files, namely `file1.h`. That's how the header files are used in practice. 
+
+ 
