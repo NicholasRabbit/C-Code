@@ -12,6 +12,12 @@ int main(int argc, char *argv[])
 {
 	char line[N];
 	int len; 
+
+	// Display the length of the default tabstop of the gcc compiler
+	char *s = "a\tbc";
+	printf("%s\n", s); // It's 8.
+
+
 	while ((len = get_line(line)) > 0) {
 		printf("length = %d\n", len);
 		printf("%s\n", line);
