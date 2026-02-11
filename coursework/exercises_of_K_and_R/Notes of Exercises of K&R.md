@@ -109,3 +109,16 @@ If there are 2 characters, the columns of a `tabstop` is 2.  (4 - 2).
 
 Thus, we conclude that the columns = 4 - (n % 4), n is the number of non-blank characters. 
 
+### Chapter 2
+
+#### Exercise 2.1
+
+Note that the following is treated as an integer by default, therefore, it can't be shifted by 63 bits. There will an an warning: count >= 32, which indicates "1" is an integer. 
+
+```c
+//long ming_long = 1 << 63;  
+
+long min_long = 1;
+// min_long is a long integer now, so it can be shifted by 63 bits. 
+min_long <<= 63;
+```

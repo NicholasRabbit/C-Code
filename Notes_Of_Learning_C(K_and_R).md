@@ -128,3 +128,24 @@ int foo(i, j); // i, j are integer type by default.
 When a program is compiled with multiple source files, as an illustration, file1, file2, and file3, and a variable defined in file1 is used in file2 or file3, `extern` are needed in the latter. Whereas, it is cluttered to declare many variables preceded by `extern`, so we can `#include` header files, namely `file1.h`. That's how the header files are used in practice. 
 
  (2) `tab` doesn't move specific columns but moves enough spaces to the next tab stop. See the note of exercise 1.20. 
+
+### Chapter 2
+
+#### 2.1 Variable Names
+
+(1) What does "At least the first 31 characters of an internal name are significant" in the book?
+
+It means that a C compiler only treat the first 31 characters of an internal names(e.g. variables, functions which are only used in one source file) as meaningful. In other words, if two variables have the same 31 characters from the beginning, they are the same even though the rest ones are different.  
+
+(2) N.B.
+
+Note that the following is treated as an integer by default, therefore, it can't be shifted by 63 bits. There will an an warning: count >= 32, which indicates "1" is an integer. 
+
+```c
+//long ming_long = 1 << 63;  
+
+long min_long = 1;
+// min_long is a long integer now, so it can be shifted by 63 bits. 
+min_long <<= 63;
+```
+
