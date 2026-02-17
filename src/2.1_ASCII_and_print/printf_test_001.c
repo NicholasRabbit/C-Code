@@ -42,7 +42,7 @@ int main(void){
 	 *   %lf: print as double floating point.
 	 *
 	 *	 %3.0f: It means that a floating number is to be printed at least 
-	 *	        three characters wide without no decimal point or fractinal digits.
+	 *	        three characters wide without no decimal point or fractional digits.
 	 *	        For example: 3.22 -> 3
 	 *	 %6.2f: It means that a floating number is to be printed as least
 	 *	        six characters wide with 1 digit after the decimal point.

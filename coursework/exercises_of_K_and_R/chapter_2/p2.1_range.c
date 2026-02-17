@@ -3,16 +3,34 @@
 
 void int_range(int s);
 void long_range();
+void char_range();
+void single_precision_float();
 
 int main(int argc, char *argv[])
 {
+	char_range();
 
 	int_range(1);
 	int_range(0);
 
 	long_range();
+
+	single_precision_float();
+
 	return 0;
 }
+
+//char
+void char_range()
+{
+	unsigned char c;
+	c = ~0;
+	c >>= 1;
+	printf("The maximum signed char:	%4d\n", c);
+	printf("The minimum signed char:	%x\n", -c);
+}
+
+
 
 // s: 1 signed, 0 : unsigned.
 void int_range(int s) 
@@ -45,9 +63,31 @@ void long_range()
 	long min_long = 1;
 	min_long <<= 63;
 	//min_long = 0x8fffffffffffffff;
-	printf("minimum signed long integer is %ld\n", min_long);
+	printf("The minimum signed long integer is %ld, hexadecimal: 0x%lx\n", min_long, min_long);
 
-	unsigned long max_long = min_long + 1;  // It is the same with 127 + 1 = 128(-128 in two's complement).
-	printf("maximum signed long integer is %ld\n", max_long);
+	long max_long = min_long - 1;  // It is the same with 127 + 1 = 128(-128 in two's complement).
+	printf("The maximum signed long integer is %ld, hexadecimal: 0x%lx\n", max_long);
 
 }
+
+
+void single_precision_float() 
+{
+
+
+	// The book hasn't introduced "union" by this chapter; there must be other alternative approaches.
+	// If I find any other solution, I will add it. 
+	union {
+		unsigned u;
+		float f;
+	} num;
+	
+	// The bits representation of the maximum single-precision floating value.
+	unsigned max = 0x7f7fffff;
+	num.u = max;
+	float f = num.f;
+
+	printf("The maximum single-precision float is %f\n", f);
+
+}
+
