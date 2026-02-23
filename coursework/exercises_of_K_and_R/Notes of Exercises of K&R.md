@@ -2,6 +2,8 @@
 
 #### Exercise 1.16 
 
+Attention ! There is an bug in my code of this exercise. See the code. 
+
 The following assembly is generated with `gcc -m32 -g xxx.c` at a `x86-64` machine because I am familiar with AT&T-syntax assembly in a `IA32` machine. 
 
 ```assembly
@@ -113,7 +115,7 @@ Thus, we conclude that the columns = 4 - (n % 4), n is the number of non-blank c
 
 #### Exercise 2.1
 
-Note that the following is treated as an integer by default, therefore, it can't be shifted by 63 bits. There will an an warning: count >= 32, which indicates "1" is an integer. 
+(1) Note that the following is treated as an integer by default, therefore, it can't be shifted by 63 bits. There will an an warning: count >= 32, which indicates "1" is an integer. 
 
 ```c
 //long ming_long = 1 << 63;  
@@ -122,3 +124,15 @@ long min_long = 1;
 // min_long is a long integer now, so it can be shifted by 63 bits. 
 min_long <<= 63;
 ```
+
+(2) The range of the various floating-point types.
+
+According the  IEEE floating-point format, for single precision floating point, the first bit is s, which the exponent of the "-1", and the exponent , E, of a floating number is the result of the bits from the second to the ninth minus bias. 
+
+The remained 23 bits represents  the fraction field, M; they should add an explicit 1 to represent the normalised values and don't need to add the explicit 1 in to form the denormalised values.  The equation is as follows: 
+
+$V = (-1)^s \times M \times 2^E$   (The bias is $2^{k - 1} - 1$ in which k represents the number of bits of the exponent. 
+
+Subsequently, the maximum value of the single precision floating-point types is $(-1)^0 \times 1.1111(23 bits) \times 2^{254 - 127}$. Its bits  representation is:
+
+ `0 1111 1110 1111 1111 1111 1111 1111 111 = 0x7f 7f ff ff`

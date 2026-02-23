@@ -1,7 +1,7 @@
 #include <stdio.h>
 
 //#define MAXLINE 1000
-// Set the size of an array to 10 so that to test the arbitrarily long one. 
+// Set the size of an array to 10 to test the arbitrarily long one. 
 #define MAXLINE 10  
 
 int get_line(char line[], int max_line);
