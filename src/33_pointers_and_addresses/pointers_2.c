@@ -19,7 +19,7 @@ int main (void)
 	double *dp, atof(char *);
 
 	/*
-	 * 3. If 'ip' is a pointer which points to 'x' it can occur/appear any context 
+	 * 3. If 'ip' is a pointer which points to 'x', it can occur/appear any context 
 	 * where x could.
 	 * */
 	int x = 10;

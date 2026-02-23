@@ -10,7 +10,7 @@
  * Symbols used in pointers:
  * &: It gives the address of an object(variables, arrays and so forth).
  *    '&' operator can only apply to objects in memory: variables and array
- *    elements. It can not be applied to expressions, constants, or register
+ *    elements. It can NOT be applied to expressions, constants, or register
  *    variables.
  * *: When '*' applied to a pointer, it accesses the object the pointer
  *    points to.
@@ -23,6 +23,7 @@ int main (void)
 
 	int x = 1, y = 2, z[10];
 
+	// How to delcare a pointer?
 	// Declaring a pointer to point integer data type.
 	int *ip; 
 	// Now ip point to x.
