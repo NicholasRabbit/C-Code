@@ -95,6 +95,22 @@ gcc -c bar.c
 gcc foo.o bar.o -o test.out
 ```
 
+##### 1.6) Optimise and debug
+
+```shell
+# -g instructs the compiler to optimse for debugging.
+# -O indicates basic optimisation. 
+gcc -Og example.c  
+```
+
+| Option | Meaning                  | Debug Friendly?      | Performance |
+| ------ | ------------------------ | -------------------- | ----------- |
+| `-O0`  | No optimization          | ✅ Best for debugging | ❌ Slow      |
+| `-Og`  | Basic safe optimizations | ✅ Good balance       | ⚖️ Moderate  |
+| `-O1`  | More optimizations       | ⚠️ Harder to debug    | ✅ Faster    |
+| `-O2`  | Aggressive optimizations | ❌ Hard to debug      | 🚀 Faster    |
+| `-O3`  | Very aggressive          | ❌ Very hard to debug | 🚀🚀 Fastest  |
+
 
 
 #### 4, Assembly Commands

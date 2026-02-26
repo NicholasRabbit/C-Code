@@ -583,5 +583,11 @@ Note we should tell `gdb` to relinquish our file being executed. Otherwise, the 
 (gdb)kill  # Terminate the current debugging session in gdb.
 ```
 
+#### 7, Miscellaneous Commands
+
+```shell
+Linux >strings bomb # print the strings of the printable characters in a file 
+```
+
 
 

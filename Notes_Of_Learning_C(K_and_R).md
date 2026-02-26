@@ -149,3 +149,13 @@ long min_long = 1;
 min_long <<= 63;
 ```
 
+### Chapter 5
+
+#### 5.1 Pointers and Addresses
+
+(1) The declaration of a pointer imitate the way of declaring a common variable. As an illustration,  `int *ip` indicates that `*ip` has the value of integer, however, `ip` itself is a variable which stores the address of this value of integer. 
+
+(2) A pointer is specified as a particular type of variable, namely a pointer is bound with or points to only one type of variable when it is declared. An exception is that `void *` can point to any data type except for itself. To illustrate, `int *ip` declares a pointer which can only point to an integer. 
+
+(3) `*` and `&` have higher precedence than arithmetic operators. Hence, `y = *ip + 1` obtains `*ip`  first and then add 1 and assigns the sum to y.  Note that `++*ip` does the same, but `(*ip)++`  should have parentheses to have the same result since unary operators like `*` and `++` associate right to left, which means in `*ip++` the compiler groups them from right, therefore, `ip++` is treated as a whole by `*`; that is as same as `*(ip++)`, which is not we expect. 
+
