@@ -1,6 +1,6 @@
 #include <stdio.h>
 
-#define TABSTOP 8
+#define TABSTOP 8 // The defaut length of tab of gcc is 8, which is not the 4 in Vim editor.
 #define N 100
 
 
@@ -14,8 +14,8 @@ int main(int argc, char *argv[])
 	int len; 
 
 	// Display the length of the default tabstop of the gcc compiler
-	char *s = "a\tbc";
-	printf("%s\n", s); // It's 8.
+	char *s = "\t";
+	printf("The length of '\\t' is %lu\n", sizeof s); // It's 8.
 
 
 	while ((len = get_line(line)) > 0) {
@@ -37,8 +37,9 @@ void detab(char line[], int length)
 	char c, de_line[N];
 
 	/*
-	 * Note that '\t' in the original array "line" is only one elements taking one slot, but not 4. 
-	 * It will be replaced by 4 spaces. 
+	 * Note that '\t' in the original array "line" is only one elements taking one slot and the length of is 
+	 * is not always 8. 
+	 * It will be replaced by 8 or less spaces. 
 	 * */
 	for (col = 0, i = 0; col < length; col++) {
 		c = line[col];

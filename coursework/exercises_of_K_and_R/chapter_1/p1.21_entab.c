@@ -11,17 +11,17 @@
  * there are two spaces following "ab".
  * */
 
-char line[n];
+char line[N];
 char en_line[N];
 
-void entab(char line[], int length);
+void entab(int len);
+int get_line(void);
 
 
 int main(int argc, char *argv[])
 {
-	char *s = "a\tbc";
-	
-	printf("%s\n", s);
+	int len = get_line();
+	entab(len);
 
 	return 0;
 }
@@ -29,34 +29,31 @@ int main(int argc, char *argv[])
 /*
  * To tackle this problem, I use two variables as indexs: col and i.
  * "col" is set to the index of the first space ' ' of one iteration and "i" is used find the first
- * non-blank character after this space. If and only if "i % 8 == 0", which indicates that there are before the next tab stop, 
- * we should replace the space at "col"  with a tab stop.
+ * non-blank character after this space. If and only if "i % 8 == 0", which indicates that there are spaces before the next tab stop, 
+ * we should replace these spaces at "col"  with a tab stop.
  *
  * */
-void entab(char line[], int length)
+void entab(int length)
 {
-	int col, i, space_flag;
+	int col, i, j, non_space;
 	char c;
-	space_flag = 0;
+	non_space = 0;
 	
-	for (col = 0, i = 0; i < length; i++) {
-		c = line[i];
-		if (c != ' ') {
-			en_line[col] = c;
-			col++;
-		} else if (c == ' ') {
-			col = i;
+	for (col = 0, i = 0; i < length; i++, col++) {
+		if (col % 8 == 0)  {
+			// Check backwards.
+			int temp = col - 1;
+			for ()
 		}
 
-		// Keep on iterating.
-		if (c)
-
 	}
+
+	printf("%s\n", en_line);
 
 }
 
 
-int get_line(char line[])
+int get_line()
 {
 	int i, c;
 	for (i = 0; i < N - 1 && (c = getchar()) != EOF && c != '\n'; i++) {
