@@ -93,7 +93,7 @@ main
 #define COLUMN 8  // COLUMN is a symbolic parameter or symbolic constant. 
 ```
 
-(2) `tab` doesn't necessarily move 4 columns or 8 columns(if it is set to 8 by default). It doesn't move specific columns; if a program encounters a `\t`, it doesn't print fixed number of spaces but prints enough spaces to reach the next `tab`.  As an illustration: 
+(2) `tab` doesn't necessarily move 4 columns or 8 columns(if it is set to 8 by default). It doesn't move specific columns; if a program encounters a `\t`, it doesn't print fixed number of spaces but prints enough spaces to reach the next `tab`.  We can divide the whole space every 8 vertical columns, tab only stop at very 8 columns.  As an illustration: 
 
 ```c
 // Tabstops are 4 columns by default. 
@@ -110,6 +110,21 @@ If there is only 1 character, the columns of a `tabstop` is 3.  (4 - 3).
 If there are 2 characters, the columns of a `tabstop` is 2.  (4 - 2).
 
 Thus, we conclude that the columns = 4 - (n % 4), n is the number of non-blank characters. 
+
+#### Exercise 1.21
+
+**What does the exercise ask us to do?** 
+
+As tab stops every 8 columns, it should be inserted if there are blanks between the last non-blank character and the next tab stop. To illustrate, in `abcxxxxxH` the five spaces, represented with "x", should be replaced by a tab. The reason is that `H` is the 9th character and the start of the next tab stop, so five a tab will replace 5 blanks or spaces. 
+
+If there aren't any spaces between the last non-blank character and the next tab stop, we should not add any tabs. As an illustration, in `abxxijklH` there is no spaces between l and H, therefore, don't add any tabs even though there are two spaces following "ab".
+
+**How to tackle this exercise?** 
+
+1. Iterate the string and stop after every 8 vertical columns.
+2. Check if there any spaces the previous tab stop. 
+
+To illustrate,  in an array `arr[] = {'a', 'b', 'c' ....8}`, the element with an index of 8 is actually the ninth one and the start of a new tab stop. Assume we stop at the index of 32, we then check if there any spaces between the last non-blank character in `arr[24]` and `arr[31]` , and `arr[32]`. If `arr[24]` is a blank but `arr[31]` is not, we should not add any tab. 
 
 ### Chapter 2
 

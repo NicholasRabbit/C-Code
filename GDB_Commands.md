@@ -170,7 +170,7 @@ $ 6 4  # 这里接受的是printf(..)函数的返回值。printf(..)函数返回
 
 ##### 8)  display
 
-进入函数后才能使用此命令，否则找不到该局部变量。
+
 
 ```shell
 (gdb) info display # 查看已设置的显示点
@@ -445,7 +445,7 @@ When an instruction in`0x400f05` is being executed to call a function named `rea
 # Examine the address in %esp and print as offset from prvious.
 (gdb)x/a $esp 
 0xffffd2ac:     0x8048462 <__libc_csu_init+82>  # 0xffffd2ac is the content in %esp
-# Examine a string stored at 0xffffcca8.
+# Examine a string stored at 0xffffcca8(the string started from this address).
 (gdb)x/s 0xffffcca8
 # Examine first 20 opcode bytes of a function named "sum" ??
 (gdb)x/20b sum
@@ -570,6 +570,23 @@ gdb bomb  # First of all, run 'gdb bomb'
 ```
 
 N.B. If we apply `r`  more than once in the same debugging session, there is no need to input these arguments once more; they are the default arguments next time. 
+
+Whereas, if the input is redirected to a modified file, we should input the file each rerun the program in gdb.
+
+```shell
+(gdb)run < psol.txt
+```
+
+
+
+If there are options for a program, such as a `-q` in the Attack Lab of CSAPP, we can add it when debugging.
+
+```shell
+(gdb)start -q  # It can circumvent the test server as same as that in `./ctarget -q`. 
+(gdb)run -q # It also works. 
+```
+
+
 
 See the chapter 4.3.2 in [Guide to Faster, Less Frustrating Debugging.](https://heather.cs.ucdavis.edu/matloff/public_html/UnixAndC/CLanguage/Debug.html) 
 

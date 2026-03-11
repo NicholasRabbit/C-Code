@@ -522,5 +522,5 @@ Program received signal SIGSEGV, Segmentation fault.
 # Subsequently, the error is located. 
 ```
 
-
+#### 32, sizeof and sizeof(...)
 

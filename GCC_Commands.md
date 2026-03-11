@@ -118,8 +118,8 @@ gcc -Og example.c
 1）Basic
 
 ```shell
-as test.s -o test.o  # 生成目标文件
-ld test.o -o test.out #生成可执行文件
+as test.s -o test.o  	# 
+ld test.o -o test.out 	#
 # execute
 ./test.out
 echo $? #shell命令获取上一条命令的退出状态
@@ -154,8 +154,8 @@ objdump -dS test.out | less -N
 
 # An alternative option:
 gcc -S Test.c  # Generate an assembly file with suffix of ".s" automatically.
-# Generate an object file and executable object afterwards.
-gcc -c Test.s -o Test.o  # *.o is an object file
+# Generate an object file and executable object afterwards. "Test.o" is generated automatically. We don't have to input "-o Test.o" if we need this default name. 
+gcc -c Test.s -o Test.o  # *.o is an object file. 
 gcc Test.o -o Test.out   # an executable object. 
 ```
 

@@ -131,25 +131,58 @@ When a program is compiled with multiple source files, as an illustration, file1
 
 ### Chapter 2
 
+General notes:
+
+1. `const` prevents variables from being modified. 
+
 #### 2.1 Variable Names
 
 (1) What does "At least the first 31 characters of an internal name are significant" in the book?
 
 It means that a C compiler only treat the first 31 characters of an internal names(e.g. variables, functions which are only used in one source file) as meaningful. In other words, if two variables have the same 31 characters from the beginning, they are the same even though the rest ones are different.  
 
-(2) N.B.
+(2) Explanation of "For external names, the standard guarantees uniqueness only for 6 characters and a single case".
 
-Note that the following is treated as an integer by default, therefore, it can't be shifted by 63 bits. There will an an warning: count >= 32, which indicates "1" is an integer. 
+It is possibly an old C convention. "external names" are the names that out of a source file. The compiler only read the first 6 characters of them and abandons all the rest characters. To illustrate, if two external variable or functions have first 6 of identical names and they are the same no matter what the characters are afterwards. 
+
+(3) N.B.
+
+Note that the following `1` is treated as an integer by default, therefore, it can't be shifted by 63 bits. There will an an warning: "count >= 32", which indicates "1" is an integer by default. In order to shift bits in `1` as a long data, we should declare a long variable and then shift. 
 
 ```c
-//long ming_long = 1 << 63;  
+// 1 is an ineter by default even though it is assigned to a long
+long min_long = 1 << 63;   
 
+// 2 Shift the bits of a long variable instead. 
 long min_long = 1;
 // min_long is a long integer now, so it can be shifted by 63 bits. 
 min_long <<= 63;
 ```
 
-### Chapter 5
+(4) An excerpt from "6.S081 Intro to C Fa21" of tutorials of lecture 2.
+
+- In C, value do not store any type information. All type information is stored in variables, which let the code to be executed if it doesn't need to check what types they are. It is different with Python, in Python each value is stored in a region of memory, where the type and the value reside. 
+- A value only has a specific type because it is stored in a variable of that type. It is only allocated in the memory with enough space.
+- Furthermore,   the information of type only exists when a programme is being compiled; it does NOT exist anymore when the programme is being executed.
+
+#### 2.4 Declarations
+
+(1) What is an automatic variable ?
+
+An automatic variable is also called local variable, it is declared in a function or a block and can be only access within. Its default value is garbage value and it life ends till the end of the function.  
+
+```c
+int main() 
+{
+    auto int i;  // "auto" is optional here since all the lcoal variables are automatic.
+}
+```
+
+#### 2.5 Arithmetic Operators
+
+1. % can not be used with `float` or `double`.
+
+### hapter 5
 
 #### 5.1 Pointers and Addresses
 
@@ -158,4 +191,13 @@ min_long <<= 63;
 (2) A pointer is specified as a particular type of variable, namely a pointer is bound with or points to only one type of variable when it is declared. An exception is that `void *` can point to any data type except for itself. To illustrate, `int *ip` declares a pointer which can only point to an integer. 
 
 (3) `*` and `&` have higher precedence than arithmetic operators. Hence, `y = *ip + 1` obtains `*ip`  first and then add 1 and assigns the sum to y.  Note that `++*ip` does the same, but `(*ip)++`  should have parentheses to have the same result since unary operators like `*` and `++` associate right to left, which means in `*ip++` the compiler groups them from right, therefore, `ip++` is treated as a whole by `*`; that is as same as `*(ip++)`, which is not we expect. 
+
+(4) A pointer must be initialised before being assigned any specific data. Don't ignore the warning when compiling with `gcc -Wall`, it reminds me of initialising the `dp` before using it. Whereas, I didn't notice it. 
+
+```c
+double *dp;  
+double d = 3.1415926;  
+// A bug.
+*dp = d;   // dp hasn't been initialised and it contains a gargage value. 
+```
 
