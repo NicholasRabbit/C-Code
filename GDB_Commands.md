@@ -563,7 +563,7 @@ If there are command-line arguments to input when we run an executable object. F
 # In CLI we can do this. 
 ./bomb < psol.txt  
 # In gdb we can also do the same.
-gdb bomb  # First of all, run 'gdb bomb'
+Unix> gdb bomb  # First of all, run 'gdb bomb'
 (gdb)r/run < psol.txt  # Then redirect to the input file. 
 # Or we can redirect an input file when start debugging.
 (gdb)start < psol.txt

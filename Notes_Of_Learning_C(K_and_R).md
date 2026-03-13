@@ -182,7 +182,92 @@ int main()
 
 1. % can not be used with `float` or `double`.
 
-### hapter 5
+#### 2.7 Type Conversions
+
+1. Attention should be paid is that when `char` is converted to an integer, it could be a negative integer in some machines where 1 is set to default the extended bit.
+
+2. Explanation of "In the absence function prototype, `char` and `short` become `int`, and `float` becomes `double`" in page 45.  See my code in chapter 2: `argument_conversion.c`.
+
+   In essence, `char c` is char, but passed as `int` and received as `char` in the function `arg2`.
+
+   ```c
+   #include <stdio.h>
+   
+   void arg1(arg)
+   {
+       char c = arg;
+   }
+   
+   void arg2(char c)
+   {
+       char c2 = c;
+       printf("c2 is %c\n", c2);
+   }
+   
+   /*
+    * In the main function, since the caller, namely "main", doesn't "see"
+    * the prototype of argument, the parameter will be converted to int automatically.
+    * That happens both of the calling of "arg1" and "arg2", even though the type of
+    * the argumentis delcared in the function "arg2".
+    * See the assembly code, "c" has been extended by "movzbl or movsbl".
+    * */
+   int main(int argc, char *argv[])
+   {
+       char c;
+       arg1(c);
+       arg2(c);
+   
+       return 0;
+   }
+   ```
+
+   The assembly of the above code. 
+
+   ```assembly
+    	128 0000000000400536 <arg2>:
+       129   400536:       55                      push   %rbp
+       130   400537:       48 89 e5                mov    %rsp,%rbp
+       131   40053a:       48 83 ec 20             sub    $0x20,%rsp
+       132   40053e:       89 f8                   mov    %edi,%eax
+       133   400540:       88 45 ec                mov    %al,-0x14(%rbp)
+       134   400543:       0f b6 45 ec             movzbl -0x14(%rbp),%eax
+       135   400547:       88 45 ff                mov    %al,-0x1(%rbp)
+       136   40054a:       0f be 45 ff             movsbl -0x1(%rbp),%eax
+       137   40054e:       89 c6                   mov    %eax,%esi
+       138   400550:       bf 30 06 40 00          mov    $0x400630,%edi
+       139   400555:       b8 00 00 00 00          mov    $0x0,%eax
+       140   40055a:       e8 b1 fe ff ff          callq  400410 <printf@plt>
+       141   40055f:       c9                      leaveq
+       142   400560:       c3                      retq
+       143
+       144 0000000000400561 <main>:
+       145   400561:       55                      push   %rbp
+       146   400562:       48 89 e5                mov    %rsp,%rbp
+       147   400565:       48 83 ec 20             sub    $0x20,%rsp
+       148   400569:       89 7d ec                mov    %edi,-0x14(%rbp)
+       149   40056c:       48 89 75 e0             mov    %rsi,-0x20(%rbp)
+       150   400570:       0f be 45 ff             movsbl -0x1(%rbp),%eax
+       151   400574:       89 c7                   mov    %eax,%edi
+       152   400576:       b8 00 00 00 00          mov    $0x0,%eax
+       153   40057b:       e8 ad ff ff ff          callq  40052d <arg1>
+       # Before calling arg2, the bits of the argument is extended. 
+       154   400580:       0f be 45 ff             movsbl -0x1(%rbp),%eax
+       155   400584:       89 c7                   mov    %eax,%edi
+       156   400586:       e8 ab ff ff ff          callq  400536 <arg2>
+       157   40058b:       b8 00 00 00 00          mov    $0x0,%eax
+       158   400590:       c9                      leaveq
+       159   400591:       c3                      retq
+       160   400592:       66 2e 0f 1f 84 00 00    nopw   %cs:0x0(%rax,%rax,1)
+       161   400599:       00 00 00
+       162   40059c:       0f 1f 40 00             nopl   0x0(%rax)
+   
+   ```
+
+   
+
+     
+
+### Chapter 5
 
 #### 5.1 Pointers and Addresses
 
