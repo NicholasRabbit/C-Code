@@ -186,7 +186,7 @@ int main()
 
 1. Attention should be paid is that when `char` is converted to an integer, it could be a negative integer in some machines where 1 is set to default the extended bit.
 
-2. Explanation of "In the absence function prototype, `char` and `short` become `int`, and `float` becomes `double`" in page 45.  See my code in chapter 2: `argument_conversion.c`.
+2. In page 45, Explanation of "In the absence function prototype, `char` and `short` become `int`, and `float` becomes `double`" .  See my code in chapter 2: `argument_conversion.c`.
 
    In essence, `char c` is char, but passed as `int` and received as `char` in the function `arg2`.
 
@@ -263,9 +263,15 @@ int main()
    
    ```
 
-   
-
      
+
+#### 2.9 Bitwise Operators
+
+1. What is "right adjusted" in the function of `getbits(x, p, n)` in page 49 ? 
+
+   Suppose we have x(`0b0111,0110`) and we need a segment of bits from the index 1 to 3 from the left end. It is `getbits(x, 4, 3)`m, namely we need three bits from the 4th to the right. That is "right adjusted". Finally, we get `011`. 
+
+   
 
 ### Chapter 5
 
@@ -285,4 +291,16 @@ double d = 3.1415926;
 // A bug.
 *dp = d;   // dp hasn't been initialised and it contains a gargage value. 
 ```
+
+#### 5.3 Pointers and Arrays
+
+Why is there a segment fault in the following code ? 
+
+``` c
+char *s = "x";
+int cookie = 0x59b997fa;
+sprintf(s, "%.8x", cookie);    
+```
+
+"x" is a string literal, and in C, string literals are stored in read-only memory. 
 

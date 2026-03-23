@@ -436,6 +436,7 @@ When an instruction in`0x400f05` is being executed to call a function named `rea
 (gdb)x/w  ($esp - 0xc) # Examine 4-byte word starting at 0xc(%esp).
 (gdb)x/wd $esp  # Examine 4-byte word starting at the address in %esp in decimal format.
 (gdb)x/wx $esp  # In hexdecimal format. 
+(gdb)x/1xb $esp # Examine only one byte in %esp.
 (gdb)x/2w $esp  # Examine 2 4-yte words starting at the address in %esp.
 (gdb)x/2wd $esp #Examine 2 4-yte words starting at the address in %esp in decimal format.
 #Examine 8-byte words starting at the address in %esp.
@@ -451,6 +452,11 @@ When an instruction in`0x400f05` is being executed to call a function named `rea
 (gdb)x/20b sum
 # Examine first 10 instructions of a function named "sum"
 (gdb)x/10i sum
+# Examine the memory at an address and disassemble it as an instruction.
+(gdb)x/i $rip  # %rip is the PC.
+=> 0x4017b4 <getbuf+12>:        mov    $0x1,%eax
+(gdb)x/i $pc  	# We can us $pc instead.
+(gdb)x/i $rsp 	# An example from the Attack Lab of level of part 1. 
 # Examine characters starting from an address
 (gdb)x/c  ($rbx, $rax*1)   # An example from the bomb lab of CSAPP3e.
 ```
