@@ -271,7 +271,15 @@ int main()
 
    Suppose we have x(`0b0111,0110`) and we need a segment of bits from the index 1 to 3 from the left end. It is `getbits(x, 4, 3)`m, namely we need three bits from the 4th to the right. That is "right adjusted". Finally, we get `011`. 
 
-   
+
+
+#### 2.10 Assignment Operators and Expressions
+
+1. What is the difference between `+=` and `+`? 
+
+   Note that `+=` is an assignment operator and `+` is a binary operator. 
+
+   After disassembling the object file of a C programme with both of these two operators, I find that the instructions for them are the same at machine-level operation. Whereas, it said that an assignment operator may help a compiler to generate a more efficient program. 
 
 ### Chapter 5
 

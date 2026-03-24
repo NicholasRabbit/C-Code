@@ -151,3 +151,25 @@ $V = (-1)^s \times M \times 2^E$   (The bias is $2^{k - 1} - 1$ in which k repre
 Subsequently, the maximum value of the single precision floating-point types is $(-1)^0 \times 1.1111(23 bits) \times 2^{254 - 127}$. Its bits  representation is:
 
  `0 1111 1110 1111 1111 1111 1111 1111 111 = 0x7f 7f ff ff`
+
+#### Exercise 2.5
+
+At first the time complexity of my function is $O(n^2)$, whereas, after reading the source code of `strpbrk` I optimised my function and it become $O(n)$. Review the code occasionally. 
+
+#### Exercise 2.6 
+
+What does the question mean ? 
+
+As an illustrations, `setbits(x, 4, 3, y)` sets the bits start from 4th to 2nd to the rightmost 3 bits of y. 
+
+Suppose `x` is `0b011 010 01` and `y` is `0b1100 0101`. This function will set `x` to `0b011 101 01`. 
+
+#### Exercise 2.7
+
+To be continued. 
+
+#### Exercise 2.9
+
+My answer is as follows: 
+
+As an illustration, if the right most bit of x is 1, the bit becomes 0 after being subtracted by 1; if the last 2 bits of x is `10`, it becomes `01` after that. It is the same with `100`, `1000` or others.  `1 & 0 = 0` and `10 & 01 = 0`. As a result, the rightmost 1-bit is eliminated. 
