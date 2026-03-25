@@ -281,6 +281,74 @@ int main()
 
    After disassembling the object file of a C programme with both of these two operators, I find that the instructions for them are the same at machine-level operation. Whereas, it said that an assignment operator may help a compiler to generate a more efficient program. 
 
+#### 2.11 Conditional Expressions
+
+**(1) What is a conditional expression ?** 
+
+As an illustration, `expr1 ? expr2 : expr3` is an conditional expression and it is an alternative way to a conditional statement (`if...else` ). 
+
+**(2) Is a conditional expression faster than a `if...else` statement ?** 
+
+A "conditional expression" is interpreted to "a conditional data transfer" in machine-level code, which outperforms than a conditional statement(`if...else`), which is interpreted to "a "conditional control transfer" in assembly. See chapter 3.6.6 of CASPP 2e and my corresponding notes. 
+
+Since a processor predicts when there is a conditional instruction, if it make a incorrect prediction in a" conditional control transfer ", it invites severe penalty by wasting up to 20 to 40 clocks. 
+
+Let's examine the assembly code of `max.c` to prove that. 
+
+```c
+// max.c
+// Conditional control transfer.
+int max1(int a, int b)
+{
+	int z;
+	if (a > b)
+		z = a;
+	else 
+		z = b;
+	return z;
+}
+
+// Conditional data transfer.
+int max2(int a, int b)
+{
+	return a > b ? a : b;
+}
+```
+
+The disassembled code of these functions. 
+
+```assembly
+0000000000000000 <max1>:
+   0:	55                   	push   %rbp
+   1:	48 89 e5             	mov    %rsp,%rbp
+   4:	89 7d ec             	mov    %edi,-0x14(%rbp)
+   7:	89 75 e8             	mov    %esi,-0x18(%rbp)
+   a:	8b 45 ec             	mov    -0x14(%rbp),%eax
+   d:	3b 45 e8             	cmp    -0x18(%rbp),%eax
+  10:	7e 08                	jle    1a <max1+0x1a>
+  12:	8b 45 ec             	mov    -0x14(%rbp),%eax
+  15:	89 45 fc             	mov    %eax,-0x4(%rbp)
+  18:	eb 06                	jmp    20 <max1+0x20>
+  1a:	8b 45 e8             	mov    -0x18(%rbp),%eax
+  1d:	89 45 fc             	mov    %eax,-0x4(%rbp)
+  20:	8b 45 fc             	mov    -0x4(%rbp),%eax
+  23:	5d                   	pop    %rbp
+  24:	c3                   	retq   
+
+0000000000000025 <max2>:
+  25:	55                   	push   %rbp
+  26:	48 89 e5             	mov    %rsp,%rbp
+  29:	89 7d fc             	mov    %edi,-0x4(%rbp)
+  2c:	89 75 f8             	mov    %esi,-0x8(%rbp)
+  2f:	8b 45 fc             	mov    -0x4(%rbp),%eax
+  32:	39 45 f8             	cmp    %eax,-0x8(%rbp)
+  35:	0f 4d 45 f8          	cmovge -0x8(%rbp),%eax
+  39:	5d                   	pop    %rbp
+  3a:	c3                   	retq   
+```
+
+As can be seen in the assembly code, there are conditional transfer controls in `max2` and conditional data transfer in `max2`. Most of the modern pipeplined processors support conditional data transfer, therefore, `max2` is much faster. 
+
 ### Chapter 5
 
 #### 5.1 Pointers and Addresses
