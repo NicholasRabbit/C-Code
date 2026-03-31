@@ -370,7 +370,7 @@ double d = 3.1415926;
 
 #### 5.3 Pointers and Arrays
 
-Why is there a segment fault in the following code ? 
+1) Why is there a segment fault in the following code ? 
 
 ``` c
 char *s = "x";
@@ -379,4 +379,13 @@ sprintf(s, "%.8x", cookie);
 ```
 
 "x" is a string literal, and in C, string literals are stored in read-only memory. 
+
+2) A side effect of pointer arithmetic. (from "Intro-to-C-Fa21, Lecture 2" of 6S081). 
+
+```c
+ int values[5] = {10, 20, 30, 40, 50};
+// The two print out the same result: 50 since "x + y = y + x".
+ printf("%d\n", 4[values]);
+ printf("%d\n", values[4]);
+```
 

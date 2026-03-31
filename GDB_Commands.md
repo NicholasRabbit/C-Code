@@ -168,9 +168,9 @@ When you use `s/step` at a function, the `gdb` will tell you the arguments of it
 $ 6 4  # 这里接受的是printf(..)函数的返回值。printf(..)函数返回值就是其打印的字符数。
 ```
 
+
+
 ##### 8)  display
-
-
 
 ```shell
 (gdb) info display # 查看已设置的显示点
@@ -189,7 +189,7 @@ $ 6 4  # 这里接受的是printf(..)函数的返回值。printf(..)函数返回
 
 # undispaly
 (gdb) undisplay  1 # Delete a specific auto-display variable. 
-(gdb)undisplay  # Delete all auto-display expression.
+(gdb) undisplay  # Delete all auto-display expression.
 ```
 
 ##### 9) breakpoints
@@ -355,6 +355,13 @@ $5 = 0x80484a4 "abc"
 # Since it is in a little endian machine, "61" is at 0x80484a4.
 # We can see that the 4th byte is "00" which represents "null" or "\0". 
 0x80484a4:      0x00636261 
+```
+
+(3) To test condition with `print`
+
+```shell
+# Step to a line with `if`
+(gdb)print (statement in the if) 
 ```
 
 
