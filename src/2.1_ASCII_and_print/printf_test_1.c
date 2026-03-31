@@ -19,13 +19,17 @@ int main(void){
 	 *       in a decimal integer.
 	 *   %u: to print unsigend decimal integer.
 	 *   
-	 *   %6d: print a decimal integer with at least 6 characters.
+	 *   %6d: print an integer with minimum width of 6, right-aligned, padded with spaces if there is no numbers. 
+	 *   %-6d: left-aligned.
+	 *   %06d: padded with 0s.
 	 * */
 	int i;
-	i = -1;
+	i = 1234;
 	printf("%%d: %d\n",i);   
 	printf("u: %u\n", i);
 	printf("6d: %6d\n", i);
+	printf("-6d: %-6d\n", i);
+	printf("06d: %06d\n", i);
 
 	/*
 	 * 2,%x or %X: To print the hexadecimal value of a argument.
