@@ -459,11 +459,14 @@ When an instruction in`0x400f05` is being executed to call a function named `rea
 (gdb)x/20b sum
 # Examine first 10 instructions of a function named "sum"
 (gdb)x/10i sum
+
 # Examine the memory at an address and disassemble it as an instruction.
+# Examine instructions in the program counter.
 (gdb)x/i $rip  # %rip is the PC.
 => 0x4017b4 <getbuf+12>:        mov    $0x1,%eax
 (gdb)x/i $pc  	# We can us $pc instead.
 (gdb)x/i $rsp 	# An example from the Attack Lab of level of part 1. 
+
 # Examine characters starting from an address
 (gdb)x/c  ($rbx, $rax*1)   # An example from the bomb lab of CSAPP3e.
 ```
@@ -521,6 +524,21 @@ clear: clear break points at specified line or function.
 (gdb)clear 
 ```
 
+##### 18) layout
+
+See more details by entering  `(gdb) help layout`.
+
+```shell
+# 1. Display source and command windows
+(gdb) layout src
+# 2. Display disassembly and command windows
+(gdb) layout asm
+# 3. Display source, disassembly and command windows.
+(gdb) layout split
+# 4. Display register window.
+(gdb) layout regs
+```
+
 
 
 #### 3, scanf(...) in gdb
@@ -535,6 +553,8 @@ clear: clear break points at specified line or function.
 
 
 #### 4, segment fault and `gdb`
+
+##### 4.1 Use `backtrace`
 
 segmentation_fault.c (see this code in `c-code/src/19_GDB`)  
 
@@ -564,6 +584,20 @@ Program received signal SIGSEGV, Segmentation fault.
 # We can find that a system call named "vfscanf()" is called by "scanf()" in our code. 
 # Subsequently, the error is located. 
 ```
+
+##### 4.2 `layout` and `where`
+
+When I was debugging assembly in GDB , a "Segment fault" occurred. Use `layout` and `where` to locate the register where it is. 
+
+```shell
+# Note enter the following command when it crashes. 
+# Firstly, to show the content of all registers
+(gdb)layout reg
+# Secondly, to locate the registers
+(gdb)where   # It will highlight registers which are involved in this error. 
+```
+
+
 
 #### 5, command-line arguments
 

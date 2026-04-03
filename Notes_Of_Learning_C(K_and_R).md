@@ -351,6 +351,10 @@ As can be seen in the assembly code, there are conditional transfer controls in 
 
 ### Chapter 5
 
+#### General notes of pointer
+
+1. Returning address(pointer) of a local variable is dangerous because the stack of the function will be reset when it is finished which leads to the memory where the pointer points being replaced by new functions. 
+
 #### 5.1 Pointers and Addresses
 
 (1) The declaration of a pointer imitate the way of declaring a common variable. As an illustration,  `int *ip` indicates that `*ip` has the value of integer, however, `ip` itself is a variable which stores the address of this value of integer. 
