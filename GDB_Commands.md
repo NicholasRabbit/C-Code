@@ -310,6 +310,7 @@ For IA 32, the program counter is `%eip` while for x86-64, program counter is `%
 ```shell
 (gdb)print /x $eip  # print program counter in hexadecimal format
 (gdb)print /d $eip  # print program counter in decimal format
+(gdb)print /f $eax 	# print %eax in double decimal format
 (gdb)print /t $eip  # print program counter in binary format
 # print other registers
 (gdb)print /x $ebx  # print contents of %ebx in hexadecimal

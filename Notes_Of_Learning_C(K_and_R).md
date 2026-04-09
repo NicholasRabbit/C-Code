@@ -349,6 +349,31 @@ The disassembled code of these functions.
 
 As can be seen in the assembly code, there are conditional transfer controls in `max2` and conditional data transfer in `max2`. Most of the modern pipeplined processors support conditional data transfer, therefore, `max2` is much faster. 
 
+### Chapter 3 Control Flow
+
+#### 3.4 Switch
+
+1) "Cases and default clause can occur in any order", which means that `default` can precede `case`.
+
+```c
+// The output is "case" even though `default` occurs before a `case`. It doesn't fall
+// through "default" even though there is no "break" following it. 
+char c = 3;
+switch (c) {
+    default:
+        printf("default\n");
+        // no break here. 
+    case 2:
+        printf("case 3\n");
+        break;
+    case 3:
+        printf("case 3\n");
+        break;
+}
+```
+
+
+
 ### Chapter 5
 
 #### General notes of pointer
