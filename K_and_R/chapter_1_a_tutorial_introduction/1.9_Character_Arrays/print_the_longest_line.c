@@ -39,7 +39,7 @@ int get_line(char s[], int lim)
 	for (i = 0; i < lim - 1 && (c = getchar()) != EOF && c != '\n'; i++)
 		s[i] = c;
 	if (c == '\n') {
-		s[i] = c;  // Here is "i" equal to "lim - 1".
+		s[i] = c;  // Here is "i"  which equals to "lim - 1".
 		++i;
 	}
 	s[i] = '\0';
