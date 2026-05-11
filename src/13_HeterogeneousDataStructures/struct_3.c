@@ -54,6 +54,7 @@ int area (struct rect *rp)
 
 /*
  * (*rp).width can be represented by "rp->width" in C.
+ * Note that "->" can only be used with a pointer to a structure. 
  * */
 void rotate_left(struct rect *rp)
 {
