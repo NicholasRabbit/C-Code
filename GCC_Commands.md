@@ -56,7 +56,7 @@ gcc -E hello.c / cpp hello.c  # List preprocessed code on CLI
 gcc -E hello.c -o hello.i / cpp hello.c -o hello.i 
 
 # 2, hello.s (assembly)
-gcc -S hello.i  # automatically create an assembly file named helo.s
+gcc -S hello.i  # Capital -S: automatically create an assembly file named hello.s
 # Or
 gcc -S hello.c # skip the preprocess
 

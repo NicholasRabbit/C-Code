@@ -16,7 +16,7 @@ int main(void){
 	my_size_t num = 0xffbb;
 	printf("num = %lu\n", num);
 
-	//a is a type of arr_ten whose size is constant 10.
+	//"a" is a type of arr_t, which is an array with a constant size of 10.
 	typedef int arr_t[10];
 	arr_t a;
 	//a = {1,2,3,};   // a could not be intialised by using {..}

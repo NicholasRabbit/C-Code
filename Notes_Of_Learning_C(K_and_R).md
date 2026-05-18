@@ -372,6 +372,10 @@ switch (c) {
 }
 ```
 
+#### 3.7 Break and Continue
+
+1) A `break` causes the innermost enclosing loop or switch to be exited immediately. Note it is the innermost loop or switch that is terminated. 
+
 
 
 ### Chapter 5
@@ -397,7 +401,7 @@ double d = 3.1415926;
 *dp = d;   // dp hasn't been initialised and it contains a gargage value. 
 ```
 
-#### 5.3 Pointers and Arrays
+#### .3 Pointers and Arrays
 
 1) Why is there a segment fault in the following code ? 
 
@@ -418,3 +422,6 @@ sprintf(s, "%.8x", cookie);
  printf("%d\n", values[4]);
 ```
 
+#### 5.5 Character Pointers and Functions
+
+1) Note that a string is stored in read-only memory when it is declared like `char *s = "abc"`, therefore we can modify it by writing `s[0] = 'x';`. We can only copy characters of it to another string. See `strcpy`.

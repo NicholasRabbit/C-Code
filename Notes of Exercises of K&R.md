@@ -173,3 +173,8 @@ To be continued.
 My answer is as follows: 
 
 As an illustration, if the right most bit of x is 1, the bit becomes 0 after being subtracted by 1; if the last 2 bits of x is `10`, it becomes `01` after that. It is the same with `100`, `1000` or others.  `1 & 0 = 0` and `10 & 01 = 0`. As a result, the rightmost 1-bit is eliminated. 
+
+#### Exercise 3.4
+
+The minimum negative number in two's complement number representation is `-0x80000000 = -2,147,483,648`, $2^{wordsize - 1}$. Since the positive and negative numbers in any type of two's complement is asymmetric, there is no absolute value of it. In the machine level, `-2,147,483,648` is actually represented by its absolute:`2,147,483,648`. As a result, `n = -n` can't convert it to a positive number. 
+
