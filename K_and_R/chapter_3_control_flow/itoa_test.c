@@ -49,7 +49,8 @@ int main(int argc, char *argv[])
 	for (i = 0; i < N; i++)
 		s[i] = 0;
 
-	scanf("%d", &num);
+	//scanf("%d", &num);
+	num = 0x80000000;	// The minimum negative integer of int data.
 	itoa(num, s);
 
 	return 0;
