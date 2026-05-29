@@ -20,7 +20,7 @@
  * find them.
  *
  * Note: if "main.c" and "stack.c" are compiled together, the "extern" can be
- * ommitted.
+ * ommitted. 
  *
  * 2, static
  * If a variable or a function were modified by "static", it could not be used

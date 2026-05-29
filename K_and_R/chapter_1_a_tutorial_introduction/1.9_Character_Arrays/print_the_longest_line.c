@@ -39,8 +39,9 @@ int get_line(char s[], int lim)
 	for (i = 0; i < lim - 1 && (c = getchar()) != EOF && c != '\n'; i++)
 		s[i] = c;
 	if (c == '\n') {
-		s[i] = c;  // Here is "i"  which equals to "lim - 1".
-		++i;
+		s[i] = c;	// Here is "i"  which equals to "lim - 1".
+		++i;		// Note that '\n' is the last character in terms of the length of this line,
+					// namely, "abc\n" has the length of 4. 
 	}
 	s[i] = '\0';
 	return i;
