@@ -522,5 +522,48 @@ Program received signal SIGSEGV, Segmentation fault.
 # Subsequently, the error is located. 
 ```
 
-#### 32, sizeof and sizeof(...)
+#### 33, sizeof and sizeof(...)
+
+#### 34, Copile multiple source files
+
+1) When a function in a source file is used by another source file, you should compile multiple source files in C. Note that  you should delcare the function in the source file where is used, or there will be a warning. 
+
+```c
+// getline.c
+int get_line(char s[], int lim)
+{
+    while()
+}
+```
+
+Declare `get_line` in `main.c`
+
+```c
+// main.c
+int get_line(char s[], int lim);  // Declare it before using it. 
+int main(int argc, char *argv[])
+{
+    char s[10];
+    get_line(s, 10);
+    return 0;
+}
+```
+
+2) Then compile and link them at the same time.
+
+```shell
+gcc main.c getline.c -o program.out  # The order of the source files doesn't matter. 
+```
+
+Or compile them seperately and then link.
+
+```shell
+# (1) compile
+gcc -c main.c  # Generate main.o
+gcc -c getline.c 	# getline.o
+# (2) link
+gcc main.o getline.o -o program.out
+```
+
+
 

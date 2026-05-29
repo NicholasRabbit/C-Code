@@ -194,6 +194,8 @@ $ 6 4  # 这里接受的是printf(..)函数的返回值。printf(..)函数返回
 
 ##### 9) breakpoints
 
+###### break
+
 - `break, info, disable, enable, delete`
 
   First of all, show the source code by `(gdb) list 10` and decide where to set a break point.
@@ -230,7 +232,8 @@ $ 6 4  # 这里接受的是printf(..)函数的返回值。printf(..)函数返回
   (gdb)until 3 # Continue running until break point with number 3. 
   ```
 
-  
+
+###### conditional break
 
 - invoked by a specific break point/conditional break
 
@@ -239,7 +242,7 @@ $ 6 4  # 这里接受的是printf(..)函数的返回值。printf(..)函数返回
 (gdb) break 15 if sum != 0  # Don't forget "if" before the boolean expression.
 ```
 
-
+###### miscellaneous of break
 
 (1) Note that a break point in `for` statement is invalid. As an illustration, if we set `b 13 if i > 4`, the break point will never be invoked.  A break point should be set in line 14. I have verified that. 
 

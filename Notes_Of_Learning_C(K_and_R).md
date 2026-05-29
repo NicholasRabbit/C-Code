@@ -378,6 +378,81 @@ switch (c) {
 
 
 
+### Chapter 4 Functions and Program Structure
+
+**Terminology:** 
+
+Declaration and definition of functions: 
+
+A declaration of a function is the prototype of it. 
+
+A definition of a function is define the behaviour of it. 
+
+```c
+int itoa(int i, char s[]);	// Declaration
+int itoa(inti, char s[]) {	// Definition 
+    // ...
+}
+```
+
+#### 4.2 Functions Returning Non-Integers
+
+1) Implicit declaration. 
+
+1.1) If a function has not be previous declared and is used in a calling routine, the return type of it is `int` by default and the arguments is not assumed, which means these argument can be any type in the following declaration and definition. Yes, there should be definition of this implicitly declared function, or we don't know what the behaviour of it is. 
+
+```c
+// implicit_declaration.c 
+int main(int argc, char *argv[])
+{
+	double sum;
+	char line[8];
+	sum += atof(line);	// An implicit declaration of "atof()", because before "main" it has been delcared yet.
+	return 0;
+}
+//double atof(char s[])		// A compiled error occurs in this line: conflicting types.
+int atof(int i)		// The argument is different, but it doesn't cause any errors. 
+{
+	return 0;
+}
+```
+
+As an illustration, if `atof(line)` is used in `main` before it is declared, it is an implicit declaration. As a result, its return type is `int` by default, therefore, when `double atof(char s[])` is declared after `main`, there is a compiled error. The return type is `double` which conflicts with the implicit `int` of the return type. 
+
+Whereas, if the argument is `int` in the following declaration, no error occurs. Because the arguments of the implicit declaration can be any type. The compiler doesn't perform parameter checking in this scenario. 
+
+1.2) In fact, any function with empty argument list is also not assumed as that in the implicit declaration. 
+
+```c
+int atoi();	// nothing
+int void_arg(void);		// void
+
+int main(int argc, char *argv[])
+{
+	// For "atoi()" with no empty list of arguments, the type of arguments is also not assuned as in an undeclaration. 
+	char s[8] = "abc";
+	atoi(s);
+	double d = 1.5;
+	atoi(d);
+	
+	// Whereas, for a function with an argument of "void", it is literally an "empty" list of arguments.
+	//void_arg(s);	// An error occurs when it is compiled: too many arguments.
+	void_arg();	// Calling a function with "void" as its argument.
+	return 0;
+}
+
+int void_arg(void)
+{
+	return 0;
+}
+```
+
+To illustrate, if a function is declared with an empty list of argument as in `atoi()` in the program above, it can be called with any type of argument. So it is a bad habit to declare a function with empty list of argument. If you want to declare a function without any arguments, use `void` in the parentheses. 
+
+The reason that functions  with empty list of arguments like `itof()` exist is backward compatibility so that old C programme can be compiled with new compilers. 
+
+
+
 ### Chapter 5
 
 #### General notes of pointer

@@ -98,9 +98,9 @@ gcc foo.o bar.o -o test.out
 ##### 1.6) Optimise and debug
 
 ```shell
-# -g instructs the compiler to optimse for debugging.
-# -O indicates basic optimisation. 
-gcc -Og example.c  
+# -O instructs the compiler to optimse for debugging.
+# -g indicates basic optimisation. 
+gcc -Og example.c  # -Og is highly recommanded. 
 ```
 
 | Option | Meaning                  | Debug Friendly?      | Performance |
@@ -110,6 +110,15 @@ gcc -Og example.c
 | `-O1`  | More optimizations       | ⚠️ Harder to debug    | ✅ Faster    |
 | `-O2`  | Aggressive optimizations | ❌ Hard to debug      | 🚀 Faster    |
 | `-O3`  | Very aggressive          | ❌ Very hard to debug | 🚀🚀 Fastest  |
+
+The default optimisation is `-O0` if no option is specified. It is highly suggested to use `-Og` since it is for the debugging of the assembly code with basic optimisation. 
+
+##### 1.7) Loop unrolling
+
+```shell
+# Let a gcc comipler perform "unrolling loops". See chapter 5.8 of CSAPP 2e.
+gcc -funroll-loops hello.c
+```
 
 
 
