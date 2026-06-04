@@ -529,7 +529,7 @@ Program received signal SIGSEGV, Segmentation fault.
 1) When a function in a source file is used by another source file, you should compile multiple source files in C. Note that  you should delcare the function in the source file where is used, or there will be a warning. 
 
 ```c
-// getline.c
+// get_line.c
 int get_line(char s[], int lim)
 {
     while()
@@ -540,7 +540,7 @@ Declare `get_line` in `main.c`
 
 ```c
 // main.c
-int get_line(char s[], int lim);  // Declare it before using it. 
+int get_line(char s[], int lim); // Declare the function in other source before using it. 
 int main(int argc, char *argv[])
 {
     char s[10];
@@ -552,7 +552,7 @@ int main(int argc, char *argv[])
 2) Then compile and link them at the same time.
 
 ```shell
-gcc main.c getline.c -o program.out  # The order of the source files doesn't matter. 
+gcc main.c get_line.c -o program.out  # The order of the source files doesn't matter. 
 ```
 
 Or compile them seperately and then link.
@@ -560,9 +560,9 @@ Or compile them seperately and then link.
 ```shell
 # (1) compile
 gcc -c main.c  # Generate main.o
-gcc -c getline.c 	# getline.o
+gcc -c get_line.c 	# getline.o
 # (2) link
-gcc main.o getline.o -o program.out
+gcc main.o get_line.o -o program.out
 ```
 
 

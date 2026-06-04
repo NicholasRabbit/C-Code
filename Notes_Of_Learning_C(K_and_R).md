@@ -165,6 +165,39 @@ min_long <<= 63;
 - A value only has a specific type because it is stored in a variable of that type. It is only allocated in the memory with enough space.
 - Furthermore,   the information of type only exists when a programme is being compiled; it does NOT exist anymore when the programme is being executed.
 
+#### 2.3 Constants 
+
+(1) Note that a character constant is an integer; it is just such represented by a character within a single quote, such as `a`.  It has numeric value which can be found in ASCII table. 
+
+(2) Attention should be paid is that some characters are preceded by a backward slash, `\`, as escape sequences. For example, `\n`, `\t`.  
+
+(3) There might be multiple digits in a single quote to represent a character. As an illustration:
+
+**Octo**
+
+```c
+// It is the octo value of a vertical tab and can be written as `\t`. 
+char vtab = '\013';  
+
+// The octo number 007 which represent a bell. 
+char bell = '\007'; 	// It is as same as '\a'; note it is not 'a' because of '\'. 
+// There is a sound either in Puttty or a terminal in a Gnome if "bell" is printed.
+```
+
+**Hexadecimal**
+
+```c
+char vtab_h = '\xb'; 
+```
+
+(4) enumerate
+
+```c
+enum boolean {NO, YES};
+```
+
+See `enum_test.c` in this section. 
+
 #### 2.4 Declarations
 
 (1) What is an automatic variable ?
