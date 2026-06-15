@@ -130,7 +130,7 @@ If the next line is a function, entering `next` will pause at the line following
 
 When you use `s/step` at a function, the `gdb` will tell you the arguments of it, which is quite convenient 
 
-######     6.1 return from the current function
+######     6.1 `finish` return from the current function
 
 ```shell
 (gdb) finish  # Return from the current function. 
@@ -201,7 +201,8 @@ $ 6 4  # 这里接受的是printf(..)函数的返回值。printf(..)函数返回
   First of all, show the source code by `(gdb) list 10` and decide where to set a break point.
 
 ```shell
-(gdb) break / b 15  # Set a break point in the fifteenth line.
+(gdb) break 15  # Set a break point in the fifteenth line. 
+(gdb) b 15 # Or simply use "b". 
 (gdb) break do_some # Pause at the first line of a function named "do_some"
 (gdb) clear do_some # Clear any breakpoints at the entry of a function named "do_some". 
 

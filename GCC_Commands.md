@@ -226,3 +226,30 @@ readelf -a -W Test.out #读取可执行文件
 # -W表示不自动换行打印结果，因为默认显示80个字符宽，超过就自动换行。可能是早期屏幕不够宽，但是有的结果换行了就不易阅读。
 ```
 
+#### 7. Profiler
+
+Use `grof` to generate profile data.
+
+```shell
+# Add "-pg" as an option
+gcc -pg -O1 bubble_sort.c -o bubble_sort
+
+# Run the "./bubble_sort" as usual and a file named "gmon.out" will be generated.
+./bubble_sort
+
+# Generate profile data.
+# Note that the default output is the terminal. 
+gprof bubble_sort	
+```
+
+If it only shows the following content on the terminal, turn back a page and we will see more details. 
+
+> Index by function name
+>
+>  		[1] bubble_sort
+
+```shell
+# Or redirect the output to a new file
+gprof bubble_sort > profier_of_bubble_sort.txt
+```
+
