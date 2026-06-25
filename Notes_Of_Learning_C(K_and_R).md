@@ -484,7 +484,15 @@ To illustrate, if a function is declared with an empty list of argument as in `a
 
 The reason that functions  with empty list of arguments like `itof()` exist is backward compatibility so that old C programme can be compiled with new compilers. 
 
+#### 4.3 External Variables
 
+(1) External objects include external variables and external functions. 
+
+By convention, C doesn't allow a function to be defined in other function so functions in C are external by default. 
+
+External variables are defined outside of any functions, therefore, can be accessed by any functions, even for the functions outside of the source file where the external variable. Note that we can define external variables and functions which can only be accessed in a single source file. I'll do it later. 
+
+External variables are referenced by the same name, even outside of the source file. 
 
 ### Chapter 5
 

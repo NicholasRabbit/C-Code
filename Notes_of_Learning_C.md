@@ -526,7 +526,7 @@ Program received signal SIGSEGV, Segmentation fault.
 
 #### 34, Copile multiple source files
 
-1) When a function in a source file is used by another source file, you should compile multiple source files in C. Note that  you should delcare the function in the source file where is used, or there will be a warning. 
+1) When a function in a source file is used by another source file, you should compile multiple source files in C. Note that  you should delcare the function in the current file where is used, or there will be a warning. 
 
 ```c
 // get_line.c
@@ -549,7 +549,7 @@ int main(int argc, char *argv[])
 }
 ```
 
-2) Then compile and link them at the same time.
+Then compile and link them at the same time.
 
 ```shell
 gcc main.c get_line.c -o program.out  # The order of the source files doesn't matter. 
@@ -563,6 +563,32 @@ gcc -c main.c  # Generate main.o
 gcc -c get_line.c 	# getline.o
 # (2) link
 gcc main.o get_line.o -o program.out
+```
+
+2) If you declare a function with the same name of the function in a C liberary, you should compile the source the the fuction is. Or the function in the liberary will be used. 
+
+To illustrate, define `atof(char s[])`.
+
+```c
+// atof.c
+int atof(char s[]) {}
+```
+
+Use it in main.c.
+
+```c
+// main.c
+int atof(char s[]);  // Declare it. 
+int main(void) {
+    char *s = "123";
+    atof(s);
+}
+```
+
+Compile them all: 
+
+```shell
+gcc main.c atof.c
 ```
 
 
