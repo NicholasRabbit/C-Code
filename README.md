@@ -1,3 +1,2 @@
-# c-code
-This repository will be updated when I am learning C.
-Admittedly, Java is a language designed for mediocre programmers, it is necessary to learn C to have fundamental knowledge in computer science.
+# Why do I learn C?
+Learning C forces me to know more about fundamentals of computer architecture, which is crucial to a good programmer regardless of what programming languages I am using at work.
