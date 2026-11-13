@@ -48,7 +48,8 @@ int factorial(int n){
 	// so that a condition should be add in the command line to ensure the process of compiling. 
 	// For example,  gcc -std=c99 ForTest.c -o ForTest.out
 	// While this kind of syntax is derived from C++ and it is not recommended in C.
-	for(int i = 1; i <= n; i++){
+	int i;
+	for(i = 1; i <= n; i++){
 		result = result * i;
 	}
 

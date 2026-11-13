@@ -3,11 +3,29 @@
 void pointers_and_addresses()
 {
 
-	int x = 1, y = 2, z[10];
 
-	// 1. "*ip" is represented by 0x__(%rbp) in the assembly.
+	/*
+	 * 1. Let's start with ampersand: &. It is a unary operator in C to get the addres of an object.
+	 * For int x, &x gives the address of x. 
+	 *
+	 * An inqusitive mind may ask, is it possible to declare a pointer like what we do for an integer?
+	 * The answer is Yes. Asterisk, *, is the indirect or dereferencing operator in C. It serves the 
+	 * declaration of a pointer.
+	 * To illustrate, "int *ip" declares a pointer "ip", but "*ip" is an integer. Do note that it is "ip" that is the pointer, 
+	 * not the "*ip". The latter access the object that the pointer points to. 
+	 * Once we get the value, which is the address of a variable, we man manipulate it to write conscise code. I hope so.
+	 *
+	 * C and Assembly (IA32)
+	 * If "ip" is a pointer, "*ip" is represented by 0x__(%ebx) in the assembly. 
+	 * */ 
+	int x = 1, y = 2, z[10];
+	printf("&x is %p\n", &x);
+
+	// Let's delcare a pointer and asign it with the addres of x.
 	int *ip;
 	ip = &x;  
+	printf("ip is 0x%x\n\n", ip); // Persumable, ip has the same content with &x.
+
 	y = *ip;
 	*ip = 0;
 	ip = &z[0];
@@ -17,16 +35,16 @@ void pointers_and_addresses()
 	double *dp, atof(char *);
 	double d = 3.1415926;
 	
-	//*dp = d; // This line of code is wrong because 'dp' hasn't been initialised yet.
+	//*dp = d; // It is buggy, because 'dp' hasn't been initialised yet, namely it points to somewhere in the memory.
 	dp = &d;
 	printf("*dp is %lf\n", *dp);
 	
 	// 3. Incrementing an object and a pointer.
 	y = *ip + 1;
-	printf("y is %d\n", y);
+	printf("y is %x\n", y);
 	
 	*ip += 1;
-	printf("*ip += 1 is %d\n", *ip);
+	printf("*ip += 1 is %x\n", *ip);
 
 	++*ip;
 	printf("++*ip is %d\n", *ip);
